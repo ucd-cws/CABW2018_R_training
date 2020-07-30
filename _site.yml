@@ -1,6 +1,6 @@
-name: "CABW2018_R_training"
+name: "CABW2020_R_training"
 navbar:
-  title: "CABW 2018 R training"
+  title: "CABW 2020 R training"
   type: inverse
   left:
     - text: "Home"
