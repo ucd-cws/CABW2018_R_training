@@ -1,11 +1,17 @@
+---
+title: "Mapping in R with `{sf}`"
+---
+
+
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 options(repos = "http://cran.rstudio.com/")
 pkgs <- c("dplyr", "knitr")
 x<-lapply(pkgs, library, character.only = TRUE)
 opts_chunk$set(tidy = FALSE, message = F, warning = F)
+## Mapping in R with `sf` {#sf}
 ```
 
-# Mapping in R with `sf` {#sf}
+## Using `{sf}` {#sf}
 
 R is an open source software package, and more and more, it has become useful for analysis, visualization, and even writing. More recently, it has become a powerful tool for working with spatial data, making maps, etc. This is because it's free (open source), it can do nearly everything that a GUI type program can do (e.g., ArcGIS), and you can write a script to do the same analysis many times over, saving time on repetitive tasks and making it clear how you did what you did. 
 

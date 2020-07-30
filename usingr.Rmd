@@ -1,3 +1,6 @@
+---
+title: "Using R for bioassessment data: What, why, and how"
+---
 
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 options(repos = "http://cran.rstudio.com/")
@@ -6,7 +9,6 @@ x<-lapply(pkgs, library, character.only = TRUE)
 opts_chunk$set(tidy = FALSE, message = F, warning = F)
 ```
 
-# Using R for bioassessment data: What, why, and how
 
 ## Lesson Outline
 

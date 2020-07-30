@@ -14,7 +14,7 @@ navbar:
     - text: "Resources"
       icon: fa-list
       href: resources.html
-output_dir: "."
+output_dir: "docs"
 output:
   html_document:
     theme: cosmo

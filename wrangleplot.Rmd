@@ -1,3 +1,6 @@
+---
+title: " Wrangling and plotting data in R"
+---
 
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 options(repos = "http://cran.rstudio.com/")
@@ -5,8 +8,6 @@ pkgs <- c("tidyverse", "knitr")
 x<-lapply(pkgs, library, character.only = TRUE)
 opts_chunk$set(tidy = FALSE, message = F, warning = F)
 ```
-
-# Wrangling and plotting data in R
 
 ## Lesson Outline
 
