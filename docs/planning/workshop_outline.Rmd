@@ -1,0 +1,59 @@
+---
+title: "Workshop Outline"
+date: "Updated: `r format(Sys.Date())`"
+output: markdown_github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Module 1: Data Wrangling
+
+  - (5 min): Basic overview of RStudio layout and use
+    - mention global settings, how to change layout
+    - show how to turn off restore workspace (.RData) as default, and stop asking to save workspace (explain "clean" start")
+  - (5-10 min): How to read in data! (csv)
+    - what are functions/libraries? How to use a function?
+    - read in a csv with `read.csv`
+    - `View` the object, show how to filter/search in RStudio
+  - (5-10 min): variable storage/data in R
+    - demo of variable storage: assigning a new object (i.e., col from existing data frame), using `$` to access parts of an object)
+    - basic overview of data classes: assigning a list of numbers, characters, mixed, with NA or missing values
+  - (10 min): Intro to `dplyr`
+    - manipulating data with dplyr (simple filter, rename column, add a column)
+    - Show both dplyr and simple base code to do the same bits.
+    - Introduce the pipe %>%
+  - (5 min): Use Function!
+    - Describe functions and groups of functions as a library (spells in a book)
+    - use a package and a function to read in some data from USGS (get flow data for a gage)
+    - use this data for "challenge" to manipulate and clean (doing only the same commands covered above)
+  - (5 min): Base plot
+    - make a simple plot of river flow or ppt using baseplot with both datasets
+      - advanced: how to save a plot!
+
+## Module 2: Make a Map from A Spreadsheet
+
+  - (10 min): Read data from excel spreadsheet
+    - Talk about tidy data and get people to think about this (spreadsheet is a list of sites or gages with location information)
+      - read in `Tab1` which is messy and breaks things
+      - then read in `Tab2` which is "tidied" and doesn't break
+  - (10 min): **Join** Data
+    - Join these sites with the data downloaded in Module 1 (may need to run function first)
+  - (10 min): Quick overview of **sf**
+    - explain the 'sf' package and show website and "potential"
+    - make data spatial (X/Y) with `{sf}`
+  - (5 min): Make a map with `{mapview}`
+  - (10 min): Introduce ggplot2:
+    - gently introduce structure of ggplot
+    - use data to show `geom_sf` and make a simple map with ggplot
+    - reference mapping website, Robin Lovelace's site
+
+## Module 3
+
+- read in at least 2 shapefiles and/or .gpx files with sf
+- look at data and do some data frame operation (mutate/join)
+- do some spatial operation (buffer, intersection, nearest?)
+- make a map with ggplot (show ggspatial?)
+- make a map with tmap? (advanced challenge)
+- save out to different spatial format (gpkg example, make sure state it works with ArcGIS)
