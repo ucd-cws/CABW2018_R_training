@@ -32,7 +32,7 @@ There are many programming languages available and each has it's specific benefi
 
 R is also an open-source programming language - not only is it free, but this means anybody can contribute to it's development. As of `r format(Sys.time(), "%Y-%m-%d")`, there are `r nrow(available.packages())` supplemental packages for R on CRAN! 
 
-## RStudio
+## R/RStudio fundamentals
 
 In the old days, the only way to use R was directly from the Console - this is a bare bones way of running R only with direct input of commands. Now, [RStudio](https://www.rstudio.com/) is the go-to Interactive Development Environment (IDE) for R. Think of it like a car that is built around an engine. It is integrated with the console (engine) and includes many other features to improve the user's experience. 
 
@@ -150,7 +150,7 @@ habitat
 
 In this same pane in the RStudio window is the *History* tab, which will record all the code you've run, and the *Connections* tab will show connections to other databases, etc.
 
-### Packages
+### Installing packages
 
 Immediately below the *Environment* is the third section of RStudio, where all of your *Packages* are stored. The base install of R is quite powerful, but you will soon have a need to go beyond this. Packages provide this ability. They are a standardized way of extending R with new methods, techniques, and programming functionality.
 
@@ -158,7 +158,7 @@ Immediately below the *Environment* is the third section of RStudio, where all o
 
 One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where you can gain access to additional packages.  All of the packages we'll be using during this tutorial will be downloaded from CRAN.  As of `r format(Sys.time(), "%Y-%m-%d")`, there are `r nrow(available.packages())` on CRAN! 
 
-### Installing packages
+### Installing tidyverse
 
 When a package gets installed, that means the source code is downloaded and put into your library. Let's give it a shot using the [tidyverse](https://tidyverse.tidyverse.org/index.html), a set of packages assembled for data tidying and visualization purposes.
 
@@ -176,49 +176,258 @@ Now your package is loaded, and ready to use. You can be certain your package is
 
 Great job! You've opened up RStudio, learned about some basic functionalities, and now you're ready to get going on your first R project!
 
-## Scripts
+## Getting your data into R
+
+Before you start working on a new dataset in RStudio, it is very important that you create a place to store your files. Starting off organized and staying organized in R will make *future you* so much happier. So, we're going to encourage that you take a moment now to organize your files and keep things tidy.
 
 ### RStudio projects
 
-I strongly encourage you to use RStudio projects when you are working with R.  The RStudio project provides a central location for working on a particular task.  It helps with file management and is portable because all the files live in the same project.  RStudio projects also remember history - what commands you used and what data objects are in your enviornment.  
+I strongly encourage you to use RStudio projects when you are working with R.  The RStudio project provides a central location for working on a particular task.  It helps with file management and is portable because all the files live in the same project.  RStudio projects also remember history - what commands you used and what data objects are in your *Environment*.  
 
-To create a new project, click on the File menu at the top and select 'New project...'
-
-INSERT figure/rstudio_proj.jpg HERE LATER
-
-Now we can use this project for our data and any scripts we create.  
-
-### Scripting
-
-In most cases, you will not enter and execute code directly in the console.  Code can be written in a script and then sent directly to the console when you're ready to run it.  The key difference here is that a script can be saved and shared.
-
-Open a new script from the File menu...
-
-INSERT figure/rstudio_script.jpg HERE LATER
-
-### RStudio projects
-
-I strongly encourage you to use RStudio projects when you are working with R.  The RStudio project provides a central location for working on a particular task.  It helps with file management and is portable because all the files live in the same project.  RStudio projects also remember history - what commands you used and what data objects are in your enviornment.  
-
-To create a new project, click on the File menu at the top and select 'New project...'
+To create a new project, click on the File menu at the top of the RStudio window and select 'New project...'
 
 INSERT figure/rstudio_proj.jpg HERE LATER
 
-Now we can use this project for our data and any scripts we create.  
+Select "New Directory" > "New Project". Title this project "cabw_r_workshop" (we will use this directory for the rest of today's workshop), and save it to a filepath that is logical and easy for you to find in the future. Then, click "Create Project." In the RStudio window that just opened, you should now see your working directory printed along the top of the screen (e.g., ~/Desktop/cabw_r_workshop - RStudio).
+
+Now, we can use this project for our data and any scripts we create.  
 
 ### Scripting
 
-In most cases, you will not enter and execute code directly in the console.  Code can be written in a script and then sent directly to the console when you're ready to run it.  The key difference here is that a script can be saved and shared.
+In most cases, you will not enter and execute code directly in the *Console*.  Code can be written in a script and then sent directly to the *Console* when you're ready to run it.  The key difference here is that a script can be saved and shared.
 
-Open a new script from the File menu...
+To open a new script, navigate to the File menu, and select "New File" > "R Script":
 
 INSERT figure/rstudio_script.jpg HERE LATER
 
-### Executing code in RStudio
+Save that file into your newly created project and name it "cabw_script.R". It'll just be a blank text file at this point.
 
-After you write your script it can be sent to the Console to run the code in R.  Any variables you create in your script will not be available in your working environment until this is done.  There are two ways to send code to the console.  First, you can hit the `Run` button at the top right of the scripting window.  Second, and preferred, you can use `ctrl+enter` (`cmd+enter` on a Mac).  Both approaches will send the selected line to the console, then move to the next line in your script.  You can also highlight and send an entire block of code.
+A script works similarly to the *Console*, but it does have a few key differences. The first, is that you can add text that is not able to be run. This text is referred to as annotations or comments, and it is denoted by using a # prior to the text. Let's use this to add a title, name, and date to our new script.
+
+```{r heading, echo = TRUE}
+
+# CABW 2020 Bioassessment R Tutorial
+# Heili Lowman
+# October 14, 2020
+
+```
+
+Let's practice making variables once more, but this time in our script file. Type the following into your script:
+
+```{r variable, echo = TRUE}
+
+#### Variables ####
+
+# Create a new variable.
+fish <- 10 + 45
+
+```
+
+
+After you write your script it can be sent to the Console to run the code in R. Any variables you create in your script will not be available in your working environment until this is done. There are two ways to send code to the console. First, you can hit the `Run` button at the top right of the scripting window. Second, and preferred, you can use `ctrl+enter` (`cmd+enter` on a Mac). Both approaches will send the selected line to the console, then move to the next line in your script. You can also highlight and send an entire block of code. If you'd like to run all the code in your script at once, you can use `ctrl+shift+enter` (`cmd+shift+enter` on a Mac).
 
 INSERT figure/rstudio_run.jpg HERE LATER
+
+Place your cursor on the line where you've created the `fish` variable, and run the line of code. Check to be certain that this variable has now appeared in your *Environment*.
+
+Add the following lines of code to your script, and then run each one:
+
+```{r variables, echo = TRUE}
+
+# Create additional variables.
+nitrogen <- 79 - 15
+algae <- fish * nitrogen
+
+```
+
+
+For the remainder of the workshop, we'll use this script instead of the *Console*. For comparison, working in the *Console* is like sending a lot of text messages, but working in this new script file is more like working in Word - you can save, edit, and track your changes, not to mention more easily collaborate with others to write files.
+
+## Exercise 1
+
+(1) Before we move on, take a moment to create some additional variables named `flow` and `pool` in your script. 
+
+(2) Annotate your variables with a comment using the `#` notation.
+
+(3) Run each of your new variables to be sure they appear in your *Environment*.
+
+(4) Save your script.
+
+If you have any difficulty completing the above 4 steps, please send a message to Ryan, Heili, or one of the workshop assistants in the chat.
+
+We have demonstrated that scripts are just as powerful as the *Console*, and they are much more useful. So, let's continue working in the script by loading in today's necessary packages and datasets.
+
+### Attaching packages
+
+At the beginning of most of your scripts, you will need to tell R which packages it needs to use to run the code below. So, we're going to install and attach some additional packages for today's workshop.
+
+In the *Console*, type and run the following lines of code:
+
+`install.packages("sf")`
+
+`install.packages("mapview")`
+
+`install.packages("viridis")`
+
+`install.packages("USAboundaries")`
+
+We run these installations in the *Console*, because they only need to happen once. Now, let's add the following to our script file and run each line to attach them for use today:
+
+```{r packages, echo = TRUE, eval = FALSE}
+
+#### Package and data loading ####
+
+# Attach necessary packages.
+library("tidyverse")
+library("sf")
+library("mapview")
+library("viridis")
+library("USAboundaries")
+
+```
+
+### Loading datasets
+
+It is the rare case when you manually enter your data in R, not to mention impractical for most datasets.  Most data analysis workflows typically begin with importing a dataset from an external source.  Literally, this means committing a dataset to memory (i.e., storing it as a variable) as one of R's data structure formats.
+
+You should have downloaded today's datasets already, but if not, the data are available [here](https://SCCWRP.github.io/CABW2018_R_training/data/datazip.zip).  The data are in a zipped folder.  Download the file to your computer (anywhere).  Create a new folder in your cabw_r_workshop roject named `data` and move the files into this location. Now, you should see them appear in the *Files* tab in the lower right hand corner of your RStudio window - this means the files are now a part of the same working directory as your script.
+
+Flat data files (text only, rectangular format) present the least complications on import because there is very little to assume about the structure of the data. On import, R tries to guess the data type for each column, and this is fairly unambiguous with flat files.The base installation of R comes with some easy to use functions for importing flat files, but we're going to use the `read_csv()` function from the `readr` package, which you've already loaded in through the `tidyverse`, because it does a slightly faster job of reading in data.
+
+Now that we have the data downloaded and extracted to our data folder, we'll use `read_csv` to import two files.
+
+1. Type the following in your script.  Note the use of *relative* file paths within your project.
+
+    ```{r data, message = FALSE}
+    
+    # Load CSCI and ASCI datasets.
+cscidat <- read.csv('data/cscidat.csv', stringsAsFactors = F)
+ascidat <- read.csv('data/ascidat.csv', stringsAsFactors = F)
+
+    ```
+
+1. Send the commands to the console with `ctrl+enter`.
+
+1. Verify that the data imported correctly by viewing the datasets in a spreadsheet style in a new window:
+
+    ```{r view, message = FALSE}
+    
+    # examine datasets in new windows
+    View(cscidat)
+    View(ascidat)
+
+    ```
+
+Let's explore the datasets a bit.  There are many useful functions for exploring the characteristics of a dataset.  This is always a good idea when you first import something.  
+
+```{r explore}
+
+# get the dimensions
+dim(cscidat)
+dim(ascidat)
+
+# get the column names
+names(cscidat)
+names(ascidat)
+
+# see the first six rows
+head(cscidat)
+head(ascidat)
+
+# get the overall structure
+str(cscidat)
+str(ascidat)
+
+```
+
+### Data structures in R
+
+There are many formats for storing data and R is no exception. We will introduce some of these types of data below.
+
+### Vectors (one-dimensional data)
+
+The basic data format in R is a vector - a one-dimensional grouping of elements that have the same type.  These are all vectors and they are created with the `c` function:
+
+```{r vectors}
+
+# double vector
+dbl_var <- c(1, 2.5, 4.5)
+
+# integer vector
+int_var <- c(1L, 6L, 10L)
+
+# logical vector
+log_var <- c(TRUE, FALSE, TRUE, FALSE)
+
+# character vector
+chr_var <- c("a", "b", "c")
+
+```
+
+The four types of vectors are `double` (or numeric), `integer`, `logical`, and `character`.  You can explore the type using the following functions:
+
+```{r type}
+
+# display vector type
+class(dbl_var)
+
+# display vector length
+length(log_var)
+
+```
+
+These properties are useful for not only describing an object, but they define limits on which functions or types of operations that can be used.  For example, some functions require a character string input while others require a numeric input. Similarly, vectors of different types or properties may not play well together. Let's look at some examples:
+
+```{r vector error, eval = F}
+
+# take the mean of a character vector
+mean(chr_var)
+
+# adding two numeric vectors of different lengths
+vec1 <- c(1, 2, 3, 4)
+vec2 <- c(2, 3, 5)
+vec1 + vec2
+
+```
+
+### 2-dimensional data
+
+A collection of vectors represented as a single data object are often described as two-dimensional data.  A more common way of storing two-dimensional data is in a data frame (i.e., `data.frame`).  Think of them like your standard spreadsheet, where each column describes a variable and rows link observations between columns. An example would be our `ascidat` loaded above.
+
+The only constraints required to make a data frame are:
+
+1. Each column contains the same type of data
+
+1. The number of observations in each column is equal.
+
+You can call vectors within a data frame by using the `$` to refer to a certain column. Type the following into your script to see how this works:
+
+```{r columns}
+
+# calculate the mean CSCI value of the entire dataset
+mean(cscidat$csci)
+
+# assign the vector containing sampling site information to a new variable
+Sites <- cscidat$site
+
+```
+
+
+### Other ways to import data
+
+More often you will probably have an Excel spreadsheet to import. In the old days, importing spreadsheets into R was almost impossible given the proprietary data structure of Excel.  The tools available in R have since matured and it's now pretty painless to import a spreadsheet.  The `readxl` package is the most recent and by far most flexible data import package for Excel files. It comes with the `tidyverse` family of packages.
+
+Once installed, we can load it to access the import functions.
+
+```{r excel, eval = F}
+
+# attach package for reading excel files
+library(readxl)
+
+# load in dataset (example)
+dat <- read_excel('location/of/excel/file.xlsx')
+
+```
 
 ## Additional R Resources
 
@@ -279,3 +488,7 @@ Below are just a few more resources I like:
 - [Stats the Way I Like It](https://statsthewayilikeit.com/): Course materials for Allison Horst's introduction to environmental data science course developed at the University of California Santa Barbara.
 - [CRAN Cheatsheets](http://cran.r-project.org/doc/contrib/Short-refcard.pdf): A good cheat sheet from the official source
 - [RStudio Cheatsheets](http://www.rstudio.com/resources/cheatsheets/): Additional cheat sheets from RStudio.  I am especially fond of the data wrangling one.
+
+## Summary
+
+In this module we learned about R and Rstudio, some of the basic syntax and data structures in R, and how to import files.  We've just imported some provisional data for the California Stream Condition Index (CSCI) and the Algal Stream Condition Index (ASCI) that we'll continue to use for the rest of the workshop.  These data represent a portion of the sampling sites that were used to develop each index.  Next we'll learn how to process and plot these data to gain insight into bioassessment patterns throughout the state. 
