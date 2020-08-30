@@ -1,4 +1,34 @@
-# CABW 2018 R training
+---
+title: "CABW R Workshop"
+output: 
+  bookdown::html_document2:
+    includes:
+      after_body: assets/foot.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+<!---
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+--->
+
+<div class = "blue">
+**This page should include**:  
+
+ - an introduction to the conference, 
+ - link to code of conduct & agenda
+</div>
+
+<br>
+<br>
+
+
+# CABW 2020 R training
 
 [R](https://www.r-project.org/) is a language for statistical computing as well as a general purpose programming language. Increasingly, it has become one of the primary languages used in data science and for data analysis across many of the natural sciences. This workshop will provide attendees with the foundations for continued learning of R and for analysis of a range of data types. 
 
@@ -36,3 +66,8 @@ All source materials for this website can be accessed at https://github.com/SCCW
 ## Attribution
 
 Content in these lessons was borrowed, modified, and/or adapted from Marc Weber (USEPA), Ryan Hill (USEPA), Jeffrey Hollister (USEPA), the USGS-R training curriculum [here](https://github.com/USGS-R/training-curriculum), the NCEAS Open Science for Synthesis workshop [here](https://nceas.github.io/oss-2017/index.html), and the wonderful text [R for data science](https://github.com/hadley/r4ds).
+
+
+---
+
+*site updated: ```r format(Sys.time(), "%Y-%m-%d %H:%M")```*

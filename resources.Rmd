@@ -1,5 +1,11 @@
 ---
 title: "Data & Resources"
+output:
+  bookdown::html_document2:
+    toc: false
+    includes:
+      in_header: assets/faq.html
+      after_body: assets/foot.html
 ---
 
 This page contains links to the data we're using in our workshop, and a sample of a few useful resources online and in print. This is by no means a comprehensive list, but hopefully a launching pad for useful website and books. All of these examples provide code in same shape or form.

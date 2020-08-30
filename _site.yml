@@ -1,24 +1,83 @@
 name: "CABW2020_R_training"
+output_dir: docs
+output:
+  bookdown::html_document2:
+    theme: cosmo
+    number_sections: false
+    highlight: textmate
+    toc: true
+    toc_float:
+        collapsed: true
+    css: styles.css
+    lib_dir: site_libs
+    self_contained: no
+    include:
+        in_header: header.html
+        after_body: footer.html
 navbar:
   title: "CABW 2020 R training"
   type: inverse
   left:
-    - text: "Home"
-      href: index.html
-    - text: "What, why, and how of R"
+  - text: 
+    icon: fa-home fa-1.5x
+    href: index.html
+  - text: "Setup R"
+    icon: ion-hammer
+    href: setup.html
+  - text: "1: Data In, Plot Out!"
+    icon: fa-bicycle fa-1x
+    menu:
+    - text: "Lesson 1:"
+    - text: "Importing Data"
+      icon: fa-download
       href: usingr.html
-    - text: "Wrangling and plotting"
+    - text: "Lesson 2:"
+    - text: "Wrangling Data"
+      icon: fa-magic
       href: wrangleplot.html
-    - text: "Mapping"
+    - text: "Lesson 3:"
+    - text: "Plotting with ggplot"
+      icon: fa-area-chart
+      href: wrangleplot.html
+  - text: "2: Excel to a Map"
+    icon: fa-car
+    menu:
+    - text: "Lesson 1:"
+    - text: "Working from Excel"
+      icon: fa-table
+      href: working_w_xls.html
+    - text: "Lesson 2:"
+    - text: "Joining Data"
+      icon: fa-object-ungroup
       href: mapping.html
-    - text: "Resources"
-      icon: fa-list
-      href: resources.html
-output_dir: "docs"
-output:
-  html_document:
-    theme: cosmo
-    highlight: textmate
-    toc: true
-    toc_float: 
-       collapsed: true
+    - text: "Lesson 3:"
+    - text: "Using {sf}"
+      icon: fa-globe-americas #drafting-compass
+      href: mapping.html
+    - text: "Lesson 4:"
+    - text: "Make a Map!"
+      icon: fa-map-marked-alt
+      href: mapping.html
+  - text: "And Beyond"
+    icon: fa-space-shuttle fa-1x
+    menu:
+    - text: "Helpful Packages"
+      icon: fa-box-open
+      href: working_w_xls.html
+    - text: "Running Functions"
+      icon: fa-code-branch
+      href: working_w_xls.html
+    - text: "Downloading River Data"
+      icon: fa-tint
+      href: working_w_xls.html
+  right:
+  - text: "FAQ"
+    icon: fa-question
+    href: reference.html
+  - text: "Resources"
+    icon: fa-list
+    href: resources.html
+  - icon: fa-github fa-lg
+    href: https://github.com/ucd-cws/CABW2020_R_training
+  - icon: fa-twitter fa-lg
+    href: https://twitter.com/CalSFSsocial

@@ -1,4 +1,15 @@
-# Set Up
+---
+title: "Setup"
+output: 
+  bookdown::html_document2:
+    includes:
+      after_body: assets/foot.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 
 Thanks for your interest in learning R.  For the workshop, we will be using [RStudio](https://www.rstudio.com/) as our interface to R.  In order to participate in this workshop you will need to make sure you have R and RStudio installed on your laptop.
 
