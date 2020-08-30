@@ -21,40 +21,105 @@ library(icon)
 
  **Objectives for this section:**
  
- - look at a messy spreadsheet and think about ways we could make it tidy
- - read in data from different spreadsheet tabs
- - write data to a spreadsheet tab and a CSV!
+ - look at a messy spreadsheet & understand how to make it tidy
+ - read (import) data into R from different spreadsheet tabs
+ - write data to a `.xlsx` spreadsheet, or a standalone `.csv`!
  
 :::
 
 <br>
-`r icon::fa("r-project", color="steelblue")`
+
+## Spreadsheet Madness to Tidy Data
+
+Spreadsheets surround us and exist in nearly every facet and field. While learning how to use `r icon::fa("r-project", color="steelblue")` will make life easier and more reproducible, spreadsheets won't go away, and there will always still be a messy dataset that comes your way.
+
+So let's talk about what tidy data should look like, and then take a look at a messy real-life spreadsheet, and figure out what could be done to make it **tidy**!  
+
 <br>
 
-## How to get data from a spreadsheet into R!
+### **What is Tidy Data?**
 
-Spreadsheets surround us and exist in nearly every facet and field. While learning R will make life easier and more reproducible, spreadsheets won't go away, and there will always still be a messy dataset that comes your way.
+Typically when we look at data, we should always want it to be in a "tidy" format. To be in a tidy format, we want to have each **column** as a unique variable, and each **row** as a unique observation of data. 
+
+> Tidy Data = *Columns for variables and rows for observations*
+
+### **Look at a Messy Dataset**
+
+Let's take a look at this **messy** dataset from our previous lesson (LINK HERE TO LESSONS). 
+
+ - You can either download this file directly ([DOWNLOAD `r icon::fa("download")`](https://github.com/ucd-cws/CABW2020_R_training/raw/main/data/csci_spreadsheet.xlsx)) and view on your computer
+ - Or just follow along with the screenshots below!
+ 
+ <br>
+ 
+ <div class = "blue">
+
+:::obj
+
+**CHALLENGE**  
+
+ - **What issues do you notice about the first tab?**
+ - **What could we do to make this tidy?**
+
+:::
+
+</div>
+
 
 
 <details>
-  <summary>Click for Answer</summary>
+  <summary>`r icon::fa("search-plus")` Click for Answers</summary>
+<br>
 
-So here's an example of a plot with more info on something. We can use the binoculars or magnifying glass to signify "*more info here if you want*"
-
-    ```{r, echo=FALSE, eval=TRUE}
-    hist(1:10)
-    ```
+ - Multiple tables on one sheet
+ - Figure embedded in the same sheet
+ - Tables start on different rows
+ - Table on far left doesn't have column headers so no idea what the data may be
+ - *add mixed col or date issue*
 
 </details> 
-### What is Tidy Data?
 
+<br>
+
+
+<details>
+  <summary>`r icon::fa("info-circle")` Extra Practice!</summary>
+<br>
+
+If you are interested in an excellent lesson on how to improve your spreadsheet skills, checkout the excellent lesson via [Data Carpentry: Data Organization in Spreadsheets for Ecologists](https://datacarpentry.org/spreadsheet-ecology-lesson/). This lesson should be read by anyone and everyone who uses spreadsheets (which is everyone), so go take a look!
+
+</details
+
+<br>
+<br>
+
+## Import Data from (Excel) Spreadsheets
+
+Now that we have a general sense about what we may be up against, let's take a look at how to get some data in a spreadsheet into R. For this we will need a few new packages! The R environment has many packages, and there may be others with similar capabilities, but let's stick with these for now.
 
 ```{r, echo=TRUE, eval=TRUE}
 library(tidyverse)
 library(openxlsx)
 library(readxl)
 
+```
+
+### **Read data from a single tab**
+
+
+```{r readTab1, eval=TRUE, echo=TRUE, warning=FALSE, message=FALSE}
+
 # load data
 messy <- readxl::read_excel(path = "data/csci_spreadsheet.xlsx", sheet = 1)
+
+```
+
+The Data: 
+<br>
+```{r showTab1, eval=TRUE, echo=FALSE}
+
+library(DT)
+DT::datatable(messy)
+
 ```
 
