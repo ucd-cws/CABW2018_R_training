@@ -33,7 +33,7 @@ modifyBaseFont(wb, fontSize = 10, fontName = "Roboto")
 headSty <- createStyle(halign="center", border = "TopBottomLeftRight")
 
 # setup the worksheets
-addWorksheet(wb, sheetName = "csci_messy", gridLines = TRUE)
+addWorksheet(wb, sheetName = "messy", gridLines = TRUE)
 addWorksheet(wb, sheetName = "csci_clean", gridLines = TRUE)
 addWorksheet(wb, sheetName = "sites_latlon", gridLines = TRUE)
 
@@ -42,10 +42,29 @@ writeDataTable(wb, sheet = 1, x = csci, colNames = FALSE, rowNames=FALSE, startR
 writeDataTable(wb, 2, x = csci, withFilter = FALSE, headerStyle = headSty)
 writeDataTable(wb, 3, x = xy_dat, withFilter = FALSE)
 
+# make a messed up dataframe and make up data
+# add a random date:
+st_d <- as.Date("1998-05-07") # start
+en_d <- as.Date("1999-12-07") # end
+nR <- nrow(ChickWeight) # number of rows
+date <- seq(st_d, en_d, length.out = nR) # seq of dates eq to length of nrows
+
+# add a "combined column" (not tidy)
+combcol <- sample(paste0(rep(c("pink","blue","gray"), 
+                     nR), "-", rep(c("Y","N"), nR)), nR)
+
+# now stitch together
+df_mess <- ChickWeight %>% 
+  mutate(sky= rnorm(n = nrow(.), mean = 3, sd = 1),
+         date = date ,
+         combcol = combcol) %>% 
+  rename(Indiv = Chick) # rename col (new name = old name)
+
+
 # write data to specific sheet and location (make it messy)
-writeDataTable(wb, sheet = 1, ChickWeight, startCol = "M", startRow = 1)
-qplot(data=ChickWeight, x = weight, y= Time, colour = Diet)
-insertPlot(wb, 1, xy=c("R", 16)) ## insert plot at cell R16
+writeDataTable(wb, sheet = 1, df_mess, startCol = "M", startRow = 1, withFilter = FALSE)
+qplot(data=df_mess, x = weight, y= Time, colour = Diet)
+insertPlot(wb, 1, xy=c("T", 16)) ## insert plot at cell R16
 
 
 # now save!
