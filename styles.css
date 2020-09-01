@@ -28,40 +28,105 @@ pre {
 /*blue comment box */
 .blue {
     background-color:#e6f0ff; 
-    border-radius: 5px; 
-    padding: 20px;
+    border-radius: 4px; 
+    padding: 12px;
 }
 
+/* add a summary click box option */
+
+/* turn off arrow completely in summary box */
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* make marker something before click */
+summary::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f13a";
+    color: #228B22;
+}
+
+/* and after click */
+details[open] summary:before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f139";
+    color: gray;
+}
+
+.challenge-ans-title {
+  font-size: 18px;
+  line-height: 1.5em;
+  font-family: "Roboto";
+  background-color:#e6f0ff;
+  text-transform: uppercase;
+  font-style: bold;
+  letter-spacing: 0.1em;
+}
+
+.challenge-ans-body {
+  padding: 1em;
+  background-color:#e6f0ff;
+  font-family: 'Roboto';
+      font-size: 16px;
+      font-weight: normal;
+}
+
+.extra-practice-title {
+  font-size: 16px;
+  line-height: 1.5em;
+  font-family: "Roboto";
+  background-color: #D9E8E1;
+  letter-spacing: 0.1em;
+}
+
+.extra-practice-body {
+  padding: 1em;
+  background-color: #D9E8E1;
+  font-family: 'Roboto';
+      font-size: 16px;
+      font-weight: normal;
+}
 
 /* see giraffe teacup site for great css tips: https://github.com/tinystats/teacups-giraffes-and-statistics/blob/master/assets/style.css 
-css below is from that page */
+css below is adapted from that page */
 
-div.note, div.tip, div.gotcha, div.design, div.hat, div.obj{
+.obj {
   border: 4px #002855;
   border-style: solid;
   padding: 1em;
   margin: 1em 0;
-  
-  /*uncomment for icon */
-  
-  /* padding-left: 100px; 
-  background-size: 70px; 
-  background-repeat: no-repeat;
-  background-position: 15px center; */
   min-height: 120px;
   /*color: #638f9d;*/
   color: #002855;
   background-color: #ffffff;
-}
-
-div.obj {
   font-size: 16px;
   line-height: 1.5em;
   font-family: "Roboto";
   /*background-image: url("../images/arrow.png");*/
 }
 
-div.obj>p:first-child {
+.obj>p:first-child {
+  padding-top: 0;
+  margin-top: 0 !important;
+  font-family: "Roboto";
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.challenge {
+  color: #002855;
+  background-color:#e6f0ff; 
+  border-radius: 4px; 
+  padding: 12px;
+  font-size: 16px;
+  line-height: 1.3em;
+  font-family: "Roboto";
+  /*background-image: url("../images/arrow.png");*/
+}
+
+.challenge>p:first-child {
   padding-top: 0;
   margin-top: 0 !important;
   font-family: "Roboto";
@@ -74,7 +139,6 @@ div.obj>p:first-child {
 .image-descript {
     position: relative;
 }
-
 
 /*.big_image is for module pages*/
 

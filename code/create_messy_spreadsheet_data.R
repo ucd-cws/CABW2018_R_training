@@ -12,11 +12,11 @@ library(openxlsx) # to write excel files
 # read in the data
 csci <- read_csv("data/cscidat.csv")
 
-# View(csci) # preview data in RStudio
+# drop the lat lon from csci to set up joins in mod2
+csci <- csci %>% select(-starts_with("New_"))
 
 # read in the latlon data
 xy_dat <- read_csv("data/latlon.csv")
-
 
 
 # SETUP AND WRITE TO XLSX -------------------------------------------------
