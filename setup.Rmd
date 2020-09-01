@@ -20,7 +20,7 @@ Thanks to the [USGS-R Training group](https://owi.usgs.gov/R/training.html) and 
 **R** and **RStudio** are separate downloads and installations. R is the underlying statistical computing environment, but using R alone is no fun. RStudio is a graphical integrated development environment (IDE) that makes using R much easier and more interactive. *You need to install R before you install RStudio*.
 
 ## *Windows*: Download and install R
-Go to [CRAN and download](https://cran.rstudio.com/bin/windows/base/) the R installer for Windows. Make sure to choose the latest stable version (v3.5.1 as of Sept 2018).
+Go to [CRAN and download](https://cran.rstudio.com/bin/windows/base/) the R installer for Windows. Make sure to choose the latest stable version (v4.0.2 as of Sept 2020).
 
 Once the installer downloads, Right-click on it and select "Run as administrator". 
 
@@ -88,12 +88,12 @@ version$version.string
 
 ## Verify your installed R version
 
-Ideally you should be running the latest stable release (`v3.5.1` as of Sept 2018). If you have an older version, please install the newest version using the instructions above.
+Ideally you should be running the latest stable release (`v4.0.2` as of Sept 2020). If you have an older version, please install the newest version using the instructions above.
 
 Here is what my R version looks like.
 
 ```
-## [1] "R version 3.5.1 (2018-07-02)"
+## [1] "R version 4.0.2 (2020-06-22)"
 ```
 
 # Add Packages
@@ -107,6 +107,10 @@ install.packages("sf")
 install.packages("mapview")
 install.packages("viridis")
 install.packages("USAboundaries")
+install.packages("openxlsx")
+install.pacakges("readxl")
+install.packages("lubridate")
+
 ```
 
 If you see 
