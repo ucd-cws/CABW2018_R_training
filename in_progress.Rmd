@@ -1,0 +1,25 @@
+---
+title: "In Progress!"
+output: 
+  bookdown::html_document2:
+    includes:
+      after_body: assets/foot.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br> 
+
+:::obj
+
+We are currently working on the content for this page! Please stay tuned!
+
+:::
+
+<br>
+<br>
+
+![Shasta Dam Under Construction, 1942 (Wikipedia)](https://upload.wikimedia.org/wikipedia/commons/b/b2/Shasta_dam_under_construction_new_edit.jpg)
+
