@@ -1,0 +1,278 @@
+---
+title: "  "
+output: 
+  bookdown::html_document2:
+    includes:
+      after_body: assets/foot.html
+---
+
+```{r setup, include=FALSE, purl=FALSE, message=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(icon)
+library(here)
+
+```
+
+<br>
+<br>
+
+:::obj
+
+ **Objectives for this section:**
+ 
+ - look at a messy spreadsheet & understand how to make it tidy
+ - read (import) data into R from different spreadsheet tabs
+ - write data to a `.xlsx` spreadsheet, or a standalone `.csv`!
+ 
+:::
+
+<br>
+
+## Spreadsheet Madness to Tidy Data
+
+Spreadsheets surround us and exist in nearly every facet and field. While learning how to use `r icon::fa("r-project", color="steelblue")` will make life easier and more reproducible, spreadsheets won't go away, and there will always still be a messy dataset that comes your way.
+
+So let's talk about what tidy data should look like, and then take a look at a messy real-life spreadsheet, and figure out what could be done to make it **tidy**!  
+
+<br>
+
+### **What is Tidy Data?**
+
+Typically when we look at data, we should always want it to be in a "tidy" format. To be in a tidy format, we want to have each **column** as a unique variable, and each **row** as a unique observation of data. 
+
+> Tidy Data = *Columns for variables and rows for observations*
+
+
+### **Look at a Messy Dataset**
+
+Let's take a look at this **messy** dataset from our previous lesson (LINK HERE TO LESSONS). 
+
+ - You can either download this file directly ([DOWNLOAD `r icon::fa("download")`](https://github.com/ucd-cws/CABW2020_R_training/raw/main/data/csci_spreadsheet.xlsx)) and view on your computer
+ - Or just follow along with the screenshots below!
+
+<br>
+
+```{r messytab, out.width='100%'}
+
+include_graphics(paste0(here::here(), "/images/messy_spreadsheet.png"))
+
+```
+
+ 
+ <br>
+
+:::challenge
+
+**CHALLENGE**  
+
+ - **What issues do you notice about the first tab?**
+ - **What could we do to make this tidy?**
+
+:::
+
+<br>
+
+<details>
+  <summary class="challenge-ans-title">**Click for Answers!**</summary>
+  <div class="challenge-ans-body">
+ - Multiple tables on one sheet
+ - Figure embedded in the same sheet
+ - Tables start on different rows
+ - Table on far left doesn't have column headers so no idea what the data may be
+ - Mixed data (see last column in middle table)
+ - Dates could be easily switched if order unknown
+  </div>
+</details> 
+
+<br>
+
+<details><summary class="extra-practice-title">Extra Practice</summary>
+  <div class="extra-practice-body">
+*If you are interested in an excellent lesson on how to improve your spreadsheet skills, checkout the excellent lesson via [Data Carpentry: Data Organization in Spreadsheets for Ecologists](https://datacarpentry.org/spreadsheet-ecology-lesson/). This lesson should be read by anyone and everyone who uses spreadsheets (which is everyone), so go take a look!*
+  </div>
+</details
+
+<br>
+<br>
+
+## Import Data from (Excel) Spreadsheets
+
+Now that we have a general sense about what we may be up against, let's take a look at how to get some data in a spreadsheet into R. For this we will need a few new packages! The R environment has many packages, and there may be others with similar capabilities, but let's stick with these for now.
+
+```{r, echo=TRUE, eval=TRUE}
+
+library(tidyverse, quietly = TRUE)
+library(openxlsx)
+library(readxl)
+
+```
+
+### **Read data from a single tab**
+
+To start, let's try to read in the first tab (the *`messy`* one) in our worksheet. The `readxl::read_excel` function is pretty straightforward for this, requiring us to know where the spreadsheet lives on our computer (our `path`), and the tab or `sheet` of interest.
+
+```{r readTab1, eval=TRUE, echo=TRUE, warning=FALSE, message=FALSE}
+
+# load data
+messy <- readxl::read_excel(path = "data/csci_spreadsheet.xlsx", sheet = 1)
+
+```
+
+Uh-oh. Something isn't quite right here. Take a look at the interactive table below. Scroll to the right. What happened?
+
+<br>
+
+<br>
+
+```{r showTab1, eval=TRUE, echo=FALSE}
+
+library(DT)
+DT::datatable(messy, caption = "Table 1. The 'messy' datasheet tab")
+
+```
+
+<br>
+
+Ultimately the function `read_excel` did its job and read in our data. However, because our table is not tidy, this would take a fair bit of extra wrangling to get the data into some sort of useable shape for analysis, plotting, etc.
+So the take-home lesson here is that critically thinking about how data is entered and stored can save an immense amount of time in the long run, and it also makes it much easier to use a variety of tools when analyzing data. 
+
+<br>
+
+### **Read in Some Tidy Data!**
+
+Ok, since we know that the data in tab 1 is a mess, let's imagine that someone has cleaned this all up, and sent us a new version, with the tidy data in tabs 2 and 3. Let's read these in!
+
+:::challenge
+
+**CHALLENGE**  
+
+ - **Read in sheet 2 (`csci_clean`) and assign it to an object named "`csci`"**
+ - **Read in sheet 3 (`sites_latlon`) and assign it to an object named "`sites`**
+
+:::
+
+
+<br>
+
+<details>
+  <summary class="challenge-ans-title">**Click for Answers!**</summary>
+
+  <div class="challenge-ans-body">
+  
+  The only parts we need to change from the code above, are the sheet numbers, and the name of the objects.
+  
+  </div>
+  
+  <br>
+  
+```{r getSheets, echo=TRUE, eval=TRUE, collapse=TRUE}
+
+csci <- readxl::read_excel(path = "data/csci_spreadsheet.xlsx", sheet = 2)
+sites <- readxl::read_excel(path = "data/csci_spreadsheet.xlsx", sheet = 3)
+```
+  
+</details> 
+
+
+<br>  
+
+
+## Inspect & Save the Data
+
+It's always a good idea to take a look at the data and make sure:
+
+ - we understand what all the pieces represent
+ - all the data is accounted for
+ - we know what sort of missing data or wrangling we may need to do
+
+### **`sites` & `csci`**
+ 
+For our **`sites`** data, we have a set of bioassessment sites with `StationID` and latitude and longitude coordinates (awkwardly named `New_Lat` and `New_Long`). Here we can use `glimpse` as a way to look at the data types and columns present in the dataset.
+
+```{r inspectSites, echo=TRUE, eval=TRUE}
+
+glimpse(sites)
+
+head(sites)
+
+```
+
+<br>
+
+Based on this, we know there are 1,613 rows (so 1,613 **sites**), and 3 columns. We know the `StationID` column is a *character* data class, and the other columns are numeric (or *double* which essentially means numbers with decimals).
+
+The **`csci`** dataframe has the `SampleID_old` and `_old.1` columns, the `StationCode`, and the bioassessment data for each sample (which contains a date). See [cite here] for more info on CSCI and the derivative metrics that it provides. 
+
+<details><summary class="extra-practice-title">More Info!</summary>
+  <div class="extra-practice-body">
+*There's an R package built for working with bioassessment data, and for calculating the CSCI. Definitely worth checking out. See here... and here... for more info.*
+  </div>
+</details
+
+<br>
+
+We can see the `csci` dataset is again, a mix of `character` and `double` data classes.
+
+```{r inspectCSCI, echo=TRUE, eval=TRUE}
+
+# structure (str) is similar to glimpse
+str(csci)
+
+# summary gives a quick assessment of numeric/date/factor data classes.
+summary(csci[,c(3:7)])
+```
+
+
+Notice there are a few NA's in there! We'll keep those in mind as we move forward. 
+
+<br>
+
+### **Tidy our Data**
+
+The typical steps for data analysis are usually something like:
+
+ - read the data in
+ - inspect the data
+ - tidy/wrangle the data
+ - save clean data
+ - make plots/do analysis
+ - report
+ - rinse and repeat
+ 
+ <br>
+ 
+For now, we'll keep this to a bare minimum, but sometimes the "cleaning & tidying" can require substantial time! Again, the cleaner and tidier the data in, the easier things will be. 
+ 
+Building on what we worked on in the first part of this workshop, let's go ahead and use the `dplyr` package to do a few things, and then we'll save our data out for the next steps.
+
+First, let's drop any NA's from the `csci` data. Using a `dplyr::filter` is a great option.
+
+```{r dropNas, echo=TRUE, eval=TRUE}
+
+csci_clean <- dplyr::filter(csci, !is.na(CSCI)) 
+
+dim(csci_clean) # how many rows did we drop?
+
+```
+
+Next, let's rename a couple of the columns in the `sites` dataframe. Let's simplify the `New_Lat` and `New_Long` columns.
+
+
+
+```{r renameLatLon, echo=TRUE, eval=FALSE}
+
+sites_clean <- dplyr::rename(csci, lat = New_Lat, lon = New_Long)
+# What happened?
+```
+
+Let's try that again!
+
+```{r renameLatLonCorrect, echo=TRUE, eval=TRUE}
+sites_clean <- dplyr::rename(sites, lat = New_Lat, lon = New_Long)
+head(sites_clean)
+```
+
+
+### **Save it Out!**

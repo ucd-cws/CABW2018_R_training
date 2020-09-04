@@ -38,38 +38,38 @@ navbar:
     - text: "Lesson 3:"
     - text: "Plotting with ggplot"
       icon: fa-area-chart
-      href: wrangleplot.html
+      href: in_progress.html
   - text: "2: Excel to a Map"
     icon: fa-car
     menu:
     - text: "Lesson 1:"
     - text: "Working from Excel"
       icon: fa-table
-      href: working_w_xls.html
+      href: m2_1_working_w_xls.html
     - text: "Lesson 2:"
     - text: "Joining Data"
       icon: fa-object-ungroup
-      href: mapping.html
+      href: in_progress.html
     - text: "Lesson 3:"
     - text: "Using {sf}"
       icon: fa-globe-americas #drafting-compass
-      href: mapping.html
+      href: in_progress.html
     - text: "Lesson 4:"
     - text: "Make a Map!"
       icon: fa-map-marked-alt
-      href: mapping.html
+      href: in_progress.html
   - text: "And Beyond"
     icon: fa-space-shuttle fa-1x
     menu:
     - text: "Helpful Packages"
       icon: fa-box-open
-      href: working_w_xls.html
+      href: in_progress.html
     - text: "Running Functions"
       icon: fa-code-branch
-      href: working_w_xls.html
+      href: in_progress.html
     - text: "Downloading River Data"
       icon: fa-tint
-      href: working_w_xls.html
+      href: in_progress.html
   right:
   - text: "FAQ"
     icon: fa-question
