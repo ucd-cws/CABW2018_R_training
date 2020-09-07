@@ -92,3 +92,13 @@ str(sites_clean)
 
 What do we see? Looks like similar data in the `StationID` column in `sites_clean` and the `StationCode` column in `csci_clean`
 
+
+
+```{r}
+# join animations with tidyexplain: https://www.garrickadenbuie.com/project/tidyexplain/
+# code here: https://github.com/gadenbuie/tidyexplain/tree/master/R
+# animations here:
+# https://github.com/gadenbuie/tidyexplain/tree/master/images
+
+```
+
