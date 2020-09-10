@@ -1,0 +1,112 @@
+---
+title: "Plot Data"
+---
+
+```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
+options(repos = "http://cran.rstudio.com/")
+pkgs <- c("dplyr", "knitr")
+x<-lapply(pkgs, library, character.only = TRUE)
+opts_chunk$set(tidy = FALSE, message = F, warning = F)
+```
+
+## Lesson Outline
+
+- [Goals and Motivation]
+- [Plotting with ggplot2]
+- [Exporting your figure]
+
+## Goals and Motivation
+
+The entire workflow of data exploration is enhanced through looking at your data, whether you’re exploring a dataset for the first time or creating publication-ready figures. Viewing your data provides insight into patterns that can help you explore different hypotheses. No analysis is complete without a solid graphic.
+
+After this session you should be able answer the following:
+
+* How can I create a basic graphic using ggplot?
+* How can I customize and export/save my plots?
+
+## Plotting with ggplot2
+
+Today, we'll learn the core concepts behind the popular [ggplot2](https://ggplot2.tidyverse.org/reference/ggplot2-package.html) package. This package follows a strict philosophy known as the *grammar of graphics* that was designed to make thinking, reasoning, and communicating about graphs easier by following a few simple rules.  Like building a sentence in speech (aka grammar), all graphs contain the foundational components that are used for building other graph pieces - `ggplot()`, `geom`, and `aes()`.  
+
+With ggplot2, you begin a plot with the function `ggplot()` which creates a coordinate system that you can add layers to. The first argument of `ggplot()` is the dataset to use in the graph. So `ggplot(data = alldat)` creates an empty base graph.
+
+```{r, eval = F}
+ggplot(data = alldat)
+```
+
+You complete your graph by adding one or more layers (aka `geoms`) to `ggplot()`. The function `geom_point()` adds a layer of points to your plot, which creates a scatterplot. Ggplot2 comes with many geom functions that each add a different type of layer to a plot.
+
+```{r, eval = F}
+ggplot(data = alldat) +
+  geom_point()
+```
+
+Each geom function in ggplot2 takes a `mapping` argument. This defines how variables in your dataset are mapped to visual properties. The `mapping` argument is defined with `aes()`, and the `x` and `y` arguments of `aes()` specify which variables to map to the x and y axes. ggplot2 looks for the mapped variable in the `data` argument, in this case, `alldat`.
+
+```{r, eval = F}
+ggplot(data = alldat) +
+  geom_point(mapping = aes(x = CSCI, y = ASCI))
+```
+
+Just remember these requirements:
+
+* All ggplot plots start with the `ggplot` function
+* It will need three pieces of information: the **data**, a **geom** layer, and how the data are **mapped** to the plot **aesthetics**
+
+The core unit of every ggplot looks like this:
+
+```{r eval = FALSE}
+ggplot(data = <DATA>) + 
+  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+```
+
+Applied to the data:
+
+```{r}
+ggplot(data = alldat) +
+  geom_point(mapping = aes(x = CSCI, y = ASCI))
+```
+
+Let's make a quick ggplot using some of the guidance from above. For this figure, we'll create some boxplots to show the distribution of CSCI scores at different site types (i.e., reference, intermediate, and stressed).  This follows the same syntax as above but we'll use a categorical variable for the x aesthetic and use the `geom_boxplot` geometry. We will also add appropriate labels and a title.
+
+    ```{r}
+    
+    # boxplot of CSCI scores
+    
+    csci_box <- ggplot(data = alldat) +
+      geom_boxplot(mapping = aes(x = site_type, y = CSCI)) +
+      labs(x = "Site Type",
+        y = "CSCI Score",
+        title = "CABW Workshop Figure",
+        caption = "Data Source: CEDEN")
+    
+    csci_box
+    
+    ```
+
+When you're done, examine the plot. What does it tell you about the distribution of CSCI scores?
+
+## Exporting your figure
+
+Now, let's go ahead and save this plot.
+
+```{r, eval=FALSE}
+
+# saves most recently run plot
+
+ggsave(("csci_boxplot.png"),
+     path = "/Users/heilil/Desktop/R_figures",
+     width = 25,
+     height = 15,
+     units = "cm"
+   )
+
+```
+
+![](figure/ggplot2.png)
+
+Feel free to checkout the official [ggplot2](https://ggplot2.tidyverse.org/reference/ggplot2-package.html) website for more information.  The RStudio [cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) is also very helpful. 
+
+## Summary
+
+In this module we learned about R and Rstudio, some of the basic syntax and data structures in R, and how to import files.  We've just imported some provisional data for the California Stream Condition Index (CSCI) and the Algal Stream Condition Index (ASCI) that we'll continue to use for the rest of the workshop.  These data represent a portion of the sampling sites that were used to develop each index. Tomorrow, we'll learn how to process and plot these data spatially to gain insight into bioassessment patterns throughout the state. 
