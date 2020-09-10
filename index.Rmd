@@ -1,4 +1,5 @@
 ---
+title: CABW-R
 output: 
   bookdown::html_document2:
     includes:
@@ -8,32 +9,24 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-
-<!---
 <style>
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+  .title{
+    display: none;
+  }
 </style>
---->
 
 <br>
 
 
 # Welcome to the 2020 CABW/CalSFS R Workhop!
 
-<br>
-<div class = "blue">
-**This page should include**:  
+(ref:AHRemoteR) *Artwork by @allison_horst*
 
- - an introduction to the conference, 
- - link to code of conduct & agenda
-</div>
+```{r remoteLearning, eval=TRUE, echo=FALSE, out.width='60%', fig.cap='(ref:AHRemoteR)'}
 
-<br>
+knitr::include_graphics(path = "https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/monster_support.jpg")
 
-[R](https://www.r-project.org/) is a language for statistical computing as well as a general purpose programming language. Increasingly, it has become one of the primary languages used in data science for data analysis, modeling, and visualization. This workshop will provide attendees with a starting point for continued learning and use of R. We will cover a variety of commonly used file types (i.e., `.csv`, `.xlsx`, `.shp`) used in analysis, as well as provide resources for more foundational learning.
-
-<br>
+```
 
 :::obj
 
@@ -51,17 +44,25 @@ What we want you to be able to do:
 
 <br>
 
-## Agenda
+[R](https://www.r-project.org/) is a language for statistical computing as well as a general purpose programming language. Increasingly, it has become one of the primary languages used in data science for data analysis, modeling, and visualization. This workshop will provide attendees with a starting point for continued learning and use of R. We will cover a variety of commonly used file types (i.e., `.csv`, `.xlsx`, `.shp`) used in analysis, as well as provide resources for more foundational learning.
 
-Below is the tentative schedule:
+<br>
 
-### Tuesday, Oct 13
+## Workshop Overview
 
-* __2:15 - 4:15pm__: Using R with bioassessment data: what, why, and how
+We will be following the [SFS Code of Conduct](https://freshwater-science.org/about/society-governance/code-of-conduct) throughout our workshop.
 
-### Wednesday, Oct 14
+Our schedule is still being sorted out. Please check back for updates on our workshop schedule and info. A draft schedule is below.
 
-* __2:00 - 4:00pm__: From Excel to a Map with R
+### Schedule
+
+**Tuesday, Oct 13**
+
+  - __2:15 - 4:15pm__: Using R with bioassessment data: what, why, and how
+
+**Wednesday, Oct 14**
+
+  - __2:15 - 4:15pm__: From Excel to a Map with R
 
 <br>
 

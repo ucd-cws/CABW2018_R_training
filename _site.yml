@@ -71,9 +71,6 @@ navbar:
       icon: fa-tint
       href: in_progress.html
   right:
-  - text: "FAQ"
-    icon: fa-question
-    href: reference.html
   - text: "Resources"
     icon: fa-list
     href: resources.html

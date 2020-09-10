@@ -1,5 +1,5 @@
 ---
-title: "  "
+title: "m2_2"
 output: 
   bookdown::html_document2:
     code_fold: hide
@@ -16,6 +16,12 @@ library(here)
 library(flair)
 
 ```
+
+<style>
+  .title{
+    display: none;
+  }
+</style>
 
 <br>
 <br>

@@ -30,7 +30,6 @@
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="site_libs_extra/academicons-1.8.0/css/academicons.css"/>
-<link rel="shortcut icon" href="{images/Rlogo.svg}" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -480,13 +479,6 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="reference.html">
-    <span class="fa fa-question"></span>
-     
-    FAQ
-  </a>
-</li>
-<li>
   <a href="resources.html">
     <span class="fa fa-list"></span>
      
@@ -621,24 +613,24 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1] 11.250644  8.132995  7.033972 11.973419  8.669665  7.539462 11.281616  9.762280  8.275267  8.340132  7.413357 10.584665 10.925095 10.164970  7.051728
-##  [16] 11.429078 10.693930  7.968569 12.584259 11.190620  9.197473 11.092169 14.505168  8.563292  8.867131  9.798237 11.644155  8.426305  6.614921 14.300858
-##  [31] 10.092449 15.024283 11.352456  9.840711 11.101007  9.943471  7.736576 12.667690  9.981001  9.569063 12.360570  9.257335 11.061054 12.136630  8.588834
-##  [46] 12.388133 10.229633 10.989347 12.948997 11.933777 10.692846 12.028826  9.948380 12.740885  9.833728  6.403374 12.076183  8.774112 10.463907 10.064141
-##  [61] 11.130439 10.371623 12.410825  6.308707  8.317422 12.916992 10.758825 10.120436  9.313422  8.336630  9.587403 10.294104 10.020247  8.915819 10.267153
-##  [76] 11.586173 11.751749  8.621386  8.464405  7.989398 12.680490  8.800770 11.169131  9.551155 14.150396 10.813529 14.447459 11.722102 12.661016  8.629633
-##  [91]  9.740948  9.767158  9.553470  7.819239 10.250017  8.565694  8.164148 11.291359 10.157321 11.085042</code></pre>
+<pre><code>##   [1]  9.001308 10.052159 11.536873 12.511012 11.740038  9.870796 15.112341  8.677082  9.781679 12.945504  8.025213 13.295429 12.270969  9.136096 10.281325
+##  [16] 11.258029  9.539982 10.295590 10.810037 10.698313  7.599427  9.966085 10.370660 11.868843  8.472127  9.765507  7.979328 14.288200 10.622788  7.930728
+##  [31] 10.551089  9.870671 11.293687 10.431035  7.954213 14.628831 13.556518 16.768299  7.149588 12.364040 11.864073  9.182531  8.186632  9.410005  8.959998
+##  [46]  9.656716 12.055763 13.610214  8.756509  8.914853 11.643683  9.082659  8.938479  8.826736  7.676586 11.793315 10.051047  6.000219  9.324821  9.182944
+##  [61]  8.623251  9.984771 10.331501  7.722431  8.975491 11.057412  8.494594 11.750533 12.303803 11.616894  8.770133 12.741884 12.065336 13.998367 10.312639
+##  [76] 12.875011 11.287381 10.727373 14.070570 10.095786 12.371876  9.306049  8.117179  7.080703 12.231847  5.960256  9.462334  7.119325  7.949496 14.729275
+##  [91]  9.238423  7.012418 10.675101 11.809108  8.990737 13.629709  9.195494 10.520883 11.963627  7.923095</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] 0.08341737</code></pre>
+<pre><code>## [1] -0.02870888</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] 0.4791813</code></pre>
+<pre><code>## [1] -12.82373</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] -0.8154302</code></pre>
+<pre><code>## [1] 15.04229</code></pre>
 <p>With this, you have the very basics of how we write R code and save objects that can be used later.</p>
 <div id="packages" class="section level3">
 <h3>Packages</h3>
