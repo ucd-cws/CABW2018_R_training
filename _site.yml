@@ -12,8 +12,8 @@ output:
     lib_dir: site_libs
     self_contained: no
     include:
-        in_header: header.html
-        after_body: footer.html
+        in_header: assets/header.html
+        after_body: assets/footer.html
 navbar:
   title: "CABW 2020 R training"
   type: inverse

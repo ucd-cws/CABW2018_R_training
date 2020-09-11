@@ -3,8 +3,8 @@ title: CABW-R
 output: 
   bookdown::html_document2:
     includes:
-      in_header: header.html
-      after_body: assets/foot.html
+      in_header: assets/header.html
+      after_body: assets/footer.html
 ---
 
 ```{r setup, include=FALSE}
