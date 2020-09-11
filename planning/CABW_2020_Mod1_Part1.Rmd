@@ -1,0 +1,234 @@
+---
+title: "CABW 2020 Module 1 Part 1"
+author: "Heili Lowman"
+date: "8/14/2020"
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Working Draft of CABW Workshop Materials
+
+This is an R Markdown document that will walk through first part of the first module planned for the CABW Using R for bioassessment workshop in October 2020. 
+
+Additional documentation and resources available at our GitHub repository at:
+
+<https://github.com/ucd-cws/CABW2020_R_training/tree/ryan_mod2/planning>.
+
+By the end of this section, participants should be able to:
+
+- recognize the RStudio layout and what each *part* of the interface does.
+- understand how variable and data storage works in R.
+- start a new R project and save files to it.
+- import data into R from a csv and examine its structure.
+
+All words of **caution** will be denoted in bold.
+
+## The Basics
+
+The first part of RStudio that we will be working in is called the *Console*. This is the part of the application that tells you what R is running and it performs many of the same commands as you would be able to do in a calculator or in Excel.
+
+Type the following into the console and you should see the following results:
+
+`4`
+
+```{r, echo = FALSE}
+
+4
+
+```
+
+
+`4+8`
+
+```{r, echo = FALSE}
+
+4+8
+
+```
+
+You can also assign values to variables by typing the following into the *Console*:
+
+
+`stream <- 4`
+
+```{r, include = FALSE}
+
+stream <- 4
+
+```
+
+
+`pebble <- 8`
+
+```{r, include = FALSE}
+
+pebble <- 8
+
+```
+
+
+
+And if you add them together, you should see the following in your *Console*.
+
+`stream + pebble`
+
+```{r, echo = FALSE}
+
+stream + pebble
+
+```
+
+You can also create new variables using existing variables.
+
+`habitat <- stream + pebble`
+
+```{r, echo = FALSE}
+
+habitat <- stream + pebble
+
+```
+
+
+Try to call the variable in your *Console* by typing:
+
+`habitatt` **Warning:** This will give you an error!
+
+```{r, echo = FALSE}
+
+print("Error: object 'habitatt' not found")
+
+```
+
+**Note:** R is case-sensitive, and you must type your variable names exactly as they appear to use them correctly.
+
+`habitat`
+
+```{r, echo = FALSE}
+
+habitat
+
+```
+
+
+You'll notice as we add these variables that they appear in the *Environment* (at the top right of your screen). **Please note:** Clicking on the broom button in this tab will clear out your existing variables. In this same section is the *History* tab, which will record all the code you've run, and the *Connections* tab will show connections to other databases, etc.
+
+Immediately below this section is the third section of RStudio, where all of your *Packages* are stored.
+
+Load a new package, called `tidyverse` by typing the following into your *Console*:
+
+`install.packages("tidyverse")`
+
+You should see it pop up in the packages tab. To connect the package, type the following into your *Console*:
+
+`library(tidyverse)`
+
+Now your package is loaded, and ready to use. The remaining tabs in this section allow you to see the *Files* that are associated with your code, the *Plots* you've created, *Help* documents for when you get stuck, and view additional HTML content you might create with the *Viewer* tab.
+
+In Part 1, we have:
+
+- Opened RStudio.
+- Typed in the *Console* and figured out what it and the *Environment* do.
+- Learned how to create and use variables.
+- Learned how to import and load a new package.
+
+You're ready to get started on your first R script!!
+
+## Data Import
+
+**PSA:** Starting off organized and staying organized in R will make FUTURE YOU so much happier! So, we're going to encourage that you take a moment to organize your files and keep things tidy.
+
+(1) Pick a location on your machine where you are going to store your scripts, somewhere logical and easy to find.
+
+(2) Create a folder at that location titled "R_Scripts". **Reminder:** Never use spaces in filenames to be used by R!
+
+(3) Back in R, create a new project (File > New Project). Give it a useful name ("CABW_Tutorial") and set the working directory to the R_Scripts folder you just created. Open in a new window and you're ready to begin work!
+
+(4) Open a new R script (File > New File > R Script). For the remainder of the workshop, we'll use this script instead of the *Console*. Working in the *Console* is like sending a million texts, but working in this new script file is more like working in Word - you can save, edit, and track your changes.
+
+Everything below will be typed into the R Script.
+
+```{r R Script, eval = FALSE}
+# CABW 2020 Bioassessment R Tutorial
+# YOUR NAME HERE
+# October 14, 2020
+
+# Everything following a hashtag or pound symbol in a script is a comment. R will not run this as code.
+
+#### Intro ####
+
+# Comment, or annotate, your lines of code frequently so that your collaborators (including "Future You") knows what you did and why you did it.
+
+# Create a new variable.
+fish <- 10 + 45
+
+# In a script, instead of pressing "Enter" you should use one of the shortcuts below to run your lines of code:
+
+# To run the current line:
+# Mac: Command + Enter
+# PC: Control + Enter
+
+# To run all code of a script:
+# Mac: Command + Shift + Enter
+# PC: Control + Shift + Enter
+
+# Try it out the following variables.
+
+nitrogen <- 79 - 15
+
+algae <- fish * nitrogen
+
+# Review Exercise: Take a moment to create your own variables and get comfortable with the process.
+
+# Now that we've added some content ot our script, please be sure to take a moment and SAVE before going any further.
+
+#### Datasets ####
+
+# Upload a dataset using the "read_csv()" function in the readr package (part of the tidyverse) and assign it a name.
+
+# csci <- read_csv("csci_dataset.csv")
+
+# Examine the dataset in a new tab using the "View()" function. Use the "Filter" and "Search" in this new window exactly as you would in Excel.
+
+# View(csci)
+
+# Examine column names using the "names()" function.
+
+# names(csci)
+
+# See the first few rows of a dataset using the "head()" function.
+
+# head(csci)
+
+# Examine the structure of the dataset using the "str()" function.
+
+# str(csci)
+
+# INSERT LANGUAGE RE: DATA CLASSES HERE.
+
+# Call certain columns of the dataset using the dollar sign.
+
+# csci$mean
+
+# Assign a column to a new variable.
+
+# watershed <- csci$stream
+
+# Congratulations! You just uploaded your first dataset into R!
+
+# Along the way, you might have noticed that we've been adding extra pound symbols to our section headers. If you click what looks like a table of contents icon to the upper right of your script window, you'll see your existing table of contents pop up! These extra pound symbols help keep your scripts doubly organized :)
+
+```
+
+In Part 2, we have:
+
+- Created our first R script.
+- Imported our first dataset into R.
+- Learned how to examine a dataset in R, including data types.
+
+End of R Markdown document.
