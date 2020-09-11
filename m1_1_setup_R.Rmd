@@ -13,9 +13,7 @@ opts_chunk$set(tidy = FALSE, message = F, warning = F)
 
 [R](https://www.r-project.org/) is a language for statistical computing as well as a general purpose programming language. Increasingly, it has become one of the primary languages used in data science and for data analysis across many of the natural sciences.
 
-Thank you for taking the time out of your busy schedule to join us for this training. We hope you will find this workshop both fun and helpful, and we appreciate your patience as we encounter any bumps in our new virtual format! Also, we would like to credit [Allison Horst](https://twitter.com/allison_horst) with all of the incredible monsteRs and R illustrations that you will see included in this tutorial.
-
-![](figure/remote.jpg)
+Thank you for taking the time out of your busy schedule to join us for this training. We hope you will find this workshop both fun and helpful, and we appreciate your patience as we encounter any bumps in our new virtual format! Also, we would like to thank [Allison Horst](https://twitter.com/allison_horst) for allowing us to use her incredible monsteRs and R illustrations that you will see included in this tutorial.
 
 The goals of this training are to expose you to fundamentals and to develop an appreciation of what's possible with this software.  We also provide resources that you can use for follow-up learning on your own. You should be able to answer these questions at the end of this section:
 
