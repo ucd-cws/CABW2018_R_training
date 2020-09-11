@@ -4,6 +4,7 @@ output:
   bookdown::html_document2:
     code_fold: hide
     includes:
+      in_header: header.html
       after_body: assets/foot.html
 ---
 

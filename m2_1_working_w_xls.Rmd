@@ -4,6 +4,7 @@ output:
   bookdown::html_document2:
     code_fold: hide
     includes:
+      in_header: header.html
       after_body: assets/foot.html
 ---
 
@@ -370,7 +371,9 @@ Let's show how to save this back out as:
  
 
 The good thing is these all involve the same basic code, with just a few minor tweaks.
+
 <br>
+
 ### Save to `xlsx`
 
 Here we can use the [`openxlsx`](https://ycphs.github.io/openxlsx/index.html) package to write our data. This is basically a 4-step process, first create a workbook, then create worksheets we can put our data in, then write the data to those worksheets, then save/write the whole workbook! 
