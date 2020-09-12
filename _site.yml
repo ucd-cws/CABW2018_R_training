@@ -27,9 +27,12 @@ navbar:
     - text: "Installing R/RStudio"
       icon: fa-laptop
       href: setup.html
-    - text: "Setting Up"
+    - text: "Starting with R!"
       icon: fa-map-signs
       href: m1_1_setup_R.html
+    - text: "Project Management"
+      icon: fa-sitemap
+      href: project_management.html
   - text: "1: Data In, Plot Out!"
     icon: fa-bicycle fa-1x
     menu:
@@ -58,11 +61,11 @@ navbar:
       href: in_progress.html
     - text: "Lesson 3:"
     - text: "Using {sf}"
-      icon: fa-globe-americas #drafting-compass
+      icon: fa-location-arrow
       href: in_progress.html
     - text: "Lesson 4:"
     - text: "Make a Map!"
-      icon: fa-map-marked-alt
+      icon: fa-map
       href: in_progress.html
   - text: "And Beyond"
     icon: fa-space-shuttle fa-1x

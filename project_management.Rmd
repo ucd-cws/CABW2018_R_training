@@ -1,0 +1,98 @@
+---
+title: "Project Management: Let's Get Organized"
+output: 
+  bookdown::html_document2:
+    code_fold: show
+    includes:
+      in_header: assets/header.html
+      after_body: assets/footer.html
+---
+
+```{r setup, include=FALSE, purl=FALSE, message=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+
+```
+
+<br> 
+
+:::obj
+
+**Learning objectives**
+ 
+ - Understand motivation for code and data management
+ - Know how to organize code, data, and results
+ - Know the basics of file paths and directory structures
+ - Be able to create and use an RStudio project
+ 
+:::
+
+<br>
+
+## Where Am I?
+
+![](https://upload.wikimedia.org/wikipedia/commons/3/39/Messy_storage_room_with_boxes.jpg)
+
+Any time you’re working on your computer, you are navigating amidst a forest of files and folders. One of the best habits you can form (whether you are using R or not!), is keeping a clear structure intentionally, no matter what project or task you face.
+
+This becomes especially important when learning and employing computer programming (R!). You will need to tell R, very specifically, where you are and where your files are in the forest of your computer. Where you are is typically referred to as the **working directory**. In R, think of this as your homebase, and everything is relative to this point
+
+The working directory could be something like "`Myname/Documents`", or it could be something more specific like  "`MyName/Documents/Projects/2020`". You can always check with `getwd()`!
+
+<br>
+
+## Use RProjects!
+
+What do we mean? Projects can be general, not just R specific, but here's Jenny Bryan's advice (which is good!). Best practice is to do this every single time with every single project, make it a habit!
+
+ - File system discipline: put all the files related to a single project in a designated folder.
+ - This applies to data, code, figures, notes, etc.
+ - Depending on project complexity, you might enforce further organization into subfolders.
+ - Use a standard naming convention for files & folders (*no spaces!*).
+ - Working directory intentionality: when working on project A, make sure working directory is set to project A’s folder.
+ - Don't use absolute paths!
+ - File path discipline: all paths are relative and, by default, relative to the project’s folder.
+
+
+One of the nicest parts of using **RProjects** is that they automatically set the working directory to the folder containing the `.RProj` file.
+
+<br>
+
+<details><summary class="extra-practice-title">Extra Practice</summary>
+  <div class="extra-practice-body">
+Avoid using `setwd()`! More reasons and rational [linked here](https://rstats.wtf/project-oriented-workflow.html#setwd)
+  </div>
+</details
+
+<br>
+<br>
+
+## File Paths
+
+In R, file paths are always wrapped in quotes. There are 2 basic kinds of file paths: 
+ 
+ - **Absolute**: Absolute paths list out the full file path, usually starting with your username, which you can also refer to using the shortcut ~. So instead of `C:/MyName/Documents` or `/Users/MyName/Documents`, you can type `~/Documents`. **But generally, the only place an absolute path will work is your computer! It will break on anyone else computer, or anytime you move or rename something!**
+ 
+ - **Relative**: Relative paths are relative to your working directory. So if R thinks we’re in that `~/MyName/Documents/Projects/2020` folder, and we want to access a file in a folder inside it called `data`, we can type `data/my_file` instead of `~MyName/Documents/Projects/2020/data`. 
+
+
+<br>
+
+## Always start R as a blank slate
+
+When you quit R, do not save the workspace to an `.Rdata` file. When you launch, do not reload the workspace from an `.Rdata` file.
+
+In fact, we should all make our default setting a blank slate. We should only be loading and working on data and code that we knowingly and willingly open or import into R.
+
+ > In RStudio, set this via *Tools > Global Options*
+ 
+(ref:workspaceDef) *Change defaults to never save your workspace to `.RData`!* (Credit to Jenny Bryan and Jim Hester at [rstats.wtf](https://rstats.wtf/save-source.html))
+
+```{r tidyplotgraphic, eval=TRUE, out.width='100%', fig.cap='(ref:workspaceDef)'}
+
+knitr::include_graphics(path="figure/rstudio-workspace-default.png")
+
+
+``` 
+
