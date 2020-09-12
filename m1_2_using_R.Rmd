@@ -1,12 +1,19 @@
 ---
 title: "Importing Data"
+output: 
+  bookdown::html_document2:
+    code_fold: show
+    includes:
+      in_header: assets/header.html
+      after_body: assets/footer.html
 ---
 
-```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
+```{r setup, include=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 options(repos = "http://cran.rstudio.com/")
-pkgs <- c("dplyr", "knitr")
-x<-lapply(pkgs, library, character.only = TRUE)
-opts_chunk$set(tidy = FALSE, message = F, warning = F)
+knitr::opts_chunk$set(echo = TRUE, tidy = FALSE, message = FALSE, warning = FALSE)
+library(knitr)
+library(dplyr)
+
 ```
 
 ## Lesson Outline
@@ -52,7 +59,7 @@ Save that file into your newly created project and name it "cabw_script_day1.R".
 
 A script works similarly to the *Console*, but it does have a few key differences. The first, is that you can add text that is not able to be run. This text is referred to as annotations or comments, and it is denoted by using a pound symbol or hashtag (`#`) prior to the text. Let's use this to add a title, name, and date to our new script.
 
-```{r heading, echo = TRUE}
+```{r heading}
 
 # CABW 2020 Bioassessment R Tutorial
 # Firstname Lastname
@@ -63,7 +70,7 @@ A script works similarly to the *Console*, but it does have a few key difference
 
 Let's practice making variables once more, but this time in our script file. Type the following into your script:
 
-```{r variable, echo = TRUE}
+```{r variable}
 
 #### Variables ####
 
@@ -81,7 +88,7 @@ Place your cursor on the line where you've created the `fish` variable, and run 
 
 Add the following lines of code to your script, and then run each one:
 
-```{r variables, echo = TRUE}
+```{r variables}
 
 # Create additional variables.
 nitrogen <- 79 - 15
@@ -146,8 +153,8 @@ Now that we have the data downloaded and extracted to our data folder, we'll use
     ```{r data}
     
     # Load CSCI and ASCI datasets.
-cscidat <- read_csv('data/cscidat.csv')
-ascidat <- read_csv('data/ascidat.csv')
+    cscidat <- read_csv('data/cscidat.csv')
+    ascidat <- read_csv('data/ascidat.csv')
 
     ```
 
@@ -155,7 +162,7 @@ ascidat <- read_csv('data/ascidat.csv')
 
 1. Verify that the data imported correctly by viewing the datasets in a spreadsheet style in a new window:
 
-    ```{r view}
+    ```{r view, eval=FALSE, echo=TRUE}
     
     # examine datasets in new windows
     View(cscidat)

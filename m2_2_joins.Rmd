@@ -2,7 +2,7 @@
 title: "m2_2"
 output: 
   bookdown::html_document2:
-    code_fold: hide
+    code_fold: show
     includes:
       in_header: assets/header.html
       after_body: assets/footer.html

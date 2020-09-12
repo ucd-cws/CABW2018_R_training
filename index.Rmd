@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 
-# Welcome to the 2020 CABW/CalSFS R Workhop!
+# Welcome to the 2020 CABW/CalSFS R Workshop!
 
 (ref:AHRemoteR) *Artwork by @allison_horst*
 

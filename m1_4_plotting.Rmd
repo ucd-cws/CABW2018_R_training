@@ -1,12 +1,19 @@
 ---
 title: "Plot Data"
+output: 
+  bookdown::html_document2:
+    code_fold: show
+    includes:
+      in_header: assets/header.html
+      after_body: assets/footer.html
 ---
 
-```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
-options(repos = "http://cran.rstudio.com/")
-pkgs <- c("dplyr", "knitr")
-x<-lapply(pkgs, library, character.only = TRUE)
-opts_chunk$set(tidy = FALSE, message = F, warning = F)
+```{r setup, include=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, tidy = FALSE, message = FALSE, warning = FALSE)
+library(knitr)
+library(dplyr)
+
 ```
 
 ## Lesson Outline
@@ -69,7 +76,7 @@ ggplot(data = alldat) +
 
 Let's make a quick ggplot using some of the guidance from above. For this figure, we'll create some boxplots to show the distribution of CSCI scores at different site types (i.e., reference, intermediate, and stressed).  This follows the same syntax as above but we'll use a categorical variable for the x aesthetic and use the `geom_boxplot` geometry. We will also add appropriate labels and a title.
 
-    ```{r}
+```{r}
     
     # boxplot of CSCI scores
     
@@ -82,7 +89,7 @@ Let's make a quick ggplot using some of the guidance from above. For this figure
     
     csci_box
     
-    ```
+```
 
 When you're done, examine the plot. What does it tell you about the distribution of CSCI scores?
 
@@ -95,7 +102,7 @@ Now, let's go ahead and save this plot.
 # saves most recently run plot
 
 ggsave(("csci_boxplot.png"),
-     path = "/Users/heilil/Desktop/R_figures",
+     path = "figures/R_figures",
      width = 25,
      height = 15,
      units = "cm"
