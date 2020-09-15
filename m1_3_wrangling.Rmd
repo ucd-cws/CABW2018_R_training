@@ -13,7 +13,7 @@ opts_chunk$set(tidy = FALSE, message = F, warning = F)
 
 - [Goals and Motivation]
 - [Data Wrangling with dplyr]
-- [Joining datasets]
+- [Piping using the tidyverse]
 
 ## Goals and Motivation
 
@@ -162,38 +162,58 @@ cscidat <- rename(cscidat,
                   )
     ```
 
-## Joining datasets
+## Piping using the tidyverse
 
-Combining data is a common task of data wrangling.  All joins require that each of the tables can be linked by shared identifiers.  These are called 'keys' and are usually represented as a separate column that acts as a unique variable for the observations.  Our example datasets include the `id` column that represents a unique identifier as a combination of station, sample date, and replicate.
+Each of the functions we learned above - select(), filter(), mutate(), and more - can be used on their own. However, a particularly powerful application of the tidyverse package is the ability to "pipe" or perform multiple functions all in one go.
 
-The challenge with joins is that the two datasets may not represent the same observations for a given key.  For example, you might have one table with all observations for every key, another with only some observations, or two tables with only a few shared keys.  What you get back from a join will depend on what's shared between tables, in addition to the type of join you use. 
+In order to do so, you must use the symbols `%>%`, otherwise known as a pipe. When placed between functions in your code, this allows you to perform multiple operations on a single dataset.
 
-For our data, we'll be using an **inner-join** that combines datasets by shared keys (for an overview of the other types of joins, see [here](http://r4ds.had.co.nz/relational-data.html#understanding-joins)).
+Typically, piping will assume the following format:
 
-![](figure/join-inner.png)
+```{r eval = FALSE}
+<NEW DATASET> <- <OLD DATASET> %>%
+  <FIRST_FUNCTION> %>%
+  <SECOND_FUNCTION> %>%
+  <THIRD_FUNCTION> %>%
+    etc.
+```
+
+So, if you wanted to perform many of the operations we practiced above, we could use `%>%` to create a new dataset (`csci_new`) by typing the following:
+
+```{r}
+
+csci_new <- cscidat %>% # Use the original dataset and then...
+    select(-CSCI, -COMID, -New_Lat) %>% # select only CSCI, COMID, and latitude columns and then...
+    filter(New_Lat > 37) %>% # filter for Latitudes above 37 and then...
+    mutate(CSCIcat = ifelse(CSCI <= 0.79, 'lo', 'hi')) # new column with categories according to CSCI.
+
+```
 
 ### Practice Exercise cont.
 
-We'll join our ASCI data to our CSCI data to make a single dataset that has scores for **both** bioassessment indices taken at the same place and time.  This will help us plot and map the data later. 
+Let's practice piping just a bit more before we move onto plotting our data. 
 
-1. Before you start, check the dimensions of both datasets (e.g., `dim` or `nrow`).  How many rows in each?
-
-    ```{r}
-    dim(cscidat)
-    dim(ascidat)
-    ```
-    
-1. Using the `inner_join` function from dplyr, join `cscidat` with `ascidat` using the `id` column as the key.  
+1. Using the piping technique and the `ascidat` dataset, create a new dataset called `asci_new` that includes: 
+- Site type and ASCI
+- Only sites identified as "Reference"
+- A new column with ASCI scores multiplied by 10
 
     ```{r}
-    alldat <- inner_join(cscidat, ascidat, by = 'id')
+    
+    asci_new <- ascidat %>% # Use the original dataset and then...
+    select(-ASCI, -site_type) %>% # select only ASCI and site type columns and then...
+    filter(site_type == "Reference") %>% # filter for reference sites only and then...
+    mutate(ASCI_10 = ASCI*10) # new column with ASCI values multiplied by 10.
+
     ```
     
-1. Check the dimensions of the new dataset (i.e., how many unique bioassessment scores were collected at the same time and place).
+1. Check the dimensions of the new dataset (Hint: Use the View() function).
 
 1. Save your script!
 
 This concludes the "wrangling data" section of our R workshop today. If you are experiencing any problems or have a question, please send Ryan, Heili, or one of the workshop assistants a message in the chat.
+
+![](figure/debugging.jpg)
 
 Here are some additional dplyr resources:
 
