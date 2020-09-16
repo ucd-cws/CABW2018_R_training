@@ -58,17 +58,17 @@ navbar:
       href: in_progress.html
     - text: "Lesson 3:"
     - text: "Using {sf}"
-      icon: fa-globe-americas #drafting-compass
+      icon: fa-map-pin
       href: in_progress.html
     - text: "Lesson 4:"
     - text: "Make a Map!"
-      icon: fa-map-marked-alt
+      icon: fa-map fa-1x
       href: in_progress.html
   - text: "And Beyond"
     icon: fa-space-shuttle fa-1x
     menu:
     - text: "Helpful Packages"
-      icon: fa-box-open
+      icon: fa-archive
       href: in_progress.html
     - text: "Running Functions"
       icon: fa-code-branch
