@@ -11,7 +11,7 @@
 
 
 
-<title>setup.utf8</title>
+<title>Setup</title>
 
 <script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -26,6 +26,10 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="site_libs_extra/academicons-1.8.0/css/academicons.css"/>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -72,6 +76,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
 
 
@@ -344,32 +349,154 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">CABW 2018 R training</a>
+      <a class="navbar-brand" href="index.html">CABW 2020 R training</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">
+    <span class="fa fa-home fa-1.5x"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="usingr.html">What, why, and how of R</a>
+  <a href="setup.html">
+    <span class="ion ion-hammer"></span>
+     
+    Setup R
+  </a>
 </li>
-<li>
-  <a href="wrangleplot.html">Wrangling and plotting</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-bicycle fa-1x"></span>
+     
+    1: Data In, Plot Out!
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lesson 1:</li>
+    <li>
+      <a href="usingr.html">
+        <span class="fa fa-download"></span>
+         
+        Importing Data
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 2:</li>
+    <li>
+      <a href="wrangleplot.html">
+        <span class="fa fa-magic"></span>
+         
+        Wrangling Data
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 3:</li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-area-chart"></span>
+         
+        Plotting with ggplot
+      </a>
+    </li>
+  </ul>
 </li>
-<li>
-  <a href="mapping.html">Mapping</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-car"></span>
+     
+    2: Excel to a Map
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lesson 1:</li>
+    <li>
+      <a href="m2_1_working_w_xls.html">
+        <span class="fa fa-table"></span>
+         
+        Working from Excel
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 2:</li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-object-ungroup"></span>
+         
+        Joining Data
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 3:</li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-globe-americas"></span>
+         
+        Using {sf}
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 4:</li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-map-marked-alt"></span>
+         
+        Make a Map!
+      </a>
+    </li>
+  </ul>
 </li>
-<li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-space-shuttle fa-1x"></span>
+     
+    And Beyond
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-box-open"></span>
+         
+        Helpful Packages
+      </a>
+    </li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-code-branch"></span>
+         
+        Running Functions
+      </a>
+    </li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-tint"></span>
+         
+        Downloading River Data
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
   <a href="resources.html">
     <span class="fa fa-list"></span>
      
     Resources
   </a>
 </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
+<li>
+  <a href="https://github.com/ucd-cws/CABW2020_R_training">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/CalSFSsocial">
+    <span class="fa fa-twitter fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -379,25 +506,24 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Setup</h1>
 
 </div>
 
 
-<div id="set-up" class="section level1">
-<h1>Set Up</h1>
 <p>Thanks for your interest in learning R. For the workshop, we will be using <a href="https://www.rstudio.com/">RStudio</a> as our interface to R. In order to participate in this workshop you will need to make sure you have R and RStudio installed on your laptop.</p>
 <p>Thanks to the <a href="https://owi.usgs.gov/R/training.html">USGS-R Training group</a> and <a href="https://datacarpentry.org/R-ecology-lesson/index.html">Data Carpentry</a> for making their installation materials available. The following instructions come directly from their materials, with a few minor edits to help you get all set up for the workshop.</p>
-</div>
 <div id="install-r-and-rstudio" class="section level1">
 <h1>Install R and RStudio</h1>
 <p><strong>R</strong> and <strong>RStudio</strong> are separate downloads and installations. R is the underlying statistical computing environment, but using R alone is no fun. RStudio is a graphical integrated development environment (IDE) that makes using R much easier and more interactive. <em>You need to install R before you install RStudio</em>.</p>
 <div id="windows-download-and-install-r" class="section level2">
 <h2><em>Windows</em>: Download and install R</h2>
-<p>Go to <a href="https://cran.rstudio.com/bin/windows/base/">CRAN and download</a> the R installer for Windows. Make sure to choose the latest stable version (v3.5.1 as of Sept 2018).</p>
+<p>Go to <a href="https://cran.rstudio.com/bin/windows/base/">CRAN and download</a> the R installer for Windows. Make sure to choose the latest stable version (v4.0.2 as of Sept 2020).</p>
 <p>Once the installer downloads, Right-click on it and select “Run as administrator”.</p>
 <p>Type in your credentials and click yes (or if you don’t have administrator access have your IT rep install with Admin privileges).</p>
 <p><img src="figure/install_open_as_admin.png#inline-img" title="run as admin" /></p>
-<p>You can click next through the standard dialogs and accept most defaults. But at the destination screen, please verify that it is installing it to C:Files(version number may vary)</p>
+<p>You can click next through the standard dialogs and accept most defaults. But at the destination
+screen, please verify that it is installing it to C:Files(version number may vary)</p>
 <p><img src="figure/install_destination.png#inline-img" title="install destination screen" /></p>
 <p>At the “Select Components” screen, you can accept the default and install both 32-bit and 64-bit versions.</p>
 <p><img src="figure/install_arch_window.png#inline-img" title="select architecture" /></p>
@@ -449,9 +575,9 @@ div.tocify {
 </div>
 <div id="verify-your-installed-r-version" class="section level2">
 <h2>Verify your installed R version</h2>
-<p>Ideally you should be running the latest stable release (<code>v3.5.1</code> as of Sept 2018). If you have an older version, please install the newest version using the instructions above.</p>
+<p>Ideally you should be running the latest stable release (<code>v4.0.2</code> as of Sept 2020). If you have an older version, please install the newest version using the instructions above.</p>
 <p>Here is what my R version looks like.</p>
-<pre><code>## [1] &quot;R version 3.5.1 (2018-07-02)&quot;</code></pre>
+<pre><code>## [1] &quot;R version 4.0.2 (2020-06-22)&quot;</code></pre>
 </div>
 </div>
 <div id="add-packages" class="section level1">
@@ -461,7 +587,11 @@ div.tocify {
 install.packages(&quot;sf&quot;)
 install.packages(&quot;mapview&quot;)
 install.packages(&quot;viridis&quot;)
-install.packages(&quot;USAboundaries&quot;)</code></pre>
+install.packages(&quot;USAboundaries&quot;)
+install.packages(&quot;openxlsx&quot;)
+install.pacakges(&quot;readxl&quot;)
+install.packages(&quot;lubridate&quot;)
+</code></pre>
 <p>If you see</p>
 <p><img src="figure/personal_library_dialog.png#inline-img" title="dialog box behind" /></p>
 <p>That’s OK! There’s a dialog box hiding behind RStudio asking if you want to create a personal folder in your Documents folder. Click <em>Yes</em>. It will look something like this when done:</p>
@@ -491,6 +621,21 @@ install.packages(&quot;USAboundaries&quot;)</code></pre>
 </div>
 </div>
 
+<!DOCTYPE html>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div class="foot">
+	<hr> 
+	<p style="text-align: center;">
+	  <span style="color: #808080; display: inline-block; width: 58%;">
+	  &#9781 &nbsp;<i>Website design by <a href="https://ryanpeek.org/">Ryan Peek</i></a> &nbsp;  
+    <a href="https://github.com/Cal-SFS/" class="fa fa-github">Cal-SFS</a> &nbsp; &#9781
+    </span>
+  </p>
+</div>
 
 
 </div>

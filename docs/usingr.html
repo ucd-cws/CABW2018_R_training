@@ -28,6 +28,8 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="site_libs_extra/academicons-1.8.0/css/academicons.css"/>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -74,6 +76,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
 
 
@@ -346,32 +349,154 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">CABW 2018 R training</a>
+      <a class="navbar-brand" href="index.html">CABW 2020 R training</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">
+    <span class="fa fa-home fa-1.5x"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="usingr.html">What, why, and how of R</a>
+  <a href="setup.html">
+    <span class="ion ion-hammer"></span>
+     
+    Setup R
+  </a>
 </li>
-<li>
-  <a href="wrangleplot.html">Wrangling and plotting</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-bicycle fa-1x"></span>
+     
+    1: Data In, Plot Out!
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lesson 1:</li>
+    <li>
+      <a href="usingr.html">
+        <span class="fa fa-download"></span>
+         
+        Importing Data
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 2:</li>
+    <li>
+      <a href="wrangleplot.html">
+        <span class="fa fa-magic"></span>
+         
+        Wrangling Data
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 3:</li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-area-chart"></span>
+         
+        Plotting with ggplot
+      </a>
+    </li>
+  </ul>
 </li>
-<li>
-  <a href="mapping.html">Mapping</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-car"></span>
+     
+    2: Excel to a Map
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lesson 1:</li>
+    <li>
+      <a href="m2_1_working_w_xls.html">
+        <span class="fa fa-table"></span>
+         
+        Working from Excel
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 2:</li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-object-ungroup"></span>
+         
+        Joining Data
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 3:</li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-globe-americas"></span>
+         
+        Using {sf}
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 4:</li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-map-marked-alt"></span>
+         
+        Make a Map!
+      </a>
+    </li>
+  </ul>
 </li>
-<li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-space-shuttle fa-1x"></span>
+     
+    And Beyond
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-box-open"></span>
+         
+        Helpful Packages
+      </a>
+    </li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-code-branch"></span>
+         
+        Running Functions
+      </a>
+    </li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-tint"></span>
+         
+        Downloading River Data
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
   <a href="resources.html">
     <span class="fa fa-list"></span>
      
     Resources
   </a>
 </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
+<li>
+  <a href="https://github.com/ucd-cws/CABW2020_R_training">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/CalSFSsocial">
+    <span class="fa fa-twitter fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -422,7 +547,7 @@ div.tocify {
 <ul>
 <li>The growth of R as explained in the <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">Stack Overflow blog</a>, <a href="http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html">IEEE rating</a></li>
 </ul>
-<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-07-29, there are 16053 supplemental packages for R on CRAN!</p>
+<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-09-10, there are 16253 supplemental packages for R on CRAN!</p>
 </div>
 </div>
 <div id="rstudio" class="section level2">
@@ -478,7 +603,8 @@ div.tocify {
 <div id="r-language-fundamentals" class="section level2">
 <h2>R language fundamentals</h2>
 <p>The basic syntax of a function follows the form: <code>function_name(arg1, arg2, ...)</code>.</p>
-<p>With the base install, you will gain access to many functions (3811, to be exact). Some examples:</p>
+<p>With the base install, you will gain access to many functions (5945, to be exact).
+Some examples:</p>
 <pre class="r"><code># print
 print(&#39;hello world!&#39;)</code></pre>
 <pre><code>## [1] &quot;hello world!&quot;</code></pre>
@@ -487,24 +613,24 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1] 10.952117 11.558147 10.511514  7.482511  8.339390 11.545594 10.317766 13.293832  8.277866  8.811467 14.101977  8.210633  6.567465 13.067066 11.691357
-##  [16]  8.577282 14.387288 12.686354  7.366173  8.678057 10.213754  7.449205  7.922453  8.689128  8.648096  9.253279 12.394431 12.246328  6.156707 13.448759
-##  [31]  8.683203 10.171195 10.810967  6.977051  8.855729  8.697264  8.851900  8.579778  8.812843 10.849361 10.570029 11.776231  5.280155 11.598153 11.427064
-##  [46] 10.785426 10.379498  8.295293 10.474822 12.165906 12.332955 10.746119  9.593158 12.847521  6.467011  9.109003  9.906531 11.257434  9.077814 11.764552
-##  [61]  9.572312  8.649918 13.794489 11.364642 10.677159  9.803345  9.122718 12.975320 12.386066 13.262936  8.832765 11.135427  9.336161 10.311623 11.300523
-##  [76] 12.161871  8.043896  9.254704  5.874406  8.277622  9.610783  5.133002 10.170762  5.694157 10.024271  8.537113  9.324522 14.300879  8.786514  9.782723
-##  [91] 10.794324  9.275879  7.959058  8.195086 10.549916  7.398871  7.050841 10.199116  9.339913  5.733405</code></pre>
+<pre><code>##   [1] 13.239813 10.987011  9.545809  8.979907 10.687149  8.650239  8.619234 12.220949  9.839301  8.262682  7.563230 11.797983  8.363074 11.877955  9.284980
+##  [16]  8.158775  7.569975 10.213889 10.058465  7.476060 13.128270 10.650850 13.499068 11.440499 10.720493 11.286370  9.222229  9.543235  9.408145  6.607876
+##  [31] 11.324625 10.596743  7.808272 10.511160 11.200424 11.146952 12.783335  6.863847  9.244332  7.506807 10.176936 11.789996 10.718506 10.093363 11.494148
+##  [46]  9.487869 10.796346  6.358624  7.314211 11.632114 12.350536 12.758725  6.666986 13.424617 12.535389  4.446125  9.985907 10.915507 11.506007  7.134412
+##  [61]  9.047847  9.749617  7.888339  6.256638  9.752984 11.148377  8.023357  7.904034  7.860991  8.799855 10.068035 10.745618  8.755879 10.221329 10.836887
+##  [76] 10.299388 10.985154 13.377158  9.326421 10.007542  9.667088  5.458754 10.267527 10.738384  8.482688 10.959107  7.453072  9.278776 13.059004  9.946887
+##  [91] 10.317307 12.002765 12.146320 10.891907 10.879842 10.323207  6.164072  9.350716 10.690451 12.655685</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] -0.09777253</code></pre>
+<pre><code>## [1] -0.006400001</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] 3.396487</code></pre>
+<pre><code>## [1] -14.10926</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] -0.7787879</code></pre>
+<pre><code>## [1] -8.354048</code></pre>
 <p>With this, you have the very basics of how we write R code and save objects that can be used later.</p>
 <div id="packages" class="section level3">
 <h3>Packages</h3>
@@ -512,7 +638,7 @@ sum(rnorm(100))</code></pre>
 </div>
 <div id="cran" class="section level3">
 <h3>CRAN</h3>
-<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-07-29, there are 16053 on CRAN!</p>
+<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-09-10, there are 16253 on CRAN!</p>
 </div>
 <div id="installing-packages" class="section level3">
 <h3>Installing packages</h3>
@@ -714,6 +840,21 @@ dat &lt;- read_excel(&#39;location/of/excel/file.xlsx&#39;)</code></pre>
 <p>In this lesson we learned about R and Rstudio, some of the basic syntax and data structures in R, and how to import files. We’ve just imported some provisional data for the California Stream Condition Index (CSCI) and the Algal Stream Condition Index (ASCI) that we’ll continue to use for the rest of the workshop. These data represent a portion of the sampling sites that were used to develop each index. Next we’ll learn how to process and plot these data to gain insight into bioassessment patterns throughout the state.</p>
 </div>
 
+<!DOCTYPE html>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div class="foot">
+	<hr> 
+	<p style="text-align: center;">
+	  <span style="color: #808080; display: inline-block; width: 58%;">
+	  &#9781 &nbsp;<i>Website design by <a href="https://ryanpeek.org/">Ryan Peek</i></a> &nbsp;  
+    <a href="https://github.com/Cal-SFS/" class="fa fa-github">Cal-SFS</a> &nbsp; &#9781
+    </span>
+  </p>
+</div>
 
 
 </div>

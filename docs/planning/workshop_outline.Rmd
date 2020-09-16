@@ -34,26 +34,45 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Module 2: Make a Map from A Spreadsheet
 
+### 2-1 read_xls
+
   - (10 min): Read data from excel spreadsheet
-    - Talk about tidy data and get people to think about this (spreadsheet is a list of sites or gages with location information)
+    - Reiterate tidy data, and why it matters (even for spreadsheets!)
+      - add link to messy spreadsheets carpentries lesson
       - read in `Tab1` which is messy and breaks things
-      - then read in `Tab2` which is "tidied" and doesn't break
+      - then read in `Tab2` which is "tidied" and doesn't break (use latlon.csv)
+      - Challenge/Practice: read `Tab3` which is just a copy of the cscidat.csv
+      - save as Rdata/RDS (describe diff)
+
+### 2-2 Joins
+
   - (10 min): **Join** Data
-    - Join these sites with the data downloaded in Module 1 (may need to run function first)
+      - Join the sitecodes from `latlons` with the `cscidat`
+      - show figure of joins from allison, briefly talk about inner/outer/anti/left joins
+      - save as Rdata file
+      - Shovel: mention the tidylog package and show demo of messages printed
+
+### sf package
+
   - (10 min): Quick overview of **sf**
-    - explain the 'sf' package and show website and "potential"
-    - make data spatial (X/Y) with `{sf}`
-  - (5 min): Make a map with `{mapview}`
-  - (10 min): Introduce ggplot2:
-    - gently introduce structure of ggplot
+    - explain the 'sf' package and show sf website (so many options!)
+    - make data (from above) spatial (X/Y) with `{sf}`
+    - read in a shapefile
+
+### Making Maps!
+
+  - (5 min): Make a map with `{mapview}`!
+  - (10 min): Introduce `ggplot2::geom_sf`
+    - gently (re)introduce structure of ggplot
     - use data to show `geom_sf` and make a simple map with ggplot
+    - shovel: add reference on ggspatial/tmap (adding scale bar and north arrow)
     - reference mapping website, Robin Lovelace's site
 
 ## Module 3
 
-- read in at least 2 shapefiles and/or .gpx files with sf
-- look at data and do some data frame operation (mutate/join)
+- load .gpx files with sf
+- show how to download river flow lines with NHDtools
+- show how to download gage data for given river
 - do some spatial operation (buffer, intersection, nearest?)
-- make a map with ggplot (show ggspatial?)
 - make a map with tmap? (advanced challenge)
 - save out to different spatial format (gpkg example, make sure state it works with ArcGIS)

@@ -1,14 +1,19 @@
 ---
 title: "Wrangling Data"
+output: 
+  bookdown::html_document2:
+    code_fold: show
+    includes:
+      in_header: assets/header.html
+      after_body: assets/footer.html
 ---
 
 ```{r setup, include=FALSE, purl=FALSE, message=FALSE}
-
-knitr::opts_chunk$set(echo = FALSE)
+options(repos = "http://cran.rstudio.com/")
+knitr::opts_chunk$set(echo = TRUE, tidy = FALSE, message = FALSE, warning = FALSE)
 library(knitr)
+library(dplyr)
 library(here)
-library(flair)
-
 ```
 
 <br>
@@ -59,11 +64,12 @@ Alright, let's get wrangling!
 
 ### Selecting
 
+
 Our goal with the datasets we have loaded in is to combine the bioassessment scores by each unique location, date, and replicate, while keeping only the data we need for our plots. 
 
- The `select` function lets you retain or exclude columns.
+The `select` function lets you retain or exclude columns.
 
-```{r}
+```{r dplyr1, echo=TRUE, eval=TRUE}
 # first, select some chosen columns
 dplyr_sel1 <- select(cscidat, SampleID_old, New_Lat, New_Long, CSCI)
 
@@ -79,13 +85,14 @@ dplyr_sel3 <- select(cscidat, matches('c'))
 head(dplyr_sel3)
 
 # Note, these datasets should all be appearing in your Environment pane in the upper right hand corner of your screen as you continue.
+
 ```
 
 ### Filtering
 
 After selecting columns, you'll probably want to remove observations that don't fit some criteria.  For example, maybe you want to remove CSCI scores less than some threshold, find stations above a certain latitude, or both.
 
-```{r}
+```{r dplyr2, echo=TRUE, eval=TRUE}
 # get CSCI scores greater than 0.79
 dplyr_filt1 <- filter(cscidat, CSCI > 0.79)
 head(dplyr_filt1)
@@ -112,7 +119,7 @@ Filtering can take a bit of time to master because there are several ways to tel
 
 Now that we've seen how to select columns and filter observations of a data frame, maybe we want to add a new column. In dplyr, `mutate` allows us to add new columns. These can be vectors you are adding *or* based on expressions applied to existing columns. For instance, maybe we want to convert a numeric column into a categorical using certain criteria *or* maybe we want to make a new column based on some arithmetic on other columns.
 
-```{r}
+```{r mutate, eval=TRUE, echo=TRUE}
 # get observed taxa
 dplyr_mut1 <- mutate(cscidat, observed = OE * E)
 head(dplyr_mut1)
@@ -136,7 +143,7 @@ knitr::include_graphics(here::here("figure", "mutate.png"))
 
 Some other useful dplyr functions include `arrange` to sort the observations (rows) by a column and `rename` to (you guessed it) rename a column.
 
-```{r}
+```{r arrange, eval=TRUE, echo=TRUE}
 # arrange by CSCI scores
 dplyr_arr <- arrange(cscidat, CSCI)
 head(dplyr_arr)
@@ -156,13 +163,13 @@ Let's clean up our CSCI dataset in preparation to join with our ASCI dataset.  W
 1. Select the unique sample ID column (`SampleID_old`), latitude (`New_Lat`), longitude (`New_Long`), and `CSCI` columns. Reassign these columns to a dataset named `cscidat`, effectively overwriting the existing dataset.
 
     ```{r}
-cscidat <- select(cscidat, SampleID_old, New_Lat, New_Long, CSCI)    
+    cscidat <- select(cscidat, SampleID_old, New_Lat, New_Long, CSCI)    
     ```
     
 1. Rename the `SampleID_old` column to `id`, `New_Lat` to `lat`, and `New_Long` to `lon`.
 
     ```{r}
-cscidat <- rename(cscidat, 
+    cscidat <- rename(cscidat, 
                   id = SampleID_old, 
                   lat = New_Lat, 
                   lon = New_Long

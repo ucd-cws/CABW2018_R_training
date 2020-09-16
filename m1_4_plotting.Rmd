@@ -1,11 +1,18 @@
 ---
 title: "Plot Data"
+output: 
+  bookdown::html_document2:
+    code_fold: show
+    includes:
+      in_header: assets/header.html
+      after_body: assets/footer.html
 ---
 
-```{r setup, include=FALSE, purl=FALSE, message=FALSE}
+```{r setup, include=FALSE, warning=FALSE, purl=FALSE}
 
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE, tidy = FALSE, message = FALSE, warning = FALSE)
 library(knitr)
+library(dplyr)
 library(here)
 library(flair)
 
@@ -77,7 +84,7 @@ ggplot(data = ascidat) +
 
 Let's make a quick ggplot using some of the guidance from above. For this figure, we'll create some boxplots to show the distribution of ASCI scores at different site types (i.e., reference, intermediate, and stressed).  This follows the same syntax as above but we'll use the `geom_boxplot` geometry. We will also add appropriate labels and a title.
 
-    ```{r}
+```{r}
     
     # boxplot of ASCI scores
     
@@ -91,7 +98,7 @@ Let's make a quick ggplot using some of the guidance from above. For this figure
     
     asci_box
     
-    ```
+```
 
 When you're done, examine the plot. What does it tell you about the distribution of CSCI scores?
 

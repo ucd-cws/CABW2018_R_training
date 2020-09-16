@@ -1,13 +1,19 @@
 ---
 title: "Using R for bioassessment data: What, why, and how"
+output: 
+  bookdown::html_document2:
+    code_fold: show
+    includes:
+      in_header: assets/header.html
+      after_body: assets/footer.html
 ---
 
 ```{r setup, include=FALSE, purl=FALSE, message=FALSE}
 
-knitr::opts_chunk$set(echo = FALSE)
+options(repos = "http://cran.rstudio.com/")
+knitr::opts_chunk$set(echo = TRUE, tidy = FALSE, message = FALSE, warning = FALSE)
 library(knitr)
-library(here)
-library(flair)
+library(dplyr)
 
 ```
 
@@ -55,18 +61,13 @@ The first part of RStudio that we will be working in is called the *Console*. Th
 
 Type the following text into the console, press `enter`, and you should see the following results:
 
-`4`
-
-```{r, echo = FALSE}
+```{r}
 
 4
 
 ```
 
-
-`4+8`
-
-```{r, echo = FALSE}
+```{r}
 
 4+8
 
@@ -76,18 +77,16 @@ You can also create variables with custom values. In this case the first part of
 
 Type the following into your *Console* and press `enter` after each one to see their output:
 
-`stream <- 4`
 
-```{r, include = FALSE}
+```{r}
 
 stream <- 4
 
 ```
 
 
-`pebble <- 8`
 
-```{r, include = FALSE}
+```{r}
 
 pebble <- 8
 
@@ -100,9 +99,8 @@ There are two possible outcomes when you run code.  First, the code will simply 
 
 Add the variables you just created together, and examine the output:
 
-`stream + pebble`
 
-```{r, echo = FALSE}
+```{r}
 
 stream + pebble
 
@@ -111,9 +109,7 @@ stream + pebble
 
 You can also create new variables using existing variables like so:
 
-`habitat <- stream + pebble`
-
-```{r, echo = FALSE}
+```{r}
 
 habitat <- stream + pebble
 
@@ -124,7 +120,7 @@ Try to call the variable by typing:
 
 `habitatt`
 
-```{r, echo = FALSE}
+```{r}
 
 print("Error: object 'habitatt' not found")
 
@@ -135,9 +131,8 @@ This line of code will give you an error, because you must type your variable na
 
 Try to call the variable once more in the *Console* using the correct spelling:
 
-`habitat`
 
-```{r, echo = FALSE}
+```{r}
 
 habitat
 
@@ -190,7 +185,7 @@ Being able to find help and interpret that help is probably one of the most impo
 
 Getting help from the console is straightforward and can be done numerous ways.
 
-```{r help_from_console, eval=FALSE}
+```{r help_from_console, eval=FALSE, echo=TRUE}
 # Using the help command/shortcut
 # When you know the name of a function
 help("print") # Help on the print command

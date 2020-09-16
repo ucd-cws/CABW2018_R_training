@@ -1,41 +1,77 @@
 ---
-title: "Data & Resources"
+title: "Resources"
+output:
+  bookdown::html_document2:
+    toc: false
+    includes:
+      in_header: assets/header.html
+      after_body: assets/footer.html
 ---
 
-This page contains links to the data we're using in our workshop, and a sample of a few useful resources online and in print. This is by no means a comprehensive list, but hopefully a launching pad for useful website and books. All of these examples provide code in same shape or form.
+<br>
 
-## {.tabset .tabset-fade}
+This page contains links to the data we're using in our workshop, and a sample of a few useful resources online and in print. This is by no means a comprehensive list, but hopefully a launching pad for useful website and books. All of these examples provide code you can try!
 
-### Datasets
+## {.tabset .tabset-fade .tabset-pills}
 
-This is a list of the data sources used in this workshop. For live-coding, please refer to this [**link**](https://dl.dropboxusercontent.com/s/k5w37n772eu5knx/cabw_script.R?dl=0), which will update everytime we save a file. That means you can refresh the page to see whatever code we are typing, and download this file at anytime.
+### Live Coding
+
+<br>
+
+`r icon::fa("code", color="darkpurple", size=1.5, pull="left")` For live-coding, please refer to this [**link**](https://dl.dropboxusercontent.com/s/k5w37n772eu5knx/cabw_script.R?dl=0) with your favorite browser. This will update every time we save, which means you can refresh the page to see whatever code we are typing, and download this file at anytime.
+
+### Lesson Datasets
+
+This is a list of the data sources used in this workshop.
+
+<br>
+
+#### *`r icon::fa("database", color="slateblue", size=1.5, pull="left")` Lesson Datasets*
 
  - [Full Dataset as a zipped folder](https://github.com/SCCWRP/CABW2018_R_training/raw/master/data/datazip.zip). Inside you'll find these files:
-    - [Longitude-Latitude Data: `latlon.csv`](https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/latlon.csv)
-    - [CSCI Data: `cscidat.csv`](https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/cscidat.csv)
-    - [ASCI Data: `ascidat.csv`](https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/ascidat.csv)
+    - **Longitude-Latitude Data:** [`latlon.csv`](https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/latlon.csv)
+    - **CSCI Data:** [`cscidat.csv`](https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/cscidat.csv)
+    - **ASCI Data:** [`ascidat.csv`](https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/ascidat.csv)
+
 
 ### Resources
 
-#### *R Lessons & Tutorials*
+<br>
+
+#### *`r icon::fa("r-project", color="steelblue", size=1.5, pull="left")` Lessons & Tutorials*
 
 * [Software Carpentry: **R for Reproducible Scientific Analysis**](http://data-lessons.github.io/gapminder-R/)
 * [Data Carpentry: **R for Data Analysis and Visualization of Ecological Data**](http://www.datacarpentry.org/R-ecology-lesson/)
 * [Data Carpentry: **Data Organization in Spreadsheets**](http://www.datacarpentry.org/spreadsheet-ecology-lesson/)
 * [**RStudio Webinars**, many topics](https://www.rstudio.com/resources/webinars/)
-* [R For Cats: **Basic introduction site, with cats!**](http://rforcats.net/)
 * [Topical cheatsheets from **RStudio**, also viewed from the help menu](http://www.rstudio.com/resources/cheatsheets/)
 * [Cheatsheet from CRAN of **base R functions**](http://cran.r-project.org/doc/contrib/Short-refcard.pdf) 
 
-#### *R eBooks/Courses*
+<br>
+
+#### *`r icon::fa("book", color="black", size=1.5, pull="left")` eBooks/Courses*
 
 * [Jenny Bryan's **Stat545.com**](http://stat545.com/)
 * [Garrett Grolemund and Hadley Wickham's **R For Data Science**](http://r4ds.had.co.nz/)
 * [Chester Ismay and Albert Y. Kim's **Modern DiveR**](https://ismayc.github.io/moderndiver-book/)
 * [Julia Silge and David Robinson **Text Mining with R**](http://tidytextmining.com/)
-* [Hadley Wikham's **Advanced R**](http://adv-r.had.co.nz/)
+* [Hadley Wickham's **Advanced R**](http://adv-r.had.co.nz/)
 
-#### *Git/Github* 
+<br>
+
+#### *`r icon::fa("github", color="gray50", size=1.5, pull="left")` Git/Github* 
 
 * [Jenny Bryan's **Happy Git and Github for the useR**](http://happygitwithr.com/)
 * [Coding Club **Intro to Github**](https://ourcodingclub.github.io/2017/02/27/git.html)
+
+## {-}
+
+<br>
+
+(ref:AHRemoteR) *Artwork by @allison_horst*
+
+```{r remoteLearning, eval=TRUE, echo=FALSE, out.width='100%', fig.cap='(ref:AHRemoteR)'}
+
+knitr::include_graphics(path = "https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/monster_support.jpg")
+
+```

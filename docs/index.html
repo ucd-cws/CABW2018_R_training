@@ -11,7 +11,7 @@
 
 
 
-<title>index.utf8</title>
+<title>CABW-R</title>
 
 <script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -26,6 +26,10 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="site_libs_extra/academicons-1.8.0/css/academicons.css"/>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -72,6 +76,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
 
 
@@ -344,32 +349,154 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">CABW 2018 R training</a>
+      <a class="navbar-brand" href="index.html">CABW 2020 R training</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">
+    <span class="fa fa-home fa-1.5x"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="usingr.html">What, why, and how of R</a>
+  <a href="setup.html">
+    <span class="ion ion-hammer"></span>
+     
+    Setup R
+  </a>
 </li>
-<li>
-  <a href="wrangleplot.html">Wrangling and plotting</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-bicycle fa-1x"></span>
+     
+    1: Data In, Plot Out!
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lesson 1:</li>
+    <li>
+      <a href="usingr.html">
+        <span class="fa fa-download"></span>
+         
+        Importing Data
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 2:</li>
+    <li>
+      <a href="wrangleplot.html">
+        <span class="fa fa-magic"></span>
+         
+        Wrangling Data
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 3:</li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-area-chart"></span>
+         
+        Plotting with ggplot
+      </a>
+    </li>
+  </ul>
 </li>
-<li>
-  <a href="mapping.html">Mapping</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-car"></span>
+     
+    2: Excel to a Map
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lesson 1:</li>
+    <li>
+      <a href="m2_1_working_w_xls.html">
+        <span class="fa fa-table"></span>
+         
+        Working from Excel
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 2:</li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-object-ungroup"></span>
+         
+        Joining Data
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 3:</li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-globe-americas"></span>
+         
+        Using {sf}
+      </a>
+    </li>
+    <li class="dropdown-header">Lesson 4:</li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-map-marked-alt"></span>
+         
+        Make a Map!
+      </a>
+    </li>
+  </ul>
 </li>
-<li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-space-shuttle fa-1x"></span>
+     
+    And Beyond
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-box-open"></span>
+         
+        Helpful Packages
+      </a>
+    </li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-code-branch"></span>
+         
+        Running Functions
+      </a>
+    </li>
+    <li>
+      <a href="in_progress.html">
+        <span class="fa fa-tint"></span>
+         
+        Downloading River Data
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
   <a href="resources.html">
     <span class="fa fa-list"></span>
      
     Resources
   </a>
 </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
+<li>
+  <a href="https://github.com/ucd-cws/CABW2020_R_training">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/CalSFSsocial">
+    <span class="fa fa-twitter fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -379,52 +506,98 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">CABW-R</h1>
 
 </div>
 
 
-<div id="cabw-2018-r-training" class="section level1">
-<h1>CABW 2018 R training</h1>
-<p><a href="https://www.r-project.org/">R</a> is a language for statistical computing as well as a general purpose programming language. Increasingly, it has become one of the primary languages used in data science and for data analysis across many of the natural sciences. This workshop will provide attendees with the foundations for continued learning of R and for analysis of a range of data types.</p>
-<div id="course-objectives" class="section level2">
-<h2>Course objectives</h2>
-<p>By the end of this course you should be able to or have the resources to find out how to:</p>
+<style>
+  .title{
+    display: none;
+  }
+</style>
+<p><br></p>
+<div id="welcome-to-the-2020-cabwcalsfs-r-workhop" class="section level1">
+<h1>Welcome to the 2020 CABW/CalSFS R Workhop!</h1>
+
+<div class="figure"><span id="fig:remoteLearning"></span>
+<img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/monster_support.jpg" alt="Artwork by @allison_horst" width="60%" />
+<p class="caption">
+Figure 1: <em>Artwork by <span class="citation">@allison_horst</span></em>
+</p>
+</div>
+<div class="obj">
+<p><strong>Course Objectives</strong></p>
+<p>What we want you to be able to do:</p>
 <ul>
 <li><p>Use R to import and organize bioassessment data</p></li>
-<li><p>Create plots using R packages to explore data trends</p></li>
-<li><p>Create maps in R to explore spatial patterns</p></li>
+<li><p>Create plots using R packages to explore basic data trends</p></li>
+<li><p>Create maps in R to explore/report spatial patterns</p></li>
 </ul>
 </div>
-<div id="agenda" class="section level2">
-<h2>Agenda</h2>
+<p><br></p>
+<p><a href="https://www.r-project.org/">R</a> is a language for statistical computing as well as a general purpose programming language. Increasingly, it has become one of the primary languages used in data science for data analysis, modeling, and visualization. This workshop will provide attendees with a starting point for continued learning and use of R. We will cover a variety of commonly used file types (i.e., <code>.csv</code>, <code>.xlsx</code>, <code>.shp</code>) used in analysis, as well as provide resources for more foundational learning.</p>
+<p><br></p>
+<div id="workshop-overview" class="section level2">
+<h2>Workshop Overview</h2>
+<p>We will be following the <a href="https://freshwater-science.org/about/society-governance/code-of-conduct">SFS Code of Conduct</a> throughout our workshop.</p>
+<p>Our schedule is still being sorted out. Please check back for updates on our workshop schedule and info. A draft schedule is below.</p>
+<div id="schedule" class="section level3">
+<h3>Schedule</h3>
+<p><strong>Tuesday, Oct 13</strong></p>
 <ul>
-<li><p><strong>1:30 - 2:30pm</strong>: Using R with bioassessment data: what, why, and how</p></li>
-<li><p><strong>2:30 - 3:30pm</strong>: Wrangling and plotting bioassessment data for exploratory analysis</p></li>
-<li><p><strong>3:30 - 5:00pm</strong>: Mapping bioassessment data in R</p></li>
+<li><strong>2:15 - 4:15pm</strong>: Using R with bioassessment data: what, why, and how</li>
 </ul>
+<p><strong>Wednesday, Oct 14</strong></p>
+<ul>
+<li><strong>2:15 - 4:15pm</strong>: From Excel to a Map with R</li>
+</ul>
+<p><br></p>
+</div>
 </div>
 <div id="instructors" class="section level2">
 <h2>Instructors</h2>
+<p><br></p>
 <ul>
-<li><a href="https://fawda123.github.io/CV/Beck_CV.pdf">Marcus Beck</a> (<a href="mailto:marcusb@sccwrp.org">marcusb@sccwrp.org</a>) - Marcus is a scientist with the Southern California Coastal Water Research Project. His interests include time series analysis of water quality data, freshwater bioassessment, and data visualization.<br />
-</li>
-<li><a href="https://ryanpeek.github.io/">Ryan Peek</a> (<a href="mailto:rapeek@ucdavis.edu">rapeek@ucdavis.edu</a>) - Ryan is a post-doctoral researcher at the Center for Watershed Sciences at UC Davis. His interests focus on hydropower regulation and environmental management of rivers and streams in California, as well as integrating the fields of genomics, ecology, and hydrology.</li>
+<li><p><a href="https://ryanpeek.org/">Ryan Peek</a> (<a href="mailto:rapeek@ucdavis.edu">rapeek “at” ucdavis “dot” edu</a>) - Ryan is currently working as a post-doctoral researcher at the Center for Watershed Sciences at UC Davis. His interests focus on integrations of amphibian and fish ecology, genomics, hydrology and hydropower, food web dynamics, and environmental flow management of rivers and streams in California. He is a <a href="https://carpentries.org/">Carpentries</a> Instructor and co-coordinator for the <a href="https://d-rug.github.io/">Davis R Users’ Group</a>.</p></li>
+<li><p><a href="https://www.heililowman.com/">Heili Lowman</a> (<a href="mailto:heilil@sccwrp.org">heilil “at” sccwrp “dot” org</a>) - Heili is a Scientist at the Southern California Coastal Water Research Project. Her research projects focus on the biogeochemistry of ecological margins – sediment/water, land/ocean, wildland/urban – and are coupled with a passion for teaching, mentorship, and scientific communication. Heili is the leader of the SCCWRP Tidy Tuesday series, a member of RLadies, and enjoys traveling, cooking, and spending time with her cats.</p></li>
 </ul>
+<p><br></p>
 </div>
 <div id="software-requirements" class="section level2">
 <h2>Software requirements</h2>
-<p>Please bring a laptop with the latest version of RStudio and R installed. Download the compressed <a href="https://SCCWRP.github.io/CABW2018_R_training/data/datazip.zip">data</a> folder and make sure it is accessible on your computer. The <a href="setup.html">setup instructions</a> will guide you through the rest of the process. Take note of the required R packages that you must also download and install. Please contact the instructors with any questions or issues related to setup. If for whatever reason you can’t get RStudio installed with the right packages, click on this <a href="http://www.fawda123.com/rstudio/">link</a> to use R from one of our servers. We will provide you with a login the day of the workshop. These are limited so this is not the preferred option.</p>
+<p>Please setup a computer/laptop with the latest version of RStudio and R installed. Download the compressed <a href="https://github.com/ucd-cws/CABW2020_R_training/raw/main/data/datazip.zip">data</a> folder and make sure it is accessible on your computer. The <a href="setup.html">setup instructions</a> will guide you through the rest of the process. Take note of the required R packages that you must also download and install. Please contact the instructors with any questions or issues related to setup.</p>
+<p>If for whatever reason you can’t get RStudio installed with the right packages, we can help you set up a free <a href="https://rstudio.cloud/">RStudio Cloud</a> account which you can use for the workshop.</p>
+<p><br></p>
 </div>
 <div id="source-content" class="section level2">
 <h2>Source content</h2>
-<p>All source materials for this website can be accessed at <a href="https://github.com/SCCWRP/CABW2018_R_training" class="uri">https://github.com/SCCWRP/CABW2018_R_training</a></p>
+<p>All source materials for this website can be accessed at <a href="https://github.com/ucd-cws/CABW2020_R_training" class="uri">https://github.com/ucd-cws/CABW2020_R_training</a></p>
+<p><br></p>
 </div>
 <div id="attribution" class="section level2">
 <h2>Attribution</h2>
 <p>Content in these lessons was borrowed, modified, and/or adapted from Marc Weber (USEPA), Ryan Hill (USEPA), Jeffrey Hollister (USEPA), the USGS-R training curriculum <a href="https://github.com/USGS-R/training-curriculum">here</a>, the NCEAS Open Science for Synthesis workshop <a href="https://nceas.github.io/oss-2017/index.html">here</a>, and the wonderful text <a href="https://github.com/hadley/r4ds">R for data science</a>.</p>
+<hr />
+<p><em>site updated: <code>2020-09-10 23:23</code></em></p>
 </div>
 </div>
 
+<!DOCTYPE html>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div class="foot">
+	<hr> 
+	<p style="text-align: center;">
+	  <span style="color: #808080; display: inline-block; width: 58%;">
+	  &#9781 &nbsp;<i>Website design by <a href="https://ryanpeek.org/">Ryan Peek</i></a> &nbsp;  
+    <a href="https://github.com/Cal-SFS/" class="fa fa-github">Cal-SFS</a> &nbsp; &#9781
+    </span>
+  </p>
+</div>
 
 
 </div>
