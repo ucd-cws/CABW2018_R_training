@@ -26,25 +26,25 @@ navbar:
     menu:
     - text: "Installing R/RStudio"
       icon: fa-laptop
-      href: setup.html
-    - text: "Setting Up"
+      href: 00_install_R.html
+    - text: "Getting Started"
       icon: fa-map-signs
-      href: m1_1_setup_R.html
+      href: 01_setup_R.html
   - text: "1: Data In, Plot Out!"
     icon: fa-bicycle fa-1x
     menu:
     - text: "Lesson 1:"
     - text: "Importing Data"
       icon: fa-download
-      href: m1_2_using_R.html
+      href: m1_1_using_R.html
     - text: "Lesson 2:"
     - text: "Wrangling Data"
       icon: fa-magic
-      href: m1_3_wrangling.html
+      href: m1_2_wrangling.html
     - text: "Lesson 3:"
     - text: "Plotting with ggplot"
       icon: fa-area-chart
-      href: m1_4_plotting.html
+      href: m1_3_plotting.html
   - text: "2: Excel to a Map"
     icon: fa-car
     menu:
