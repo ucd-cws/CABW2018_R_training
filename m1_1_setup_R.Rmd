@@ -9,6 +9,7 @@ output:
 ---
 
 ```{r setup, include=FALSE, purl=FALSE, message=FALSE}
+
 options(repos = "http://cran.rstudio.com/")
 knitr::opts_chunk$set(echo = TRUE, tidy = FALSE, message = FALSE, warning = FALSE)
 library(knitr)
@@ -41,8 +42,11 @@ Let's get familiar with RStudio before we go on.
 
 ### Open R and RStudio
 
-If you haven't done so already, download and install RStudio from the link above (version 1.3.1073).  After it's installed, find the RStudio shortcut and fire it up.  You should see something like this: 
-![](figure/rstudio.png)
+If you haven't done so already, download and install RStudio from the link above (version 1.3.1073).  After it's installed, find the RStudio shortcut and fire it up.  You should see something like this:
+
+```{r out.width = "100%", fig.cap = '*The RStudio window.*'}
+knitr::include_graphics(here::here("figure", "rstudio.png"))
+```
 
 There are four panes in RStudio (starting from the bottom left and moving clockwise): 
 
@@ -167,8 +171,6 @@ The remaining tabs in this pane allow you to see the *Files* that are associated
 
 Great job! You've opened up RStudio, learned about some basic functionalities, and now you're ready to get going on your first R project!
 
-![](figure/youcandoit.png)
-
 ***
 
 Below we have included some excellent resources for R learning, troubleshooting, and communities.
@@ -208,7 +210,9 @@ In addition to help from within R itself, CRAN and the R-Project have many resou
 
 There are also a number of platforms created to support communities using R such as [RLadies](https://rladies.org/) and [RStudioEDU](https://twitter.com/RStudioEDU). Our workshop assistants today are all a member of RLadies! Following #rstats on Twitter is also an excellent way to stay informed of RStudio updates and new package developments.
 
-![](figure/friends.png)
+```{r out.width = "100%", fig.cap = '*Illustration by @allison_horst.*'}
+knitr::include_graphics(here::here("figure", "friends.png"))
+```
 
 ### Google and StackOverflow
 
@@ -221,7 +225,7 @@ Blind googling can require a bit of strategy to get the info you want.  Some poi
 * Take note of the number of hits and date of a web page
 * When in doubt, search with the exact error message (see here for [details](https://cran.r-project.org/doc/manuals/R-lang.html#Exception-handling) about warnings vs errors)
 
-One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r).  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of. However, these forums are also very strict and I typically use them to find answers not to ask questions.  
+One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r).  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of. However, these forums are also very strict and I typically use them to find answers not to ask questions.
 
 ### Other Resources
 

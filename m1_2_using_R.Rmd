@@ -13,25 +13,27 @@ options(repos = "http://cran.rstudio.com/")
 knitr::opts_chunk$set(echo = TRUE, tidy = FALSE, message = FALSE, warning = FALSE)
 library(knitr)
 library(dplyr)
-
+library(flair
 ```
 
-## Lesson Outline
+<br>
+<br>
 
-- [Goals and Motivation]
-- [Getting organized]
-- [Getting your data into R]
+:::obj
 
-## Goals and Motivation
+ **Objectives for this section:**
+ 
+ - get organized at the start of each new project
+ - create and save an .R script
+ - import data from a `.csv`
+ 
+:::
 
-Today, as you learn new concepts and utilities in R, we will also be teaching you how to set up your workflow so that you and your collaborators can use R more efficiently. By taking the time at the very beginning of a project to maintain code that is well organized and clear, you will create analyses that are more reproducible and shareable. And, when you come back to your files years later, you can pick back up right where you left off.
-
-After this session you should be able answer the following:
-
-* How do I create and organize my files in R?
-* How do I import a dataset as a `.csv`?
+<br>
 
 ## Getting organized
+
+Today, as you learn new concepts and utilities in R, we will also be teaching you how to set up your workflow so that you and your collaborators can use R more efficiently. By taking the time at the very beginning of a project to maintain code that is well organized and clear, you will create analyses that are more reproducible and shareable. And, when you come back to your files years later, you can pick back up right where you left off.
 
 Before you start working on a new dataset in RStudio, it is very important that you create a place to store your files. Starting off organized and staying organized in R will make *future you* so much happier. So, we're going to encourage that you take a moment now to organize your files and keep things tidy.
 
@@ -41,7 +43,10 @@ I strongly encourage you to use RStudio projects when you are working with R.  T
 
 To create a new project, click on the File menu at the top of the RStudio window and select 'New project...'
 
-![](figure/rstudio_proj.jpg)
+
+```{r out.width = "100%", fig.cap = '*Beginning a new project in RStudio.*'}
+knitr::include_graphics(here::here("figure", "rstudio_proj.jpg"))
+```
 
 Select "New Directory" > "New Project". Title this project "cabw_r_workshop" (we will use this directory for the rest of today's workshop), and save it to a filepath that is logical and easy for you to find in the future. Then, click "Create Project." In the RStudio window that just opened, you should now see your working directory printed along the top of the screen (e.g., ~/Desktop/cabw_r_workshop - RStudio).
 
@@ -53,7 +58,9 @@ Up until this point, we have been working in the *Console*. In most cases, you w
 
 To open a new script, navigate to the File menu, and select "New File" > "R Script":
 
-![](figure/rstudio_script.jpg)
+```{r out.width = "100%", fig.cap = '*Opening a new script in RStudio.*'}
+knitr::include_graphics(here::here("figure", "rstudio_script.jpg"))
+```
 
 Save that file into your newly created project and name it "cabw_script_day1.R". It'll just be a blank text file at this point.
 
@@ -82,7 +89,9 @@ fish <- 10 + 45
 
 After you write your script it can be sent to the Console to run the code in R. Any variables you create in your script will not be available in your working environment until this is done. There are two ways to send code to the console. First, you can hit the `Run` button at the top right of the scripting window. Second, and preferred, you can use `ctrl+enter` (`cmd+enter` on a Mac). Both approaches will send the selected line to the console, then move to the next line in your script. You can also highlight and send an entire block of code. If you'd like to run all the code in your script at once, you can use `ctrl+shift+enter` (`cmd+shift+enter` on a Mac).
 
-![](figure/rstudio_run.jpg)
+```{r out.width = "100%", fig.cap = '*Running code in RStudio.*'}
+knitr::include_graphics(here::here("figure", "rstudio_run.jpg"))
+```
 
 Place your cursor on the line where you've created the `fish` variable, and run the line of code. Check to be certain that this variable has now appeared in your *Environment*.
 
@@ -265,3 +274,7 @@ Sites <- cscidat$site
 ```
 
 This concludes the "importing data" section of our R tutorial today. If you are experiencing any issues, errors, or have a question, please take this moment to send Ryan, Heili, or one of the workshop assistants a message in the chat.
+
+```{r out.width = "100%", fig.cap = '*Illustration by @allison_horst.*'}
+knitr::include_graphics(here::here("figure", "debugging.jpg"))
+```
