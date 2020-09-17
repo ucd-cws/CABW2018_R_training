@@ -30,6 +30,9 @@ navbar:
     - text: "Getting Started"
       icon: fa-map-signs
       href: 01_setup_R.html
+    - text: "Project Management"
+      icon: fa-sitemap
+      href: 02_project_management.html
   - text: "1: Data In, Plot Out!"
     icon: fa-bicycle fa-1x
     menu:
