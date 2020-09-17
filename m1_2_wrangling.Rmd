@@ -283,3 +283,5 @@ If you would like to learn more about the possibilities withing the dplyr packag
 ```{r out.width = "100%", echo=F, fig.cap = '*Illustration by @allison_horst.*'}
 knitr::include_graphics(here::here("figure", "relocate.png"))
 ```
+
+Great work! Let's [move to the next lesson](m1_3_wrangling.html).

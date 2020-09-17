@@ -318,3 +318,5 @@ This concludes the "importing data" section of our R tutorial today. If you are 
 ```{r out.width = "100%", echo=FALSE, fig.cap = '*Illustration by @allison_horst.*'}
 knitr::include_graphics(here::here("figure", "debugging.jpg"))
 ```
+
+Great work! Let's [move to the next lesson](m1_2_wrangling.html).
