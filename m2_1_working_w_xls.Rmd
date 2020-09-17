@@ -447,3 +447,6 @@ saveRDS(sites_clean, file="data/sites_clean.rds")
 
 ```
 
+
+
+Great work! Let's [move to the next lesson](m2_2_joins.html).
