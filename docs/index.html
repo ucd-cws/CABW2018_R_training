@@ -359,12 +359,30 @@ div.tocify {
      
   </a>
 </li>
-<li>
-  <a href="setup.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="ion ion-hammer"></span>
      
-    Setup R
+    Setup
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="00_install_R.html">
+        <span class="fa fa-laptop"></span>
+         
+        Installing R/RStudio
+      </a>
+    </li>
+    <li>
+      <a href="01_setup_R.html">
+        <span class="fa fa-map-signs"></span>
+         
+        Getting Started
+      </a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -377,7 +395,7 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lesson 1:</li>
     <li>
-      <a href="usingr.html">
+      <a href="m1_1_using_R.html">
         <span class="fa fa-download"></span>
          
         Importing Data
@@ -385,7 +403,7 @@ div.tocify {
     </li>
     <li class="dropdown-header">Lesson 2:</li>
     <li>
-      <a href="wrangleplot.html">
+      <a href="m1_2_wrangling.html">
         <span class="fa fa-magic"></span>
          
         Wrangling Data
@@ -393,7 +411,7 @@ div.tocify {
     </li>
     <li class="dropdown-header">Lesson 3:</li>
     <li>
-      <a href="in_progress.html">
+      <a href="m1_3_plotting.html">
         <span class="fa fa-area-chart"></span>
          
         Plotting with ggplot
@@ -429,7 +447,7 @@ div.tocify {
     <li class="dropdown-header">Lesson 3:</li>
     <li>
       <a href="in_progress.html">
-        <span class="fa fa-globe-americas"></span>
+        <span class="fa fa-map-pin"></span>
          
         Using {sf}
       </a>
@@ -437,7 +455,7 @@ div.tocify {
     <li class="dropdown-header">Lesson 4:</li>
     <li>
       <a href="in_progress.html">
-        <span class="fa fa-map-marked-alt"></span>
+        <span class="fa fa-map fa-1x"></span>
          
         Make a Map!
       </a>
@@ -455,7 +473,7 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="in_progress.html">
-        <span class="fa fa-box-open"></span>
+        <span class="fa fa-archive"></span>
          
         Helpful Packages
       </a>
@@ -517,8 +535,8 @@ div.tocify {
   }
 </style>
 <p><br></p>
-<div id="welcome-to-the-2020-cabwcalsfs-r-workhop" class="section level1">
-<h1>Welcome to the 2020 CABW/CalSFS R Workhop!</h1>
+<div id="welcome-to-the-2020-cabwcalsfs-r-workshop" class="section level1">
+<h1>Welcome to the 2020 CABW/CalSFS R Workshop!</h1>
 
 <div class="figure"><span id="fig:remoteLearning"></span>
 <img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/monster_support.jpg" alt="Artwork by @allison_horst" width="60%" />
@@ -560,7 +578,7 @@ Figure 1: <em>Artwork by <span class="citation">@allison_horst</span></em>
 <p><br></p>
 <ul>
 <li><p><a href="https://ryanpeek.org/">Ryan Peek</a> (<a href="mailto:rapeek@ucdavis.edu">rapeek “at” ucdavis “dot” edu</a>) - Ryan is currently working as a post-doctoral researcher at the Center for Watershed Sciences at UC Davis. His interests focus on integrations of amphibian and fish ecology, genomics, hydrology and hydropower, food web dynamics, and environmental flow management of rivers and streams in California. He is a <a href="https://carpentries.org/">Carpentries</a> Instructor and co-coordinator for the <a href="https://d-rug.github.io/">Davis R Users’ Group</a>.</p></li>
-<li><p><a href="https://www.heililowman.com/">Heili Lowman</a> (<a href="mailto:heilil@sccwrp.org">heilil “at” sccwrp “dot” org</a>) - Heili is a Scientist at the Southern California Coastal Water Research Project. Her research projects focus on the biogeochemistry of ecological margins – sediment/water, land/ocean, wildland/urban – and are coupled with a passion for teaching, mentorship, and scientific communication. Heili is the leader of the SCCWRP Tidy Tuesday series, a member of RLadies, and enjoys traveling, cooking, and spending time with her cats.</p></li>
+<li><p><a href="https://www.heililowman.com/">Heili Lowman</a> (<a href="mailto:heilil@sccwrp.org">heilil “at” sccwrp “dot” org</a>) - Heili is a Scientist at the Southern California Coastal Water Research Project. Her research projects focus on the biogeochemistry of ecological margins – sediment/water, land/ocean, wildland/urban – and are coupled with a passion for teaching, mentorship, and scientific communication. Heili is the leader of the <a href="https://vimeo.com/sccwrp">SCCWRP Tidy Tuesday</a> series, a member of <a href="https://rladies.org/">RLadies</a>, and enjoys traveling, cooking, and spending time with her cats.</p></li>
 </ul>
 <p><br></p>
 </div>
@@ -579,7 +597,7 @@ Figure 1: <em>Artwork by <span class="citation">@allison_horst</span></em>
 <h2>Attribution</h2>
 <p>Content in these lessons was borrowed, modified, and/or adapted from Marc Weber (USEPA), Ryan Hill (USEPA), Jeffrey Hollister (USEPA), the USGS-R training curriculum <a href="https://github.com/USGS-R/training-curriculum">here</a>, the NCEAS Open Science for Synthesis workshop <a href="https://nceas.github.io/oss-2017/index.html">here</a>, and the wonderful text <a href="https://github.com/hadley/r4ds">R for data science</a>.</p>
 <hr />
-<p><em>site updated: <code>2020-09-10 23:23</code></em></p>
+<p><em>site updated: <code>2020-09-16 01:14</code></em></p>
 </div>
 </div>
 

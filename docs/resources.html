@@ -282,12 +282,30 @@ $(document).ready(function () {
      
   </a>
 </li>
-<li>
-  <a href="setup.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="ion ion-hammer"></span>
      
-    Setup R
+    Setup
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="00_install_R.html">
+        <span class="fa fa-laptop"></span>
+         
+        Installing R/RStudio
+      </a>
+    </li>
+    <li>
+      <a href="01_setup_R.html">
+        <span class="fa fa-map-signs"></span>
+         
+        Getting Started
+      </a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -300,7 +318,7 @@ $(document).ready(function () {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lesson 1:</li>
     <li>
-      <a href="usingr.html">
+      <a href="m1_1_using_R.html">
         <span class="fa fa-download"></span>
          
         Importing Data
@@ -308,7 +326,7 @@ $(document).ready(function () {
     </li>
     <li class="dropdown-header">Lesson 2:</li>
     <li>
-      <a href="wrangleplot.html">
+      <a href="m1_2_wrangling.html">
         <span class="fa fa-magic"></span>
          
         Wrangling Data
@@ -316,7 +334,7 @@ $(document).ready(function () {
     </li>
     <li class="dropdown-header">Lesson 3:</li>
     <li>
-      <a href="in_progress.html">
+      <a href="m1_3_plotting.html">
         <span class="fa fa-area-chart"></span>
          
         Plotting with ggplot
@@ -352,7 +370,7 @@ $(document).ready(function () {
     <li class="dropdown-header">Lesson 3:</li>
     <li>
       <a href="in_progress.html">
-        <span class="fa fa-globe-americas"></span>
+        <span class="fa fa-map-pin"></span>
          
         Using {sf}
       </a>
@@ -360,7 +378,7 @@ $(document).ready(function () {
     <li class="dropdown-header">Lesson 4:</li>
     <li>
       <a href="in_progress.html">
-        <span class="fa fa-map-marked-alt"></span>
+        <span class="fa fa-map fa-1x"></span>
          
         Make a Map!
       </a>
@@ -378,7 +396,7 @@ $(document).ready(function () {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="in_progress.html">
-        <span class="fa fa-box-open"></span>
+        <span class="fa fa-archive"></span>
          
         Helpful Packages
       </a>
