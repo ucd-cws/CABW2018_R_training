@@ -58,7 +58,7 @@ navbar:
     - text: "Lesson 2:"
     - text: "Joining Data"
       icon: fa-object-ungroup
-      href: in_progress.html
+      href: m2_2_joins.html
     - text: "Lesson 3:"
     - text: "Using {sf}"
       icon: fa-map-pin
