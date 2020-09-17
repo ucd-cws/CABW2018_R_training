@@ -94,7 +94,7 @@ All source materials for this website can be accessed at https://github.com/ucd-
 
 ## Attribution
 
-Content in these lessons was borrowed, modified, and/or adapted from Marc Weber (USEPA), Ryan Hill (USEPA), Jeffrey Hollister (USEPA), the USGS-R training curriculum [here](https://github.com/USGS-R/training-curriculum), the NCEAS Open Science for Synthesis workshop [here](https://nceas.github.io/oss-2017/index.html), and the wonderful text [R for data science](https://github.com/hadley/r4ds).
+Content in these lessons was been modified and/or adapted from Marc Weber (USEPA), Ryan Hill (USEPA), Jeffrey Hollister (USEPA), [Data Carpentry: R for data analysis and visualization of Ecological Data](https://datacarpentry.org/R-ecology-lesson/index.html), the USGS-R training curriculum [here](https://github.com/USGS-R/training-curriculum), the NCEAS Open Science for Synthesis workshop [here](https://nceas.github.io/oss-2017/index.html), and the wonderful text [R for data science](https://github.com/hadley/r4ds).
 
 
 ---
