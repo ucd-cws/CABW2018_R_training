@@ -40,7 +40,7 @@ library(flair)
 
 ## Spreadsheet Madness to Tidy Data
 
-Spreadsheets surround us and exist in nearly every facet and field. While learning how to use `r icon::fa("r-project", color="steelblue")` will make life easier and more reproducible, spreadsheets won't go away, and there will always still be a messy dataset that comes your way.
+Spreadsheets surround us and exist in nearly every facet and field. While learning how to use `r icon::fa("globe-americas", color="steelblue")` will make life easier and more reproducible, spreadsheets won't go away, and there will always still be a messy dataset that comes your way.
 
 So let's talk about what tidy data should look like, and then take a look at a messy real-life spreadsheet, and figure out what could be done to make it **tidy**!  
 
