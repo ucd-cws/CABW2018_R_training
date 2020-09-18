@@ -62,7 +62,7 @@ navbar:
     - text: "Lesson 3:"
     - text: "Using {sf}"
       icon: fa-map-pin
-      href: in_progress.html
+      href: m2_3_using_sf.html
     - text: "Lesson 4:"
     - text: "Make a Map!"
       icon: fa-map fa-1x
