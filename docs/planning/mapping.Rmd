@@ -1,0 +1,424 @@
+---
+title: "Mapping in R with `{sf}`"
+---
+
+
+```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
+options(repos = "http://cran.rstudio.com/")
+pkgs <- c("dplyr", "knitr")
+x<-lapply(pkgs, library, character.only = TRUE)
+opts_chunk$set(tidy = FALSE, message = F, warning = F)
+## Mapping in R with `sf` {#sf}
+```
+
+## Using `{sf}`
+
+R is an open source software package, and more and more, it has become useful for analysis, visualization, and even writing. More recently, it has become a powerful tool for working with spatial data, making maps, etc. This is because it's free (open source), it can do nearly everything that a GUI type program can do (e.g., ArcGIS), and you can write a script to do the same analysis many times over, saving time on repetitive tasks and making it clear how you did what you did. 
+
+There are a variety of spatial mapping/plotting packages in R. Currently, there are two main approaches to read/create spatial data in R. The `rgdal` package, and the `sf` package. We're going to use the `sf` approach because it's simpler and typically faster to work with, and spatial objects are simply `data.frames`, which makes it much easier to manipulate data.
+
+## Install/Load packages
+
+Next we need to install our packages (if you haven't already). If you have already done this step, great, take a minute to look at the [`sf` webpage](http://r-spatial.github.io/sf/) and the various vignettes that are available (see __*Articles*__ tab).
+
+```{r installsf, echo=T, eval=F}
+
+# install packages if you haven't already
+install.packages(c("viridis", "sf","mapview", "tmap","USAboundaries"))
+
+# load packages or "libraries"
+library(tidyverse) # wrangling/plotting tools
+library(viridis) # nice color palette
+library(sf) # newer "simple features" spatial package
+library(mapview) # interactive web mapping
+library(tmap) # static mapping
+library(USAboundaries) # data for USA boundaries
+
+```
+
+```{r loadLibs, echo=F, warning=FALSE}
+suppressPackageStartupMessages({
+  library(tidyverse); # reading/writing files
+  library(viridis); # nice color palette
+  library(sf); # newer "simple features" spatial package
+  library(mapview); # interactive web map
+  library(tmap);
+  library(USAboundaries)
+  }) 
+
+```
+
+## Read in Data
+
+First we need to read in some data. We'll be using the same data from earlier in the lessons...see the Github repository](https://github.com/SCCWRP/CABW2018_R_training/tree/master/data). Let's use the `read_csv` function from the `tidyverse (readr)` package to read in our `.csv`'s. We can either download these files directly from the website, or we can use a downloaded file on our computer, following the data management/organization tips we spoke about earlier (i.e., using RStudio Projects, and always keep **data** in a `data` folder. 
+
+### Read Data from Local RStudio Project
+
+This assumes you've already downloaded the data from the [website](https://sccwrp.github.io/CABW2018_R_training/) or from the Github data [repository](https://github.com/SCCWRP/CABW2018_R_training/tree/master/data).
+
+```{r getDataLocal, eval=F, echo=T}
+
+# if reading locally (from your data folder in you RStudio project):
+ascidat <- read_csv("data/ascidat.csv")
+cscidat <- read_csv("data/cscidat.csv")
+latlons <- read_csv("data/latlon.csv")
+
+```
+
+### Read Data from Website
+
+This downloads data directly from the website (so you need to be connected to the internet).
+
+```{r getDataWeb, eval=T, echo=T}
+# if reading from web:
+ascidat <- read_csv("https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/ascidat.csv")
+
+cscidat <- read_csv("https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/cscidat.csv")
+
+# read in latitude/longitude data for sites:
+#latlons <- read_csv("https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/latlon.csv")
+
+latlons <- read_csv(file = "https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/latlon.csv")
+
+```
+
+Let's take a look at our dataset, and in particular, let's look at the coordinates we'll be using to make our data "spatial". The `latlons` dataset just has 3 columns. **_How many rows_**?
+
+If we look at a summary of the latitude and longitude, what do we notice? Why might it be important to look at the latitude and longitude data[^1] before plotting?
+
+```{r summLats}
+
+glimpse(latlons)
+summary(latlons)
+
+```
+
+[^1]: For data from the North American continent, and when using the **`WGS84`** datum, keep an eye on your lat/long coordinates, especially **longitude**. It typically should be `negative`. A common snafu that can occur is a few values (or all) from the longitude column may remain positive, which means the data typically plots somewhere in the Indian Ocean. Make sure all your longitudes are negative (if in the US and using lat/longs).
+
+### Tidy the Spatial Data
+
+In case there is something amiss, such as values that aren't negative, a quick fix is to run the following code to make sure all longitude values are negative.
+
+```{r Fixlatlong, echo=F, eval=F}
+
+latlons$New_Long <- abs(latlons$New_Long) * -1 # make all values negative
+
+range(latlons$New_Long)
+
+```
+
+## Make Data Spatial
+
+Once we are sure our data are ok and things have been vetted, let's make the data spatial and create a few quick test plots. To make the data spatial using `sf`, we need to know two important pieces...
+
+ - Which columns contain the spatial coordinates in (either name or column number)?
+ - What [projection](http://spatialreference.org/ref/epsg/) or [EPSG (CRS, SRID, etc)](http://epsg.io/) is the data in/or that we want to use?
+
+### Projections/Transformations
+
+Spatial data is tricky, because different parts of the world work in different "*datum*" or "*projections*". The best description of how these work requires imagining draping a square tablecloth over a round ball (earth). The tablecloth isn't quite big enough to cover the whole globe, so near the edges of the tablecoth there's stretching. At the center of the tablecloth there's very little stretching. When working with spatial data, we want a projection that is going to give us the least amount of stretching for the location/region we're working in. A few common projections used in California for state/federal work:
+
+ - [NAD83 California Albers: EPSG 3310](http://epsg.io/3310)
+ - [NAD83 California Teal Albers: SR-ORG:10](http://spatialreference.org/ref/sr-org/10/)
+ - [WGS84 Lat Lon: EPSG 4326](http://epsg.io/4326)
+
+### Make Spatial with `sf`
+
+Here we read in the data and add a CRS projection.
+
+```{r makespatial}
+
+# make data sf object: 
+df_sf <- st_as_sf(latlons,
+                  # coords = c("Lon", "Lat"), # can use numbers here too
+                  coords = c(3, 2), # can use numbers here too
+                  remove = F, # don't remove these lat/lon cols from df
+                  crs = 4326) # add projection (this is WGS84)
+
+```
+
+### Transform or convert to different projection?
+
+Now that our data is in this format, it's pretty easy to transform/convert to another spatial projection. Here we can switch the projection over to something different:
+
+```{r transformSF, eval=T, echo=T}
+
+# check CRS first:
+st_crs(df_sf)
+
+# change CRS using st_transform
+df_sf_albers <- st_transform(df_sf, crs=3310)
+
+# check that it changed
+st_crs(df_sf_albers)
+
+```
+
+## Plot `sf` Data
+
+Now we can make a few quick plots to see how our data looks. The simplest option is to use the `plot` function. However, if we try to plot by running: 
+
+ - `plot(df_sf)`
+ 
+ We see something like this:
+ 
+ ![](images/plot_df_sf.png)
+
+Baseplotting functions work with `sf`, but be aware, using `plot` will default to plotting a facet or map for every **column** of data in your dataframe. Avoid that by specifying `st_coordinates()` or `$geometry` to ensure only the spatial data gets plotted.
+
+### Plotting with `plot`
+
+```{r singleSF1}
+# single layer
+plot(df_sf$geometry)
+
+# add some flair
+plot(df_sf$geometry, col = "orange")
+
+```
+
+### Quick Challenge:
+
+ > **How can we find out how to change the shape of the points using the `plot` function?**
+
+You can make plots as fancy as you want, here are a few additional options:
+
+```{r singleSF2, eval=T, echo=T}
+
+# this is better
+plot(st_coordinates(df_sf), pch=16, col=adjustcolor("maroon", alpha=0.7), cex=1.5, xlab = "Longitude", ylab="Latitude")
+graphics::title("A Map in WGS84")
+
+```
+
+## Plotting Interactive Maps
+
+One of the nicest/coolest packages you'll find for mapping, is the `mapview` package. As long as data are in an `sf` format, you can quickly make some very nice and interactive maps of your data/sites. First let's see what `class` of data we have:
+
+```{r quickMapview, echo=T, eval=T}
+
+# check data is in sf format?
+class(df_sf)
+# should say: "sf"         "tbl_df"     "tbl"        "data.frame"
+
+# make a map
+mapview::mapview(df_sf)
+
+```
+
+Pretty cool!
+
+```{r frogFarside, results="asis", warnings=FALSE, messages=FALSE, echo=FALSE, out.height = '70%', fig.cap='Hanging on still?'}
+
+knitr::include_graphics("images/frog_stuck_on_plane.jpg")
+
+```
+
+# Spatial Operations
+
+Now that we can get data into R, and transform and plot our data, what about other spatial data or operations? The `sf` package can do nearly all the same things you can do in GIS software, buffer, crop, clip, merge, etc. For a full list and some nice vignettes, check out the `sf` page: https://r-spatial.github.io/sf/, and click on the **Articles** tab.
+
+There's simply too much to show and not enough time, but below are a few bonus activities we can work through. I'll show how to crop or clip one spatial dataset using another spatial dataset, and eventually how to read/write `shapefiles` and `geopackages`.
+
+## Get some Boundary Data for States
+
+Now we have our data, let's use some boundaries to crop/buffer and manipulate the data. While there are loads of options available, I'll show two. A package called `USAboundaries`, which allows us to quickly download county or state outlines, in `sf` formats. Very handy for making some quick professional maps. Let's get an outline of CA and add our points to a map.
+
+```{r getCA, echo=T, eval=T}
+
+library(USAboundaries)
+
+# Pick a State
+state_names <- c("california") # notice we can add more states to this list if we want
+
+# Download STATE data and add projection
+CA<-us_states(resolution = "high", states = state_names) # what does resolution do?
+
+st_crs(CA) # double check the CRS
+
+# make a quick plot!
+plot(CA$geometry)
+
+# add data from above? use "add=TRUE"
+plot(df_sf$geometry, col="blue", add=TRUE)
+
+
+```
+
+#### Quick Challenge:
+
+ > **Download the State outline for Oregon & California** using the `USAboundaries` package and make a quick plot with our point data
+ 
+ 
+## Plotting with `ggplot`
+
+Alternatively, we can use `ggplot2` instead. This is where `sf` objects are really nice. They fit well within the ggplot framework because they are simply dataframes with a spatial list-column layout. You can plot the X/Y data as part of a `geom_point` layer, or you can use the `geom_sf` function for more complex `sf` objects.
+
+<!-- The only caveat here is we currently (as of `r Sys.Date()`) need the most recent version of `ggplot2`: `r packageVersion("ggplot2")` (use `packageVersion("ggplot2)` to check). If you don't have this, you can try installing the development version from github: -->
+
+<!-- ```{r, eval=F, echo=T} -->
+<!-- #install.packages("devtools") -->
+<!-- devtools::install_github("tidyverse/ggplot2") -->
+<!-- ``` -->
+
+<!-- Once we have the dev version of `ggplot2`, we can make a fancier plot. -->
+
+So let's load some background imagery and add it to our plot.
+
+```{r GGsf, eval=T, echo=T}
+
+nicemap<-
+  ggplot() + # set up the framework
+  geom_sf(data = CA, color="gray", lwd=2) + # add the state outline using geom_sf
+  geom_point(data=df_sf, aes(x=New_Long, y=New_Lat), fill="orange", pch=21, alpha=0.7, size=2)+
+  labs(x="Longitude (WGS84)", y="Latitude", title="Map of Points") + 
+  theme_bw() # change this to sans if it doesn't plot
+nicemap
+
+# To save plot
+# ggsave(filename = "./figs/site_map_ggplot.png", width = 8, height = 6, units = "in", dpi = 300)
+```
+
+## Crop by A County and Join with CSCI Data
+
+Ok, let's include our other dataset and try to tie this all together. Here's what we are going to do:
+
+ - Download county data for CA (use `USAboundaries` package)
+ - Select a county of interest (use some `dplyr`)
+ - Crop our data to just that county (make a map)
+ - Join our county subset with the CSCI data
+ - Make an interactive plot colored by CSCI value (`mapview` and `viridis`)
+ 
+ 
+**So, first let's grab counties for CA and subset:**
+ 
+```{r getCounties}
+
+# Download outlines of all the counties for California
+CA_counties<-us_counties(resolution = "high", states = "CA") # what does resolution do?
+
+# Pick a county of interest
+co_names <- c("Sacramento") # notice we can add more states to this list if we want
+
+# filter to just that county:
+sacto_co <- filter(CA_counties, name==co_names)
+
+```
+ 
+**Now let's make a test map to make sure this data works/plots:**
+
+```{r mapCounties}
+
+ggplot() + 
+  geom_sf(data=CA_counties, col="gray", alpha=0.5, lty=2) + # all counties
+  geom_sf(data=sacto_co, col="purple", fill="purple2", alpha=0.8)+
+  theme_bw()
+
+```
+
+Great, we have spatial data now for counties, and we can use this to crop our existing point data. 
+
+### Crop points to Sacramento County
+
+Now we want to clip our point data down to only points in Sacramento County. The quickest way to do this is using `st_intersection`.
+
+
+```{r stIntersection}
+
+# we list the thing we want to crop down first, then what we crop by second
+sacto_pts <- st_intersection(df_sf, sacto_co)
+
+plot(sacto_co$geometry)
+plot(df_sf$geometry, add=T, col="gray") # all the points
+plot(sacto_pts$geometry, add=T, bg ="purple", pch=21) # just the points we cropped
+
+```
+
+### Join Data to CSCI
+
+Now let's join this subset of localities in Sacramento County to the data we read into R earlier. The CSCI data! 
+
+```{r joins}
+
+# need to specify what column we are joining by if the columns don't match exactly
+sacto_csci <- left_join(sacto_pts, cscidat, by= c("StationID"="StationCode"))
+
+plot(sacto_co$geometry, col="gray")
+plot(sacto_csci$geometry, add=T, bg="purple", pch=21)
+
+```
+
+### Interactive Map!
+
+Finally, let's make a dynamic map that shows the CSCI scores!
+
+```{r mapviewCSCI}
+mapview(sacto_csci, zcol="CSCI", layer="CSCI")
+
+# add another layer by linking with "+"
+
+mapview(sacto_co, layer="Sacramento County") +
+  mapview(sacto_csci, zcol="CSCI", layer="CSCI")
+
+```
+
+### Static Map
+
+ > **Challenge**: Can you make the same map as below using ggplot? Hint, `viridis` may be useful here...
+
+```{r staticCSCI, eval=T, echo=FALSE}
+
+ggplot() +
+  geom_sf(data=sacto_co, col="gray", alpha=0.4, lwd=2) +
+  geom_sf(data=sacto_csci, aes(fill=CSCI), pch=21, size=5) +
+  scale_fill_viridis_c("CSCI") + 
+  theme_bw()
+
+```
+
+
+
+## Saving Data Out & Getting it Back In
+
+So we now can do a number of different things with spatial data, mapping, making a web map, cropping, etc. But a common task is saving spatial data for use in another program, or reading spatial data (i.e., typically **shapefiles**) into R.
+
+We'll walk through how to do that with the data we've used thus far.
+
+### Save into a shapefile
+
+Shapefiles have been the de-facto data currency for spatial (vector-based) data for awhile. Newer more open-source formats are becoming easier to use (e.g., *geopackage*), but if you do anything spatial, you'll have to use shapefiles at some point.
+
+Let's save one of our data layers into a shapefile. With the `sf` package, this is fairly straightforward.
+
+```{r saveShp}
+
+# save out as a shapefile
+st_write(obj = sacto_csci, "data/sacramento_co_csci.shp", 
+         delete_layer = TRUE ) # delete the existing layer if it already exists
+
+# warnings are ok, typically associated with field widths or field names.
+# commonly I get this:
+# Warning messages:
+# 1: In abbreviate_shapefile_names(obj) :
+#   Field names abbreviated for ESRI Shapefile driver
+```
+
+How can we make sure this worked? Well we can go find the folder and check that there are 4 separate files ending with `.dbf`, `.prj`, `.shp`, and `.shx`. We can also read this data back into R and plot it to make sure it looks ok.
+
+```{r readShp}
+
+# select the path to the shp file
+tst_shp <- st_read("data/sacramento_co_csci.shp")
+
+plot(tst_shp$geometry)
+
+mapview(tst_shp)
+
+```
+
+
+## Interested in Learning More?
+
+There are loads of resources...but a geospatial workshop you may want to check out is run by the Carpentries. Lessons/material are freely available here: 
+
+ - https://datacarpentry.org/geospatial-workshop/

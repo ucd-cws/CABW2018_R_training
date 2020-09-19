@@ -124,10 +124,66 @@ What do we see? Looks like we have the same data type in the *`StationID`* colum
 
 ## Join Types
 
-There are quite a few different join types that are available via the **{dplyr}** package. Here are some great animations by Garrick Adenbuie that may help illustrate the various join types. 
+There are quite a few different join types that are available via the **{dplyr}** package. Here are some great animations by [Garrick Aden-Buie](https://www.garrickadenbuie.com/project/tidyexplain/#usage) that may help illustrate the various join types. 
+
+<br>
+
+### **Left Join**
+
+All rows from `x`, and all columns from `x` and `y`. Rows in `x` with no match in `y` will have `NA` values in the new columns.
+
+```{r leftjoin, echo=FALSE, out.width='70%'}
+
+include_graphics("images/left-join.gif")
+
+```
 
 
-```{r}
+### **Inner Join**
+
+All rows from `x` where there are matching values in `y`, and all columns from `x` and `y`.
+
+```{r innerjoin, echo=FALSE, out.width='70%'}
+
+include_graphics("images/inner-join.gif")
+
+```
+
+
+### **Full Join**
+
+All rows and all columns from both `x` and `y`. Where there are not matching values, returns NA for the one missing.
+
+```{r fulljoin, echo=FALSE, out.width='70%'}
+
+include_graphics("images/full-join.gif")
+
+```
+
+### **Semi Join**
+
+All rows from `x` where there are matching values in `y`, keeping just columns from `x`. Also known as a *filtering* join because you are basically filtering one dataframe, using another dataframe as the match.
+
+```{r semijoin, echo=FALSE, out.width='70%'}
+
+include_graphics("images/semi-join.gif")
+
+```
+
+
+### **Anti Join**
+
+Also a *filtering join*. This keeps all rows from `x` where there are not matching values in `y`, keeping just columns from `x`. Really handy to find out which data is **not** joining, or may be missing from one or both datasets.
+
+```{r antijoin, echo=FALSE, out.width='70%'}
+
+include_graphics("images/anti-join.gif")
+
+```
+
+
+
+```{r, eval=F, echo=F}
 # join animations with tidyexplain: https://www.garrickadenbuie.com/project/tidyexplain/
 # code here: https://github.com/gadenbuie/tidyexplain/tree/master/R
 # animations here:

@@ -639,8 +639,34 @@ Figure 2: <em>Artwork by <span class="citation">@allison_horst</span></em>
 </div>
 <div id="join-types" class="section level2">
 <h2>Join Types</h2>
-<p>There are quite a few different join types that are available via the <strong>{dplyr}</strong> package. Here are some great animations by Garrick Adenbuie that may help illustrate the various join types.</p>
+<p>There are quite a few different join types that are available via the <strong>{dplyr}</strong> package. Here are some great animations by <a href="https://www.garrickadenbuie.com/project/tidyexplain/#usage">Garrick Aden-Buie</a> that may help illustrate the various join types.</p>
 <p><br></p>
+<div id="left-join" class="section level3">
+<h3><strong>Left Join</strong></h3>
+<p>All rows from <code>x</code>, and all columns from <code>x</code> and <code>y</code>. Rows in <code>x</code> with no match in <code>y</code> will have <code>NA</code> values in the new columns.</p>
+<p><img src="images/left-join.gif" width="70%" /></p>
+</div>
+<div id="inner-join" class="section level3">
+<h3><strong>Inner Join</strong></h3>
+<p>All rows from <code>x</code> where there are matching values in <code>y</code>, and all columns from <code>x</code> and <code>y</code>.</p>
+<p><img src="images/inner-join.gif" width="70%" /></p>
+</div>
+<div id="full-join" class="section level3">
+<h3><strong>Full Join</strong></h3>
+<p>All rows and all columns from both <code>x</code> and <code>y</code>. Where there are not matching values, returns NA for the one missing.</p>
+<p><img src="images/full-join.gif" width="70%" /></p>
+</div>
+<div id="semi-join" class="section level3">
+<h3><strong>Semi Join</strong></h3>
+<p>All rows from <code>x</code> where there are matching values in <code>y</code>, keeping just columns from <code>x</code>. Also known as a <em>filtering</em> join because you are basically filtering one dataframe, using another dataframe as the match.</p>
+<p><img src="images/semi-join.gif" width="70%" /></p>
+</div>
+<div id="anti-join" class="section level3">
+<h3><strong>Anti Join</strong></h3>
+<p>Also a <em>filtering join</em>. This keeps all rows from <code>x</code> where there are not matching values in <code>y</code>, keeping just columns from <code>x</code>. Really handy to find out which data is <strong>not</strong> joining, or may be missing from one or both datasets.</p>
+<p><img src="images/anti-join.gif" width="70%" /></p>
+<p><br></p>
+</div>
 <div id="join-our-data" class="section level3">
 <h3><strong>Join Our Data</strong></h3>
 <p>For our purposes, let’s assume we have some data (our CSCI data: <code>csci_clean</code>) that we want to make a map of to visualize things. But the site information (<code>sites_clean</code>) is in a separate dataframe or file! This happens all the time. Databases keep different tables, and to avoid redundancy in data, there may be one table that just has site location information and maybe a description of each site, and a table where the actual data collected at the site lives.</p>
