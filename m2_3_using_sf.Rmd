@@ -165,11 +165,11 @@ Once we have vetted our data, let's make it *spatial* and create a few quick tes
 
 One of the trickier things to figure out when working with spatial data is how it should be oriented or "projected" onto the earth's surface. Different parts of the world work in different Coordinate Reference Systems, or CRS. A really nice example of how this all works can be found via the [Data Carpentry Geospatial Lesson](https://datacarpentry.org/organization-geospatial/03-crs/). Here's the oversimplified way to think about it in relation to fruit!
 
-Imagine an orange (or any ellipsoid fruit:  `r icon::fa("lemon", color="gold1")`). The &nbsp;`r icon::fa("globe-americas", color="steelblue")`&nbsp;isn't a perfect sphere! This is the **datum**, the underlying shape we use to represent our geographic space. Now, if we wanted to place a point on our fruit-shaped Earth, we could drape a piece of fabric over the ellipsoid shape and use it to draw our points or lines on. However, the paper (or **projection**) isn't quite big enough to cover the whole globe, so near the edges things get messy, and you need to stretch things a bit to make it work. At the center of the paper there's very little stretching and this is where things are most accurate. When working with spatial data, we typically want to find a **datum** and a **projection** (if applicable) that will give the least amount of stretching for the location/region we're working in. There are generally two kinds of CRS: *geographic*, and *projected*. 
+Imagine an orange (or any ellipsoid fruit:  `r icon::fa("lemon", color="gold1")`). The &nbsp;`r icon::fa("globe-americas", color="steelblue")`&nbsp;isn't a perfect sphere! This is the **datum**, the underlying shape we use to represent our geographic space. Now, if we wanted to place a point on our fruit-shaped Earth, we could drape a piece of fabric over the ellipsoid shape and use it to draw our points or lines on. However, the fabric (or **projection**) isn't quite big enough to cover the whole globe, so near the edges things get messy, and you need to stretch things a bit to make it work. At the center of the fabric there's very little stretching and this is where things are most accurate. When working with spatial data, we typically want to find a **datum** and a **projection** (if applicable) that will give the least amount of stretching for the location/region we're working in. There are generally two kinds of CRS: *geographic*, and *projected*. 
 
  - **Geographic Coordinate Systems** use Latitude and Longitude and a **datum** to identify where the center of the fabric will be placed on our orange-shaped Earth.
  
- - **Projected Coordinate Systems** essentially convert the 3-dimensional orange into a 2-dimensional grid with X and Y points (Easting and Northing). Now we are taking just the orange peel and trying to flatten it out. Projected Coordinate Systems are much more specific to a given region of the world because they must distort things to make the conversion work. 
+ - **Projected Coordinate Systems** essentially convert the 3-dimensional orange into a 2-dimensional grid with X and Y points (Easting and Northing). Now we are taking just the orange peel of our globe, and trying to flatten it out. Projected Coordinate Systems are much more specific to a given region of the world because they must distort things to make the conversion work. 
 
 There are CRS codes that we can use to represent all these things, and {`sf`} makes this easy to integrate into our data.
 
@@ -293,6 +293,8 @@ plot(df_sf$geometry,
 graphics::title("CSCI ( >0.75=purple, <0.75=yellow)")
 
 ```
+
+Ok, so now we can make our data spatial, we can look at some preliminary plots, but what's next? Let's look at the next lesson to do some spatial operations on our data and make a map that we could actually use or share.
 
 
 Great work! Let's [move to the next lesson](m2_4_mapping_w_sf.html).

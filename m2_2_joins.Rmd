@@ -193,7 +193,7 @@ include_graphics("images/anti-join.gif")
 
 <br>
 
-### **Join Our Data**
+## Join Our Data
 
 For our purposes, let's assume we have some data (our CSCI data: `csci_clean`) that we want to make a map of to visualize things. But the site information (`sites_clean`) is in a separate dataframe or file! This happens all the time. Databases keep different tables, and to avoid redundancy in data, there may be one table that just has site location information and maybe a description of each site, and a table where the actual data collected at the site lives. 
 
