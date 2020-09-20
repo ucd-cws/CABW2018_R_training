@@ -667,8 +667,9 @@ Figure 2: <em>Artwork by <span class="citation">@allison_horst</span></em>
 <p><img src="images/anti-join.gif" width="70%" /></p>
 <p><br></p>
 </div>
-<div id="join-our-data" class="section level3">
-<h3><strong>Join Our Data</strong></h3>
+</div>
+<div id="join-our-data" class="section level2">
+<h2>Join Our Data</h2>
 <p>For our purposes, let’s assume we have some data (our CSCI data: <code>csci_clean</code>) that we want to make a map of to visualize things. But the site information (<code>sites_clean</code>) is in a separate dataframe or file! This happens all the time. Databases keep different tables, and to avoid redundancy in data, there may be one table that just has site location information and maybe a description of each site, and a table where the actual data collected at the site lives.</p>
 <p>Let’s join our site table with our CSCI table to make a single dataset that contains both the scores for our bioassessment data, and our site localities. This will help us plot and map the data later. Remember to keep track of how many rows and columns we have in each of our datasets.</p>
 <p>Let’s use an <code>inner_join()</code> here, because we only want to keep sites that have matching Site ID codes between the CSCI data and the Sites data. If the <em>join</em> column (our Site ID) is named the exact same in each table, this is easy. We could use something like this:</p>
@@ -730,7 +731,6 @@ str(csci_sites_match)</code></pre>
 </div>
 </details>
 <p><br></p>
-</div>
 </div>
 <div id="save-it-out" class="section level2">
 <h2>Save it Out!</h2>

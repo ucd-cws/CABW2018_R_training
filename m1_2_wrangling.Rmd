@@ -76,7 +76,7 @@ Any reproducible analysis should be able to start from scratch, and rebuild all 
  
 :::challenge
 
-**Challenge**  
+**Challenge 1**  
 
 1. Load {tidyverse} package into R.
 
@@ -209,7 +209,7 @@ Let's take a look at some practice challenges to work on the various functions w
 
 :::challenge
 
-**Challenge 1**
+**Challenge 2**
 
  - Select the unique sample ID column (`SampleID_old`), latitude (`New_Lat`), longitude (`New_Long`), and `CSCI` columns. Reassign these columns to a dataset named `cscidat`, effectively overwriting the existing dataset.
 
@@ -218,9 +218,9 @@ Let's take a look at some practice challenges to work on the various functions w
 <details>
   <summary class="challenge-ans-title">**Click for Answers!**</summary>
   <div class="challenge-ans-body">
-
-    ```{r challenge2, echo=T}
-    cscidat_trim <- select(cscidat, SampleID_old, New_Lat, New_Long, CSCI)    
+  
+  ```{r challenge2, echo=T}
+      cscidat_trim <- select(cscidat, SampleID_old, New_Lat, New_Long, CSCI)
     ```
     
   </div>
@@ -230,7 +230,7 @@ Let's take a look at some practice challenges to work on the various functions w
 
 :::challenge
 
-**Challenge 2**
+**Challenge 3**
 
  - Rename the `SampleID_old` column to `id`, `New_Lat` to `lat`, and `New_Long` to `lon`.
 
@@ -240,13 +240,13 @@ Let's take a look at some practice challenges to work on the various functions w
   <summary class="challenge-ans-title">**Click for Answers!**</summary>
   <div class="challenge-ans-body">
 
-    ```{r challenge3, echo=T}
-    cscidat_trim <- rename(cscidat, 
-                  id = SampleID_old, 
-                  lat = New_Lat, 
-                  lon = New_Long
-                  )
-    ```
+```{r challenge3, echo=T}
+cscidat_trim <- rename(cscidat, 
+                       id = SampleID_old, 
+                       lat = New_Lat, 
+                       lon = New_Long
+)
+```
 
 
   </div>
@@ -288,7 +288,7 @@ Let's practice piping just a bit more before we move onto plotting our data.
 
 :::challenge
 
-**Challenge 3**
+**Challenge 4**
 
 1. Using the piping technique and the `ascidat` dataset, create a new dataset called `asci_new` that includes: 
 - Site type and ASCI
@@ -307,16 +307,16 @@ Let's practice piping just a bit more before we move onto plotting our data.
   <summary class="challenge-ans-title">**Click for Answers!**</summary>
   <div class="challenge-ans-body">
 
-    ```{r ascipractice}
-    
-    asci_new <- ascidat %>% # Use the original dataset and then...
-    select(ASCI, site_type) %>% # select only ASCI and site type columns and then...
-    filter(site_type == "Reference") %>% # filter for reference sites only and then...
-    mutate(ASCI_10 = ASCI*10) # new column with ASCI values multiplied by 10.
+```{r ascipractice}
 
-    dim(asci_new)
-    
-    ```
+asci_new <- ascidat %>% # Use the original dataset and then...
+  select(ASCI, site_type) %>% # select only ASCI and site type columns and then...
+  filter(site_type == "Reference") %>% # filter for reference sites only and then...
+  mutate(ASCI_10 = ASCI*10) # new column with ASCI values multiplied by 10.
+
+dim(asci_new)
+
+```
 
   </div>
 </details>
