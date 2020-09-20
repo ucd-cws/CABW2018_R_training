@@ -220,9 +220,7 @@ Ok, since we know that the data in tab 1 is a mess, let's imagine that someone h
   <div class="challenge-ans-body">
   
   The only parts we need to change from the code above, are the sheet numbers, and the name of the objects.
-  
-  </div>
-  
+
   <br>
   
 ```{r getSheets, echo=TRUE, eval=TRUE, collapse=TRUE}
@@ -230,7 +228,7 @@ Ok, since we know that the data in tab 1 is a mess, let's imagine that someone h
 csci <- readxl::read_excel(path = "data/csci_spreadsheet.xlsx", sheet = 2)
 sites <- readxl::read_excel(path = "data/csci_spreadsheet.xlsx", sheet = 3)
 ```
-  
+  </div>
 </details> 
 
 
@@ -364,17 +362,67 @@ head(sites_clean)
 
 Let's show how to save this back out as:
 
- - a spreadsheet (`.xlsx`)
  - a `csv`
  - an **RData** file (`.RData` or `.rda`)
  - an **RDS** file (`.RDS` or `.rds`)
+ - a spreadsheet (`.xlsx`)
  
 
-The good thing is these all involve the same basic code, with just a few minor tweaks.
+The good thing is these mostly all involve the same basic code, with just a few minor tweaks.
 
 <br>
 
-### Save to `xlsx`
+### Save to **`csv`**
+
+Compared to a workbook, using `csv` is typically a better option. These files can be opened on any operating system, and they have a specific format which makes it harder to "untidy" things. Note, here we need to write two separate csv's, one for each of our objects (`csci_clean` and `sites_clean`).
+
+We can save to `csv` using either a tidyverse function `write_csv`, or the base R function `write.csv`. The main difference between the two, is the `write_csv` does not write row.names. Feel free to try both and open the file to see what's different.
+
+```{r csv, echo=TRUE, message=FALSE}
+
+readr::write_csv(csci_clean, path="data/csci_clean.csv")
+readr::write_csv(sites_clean, path="data/sites_clean.csv")
+
+# or try write.csv
+# write.csv(csci_clean, file = "data/csci_cleaned.csv")
+
+# we use read.csv() or read_csv() to read this back into R
+
+```
+
+<br>
+
+### Save to **`.RData`**
+
+`RData` files are a compressed `R` specific format, with some distinct advantages. For one, we can save multiple objects to a single `.rda` file. Another big benefit, is the data retains whatever format and structure that exists in your R environment...it will appear exactly as it was when you saved it. So, if you are going to be working in R exclusively, or working with folks who will be working in R, this can be a handy way to share data or analysis. These objects can be many things! One thing to note, whatever the object is named when it is saved will be what it is named when you reload this file back into R.
+
+<br>
+
+```{r rda, echo=TRUE}
+
+save(csci_clean, sites_clean, file = "data/csci_sites_clean.rda")
+
+# we use load() to read this back into R
+
+```
+
+<br>
+
+### Save to **`.RDS`**
+
+`.RDS` or `.rds` files are similar in type to `.rda`. They are R specific, they are compressed, *but* they are limited to a single object, *and* you can name this object whatever you choose when you re-import/read it back into R. Remember the difference between them by thinking of the **S** as "**_single_**" for a single object per `.rd`**`s`** and the **A** as **_all_** objects  (should you want to save everything into an `.rd`**`a`**).
+
+```{r rds, echo=TRUE}
+
+saveRDS(csci_clean, file="data/csci_clean.rds")
+saveRDS(sites_clean, file="data/sites_clean.rds")
+# we use readRDS() to read this back into R
+
+```
+
+<br>
+
+### Save to **`xlsx`**
 
 Here we can use the [`openxlsx`](https://ycphs.github.io/openxlsx/index.html) package to write our data. This is basically a 4-step process, first create a workbook, then create worksheets we can put our data in, then write the data to those worksheets, then save/write the whole workbook! 
 
@@ -398,55 +446,5 @@ saveWorkbook(wb, "data/csci_sites_clean_spreadsheet.xlsx", overwrite = TRUE)
 ```
 
 <br>
-
-### Save to `csv`
-
-Compared to a workbook, using `csv` is typically a better option. These files can be opened on any operating system, and they have a specific format which makes it harder to "untidy" things. Note, here we need to write two separate csv's, one for each of our objects (`csci_clean` and `sites_clean`).
-
-We can save to `csv` using either a tidyverse function `write_csv`, or the base R function `write.csv`. The main difference between the two, is the `write_csv` does not write row.names. Feel free to try both and open the file to see what's different.
-
-```{r csv, echo=TRUE, message=FALSE}
-
-readr::write_csv(csci_clean, path="data/csci_clean.csv")
-readr::write_csv(sites_clean, path="data/sites_clean.csv")
-
-# or try write.csv
-# write.csv(csci_clean, file = "data/csci_cleaned.csv")
-
-# we use read.csv() or read_csv() to read this back into R
-
-```
-
-<br>
-
-### Save to `.RData`
-
-`RData` files are a compressed `R` specific format, with some distinct advantages. For one, we can save multiple objects to a single `.rda` file. Another big benefit, is the data retains whatever format and structure that exists in your R environment...it will appear exactly as it was when you saved it. So, if you are going to be working in R exclusively, or working with folks who will be working in R, this can be a handy way to share data or analysis. These objects can be many things! One thing to note, whatever the object is named when it is saved will be what it is named when you reload this file back into R.
-
-<br>
-
-```{r rda, echo=TRUE}
-
-save(csci_clean, sites_clean, file = "data/csci_sites_clean.rda")
-
-# we use load() to read this back into R
-
-```
-
-<br>
-
-### Save to `.RDS`
-
-`.RDS` or `.rds` files are similar in type to `.rda`. They are R specific, they are compressed, *but* they are limited to a single object, *and* you can name this object whatever you choose when you re-import/read it back into R.
-
-```{r rds, echo=TRUE}
-
-saveRDS(csci_clean, file="data/csci_clean.rds")
-saveRDS(sites_clean, file="data/sites_clean.rds")
-# we use readRDS() to read this back into R
-
-```
-
-
 
 Great work! Let's [move to the next lesson](m2_2_joins.html).
