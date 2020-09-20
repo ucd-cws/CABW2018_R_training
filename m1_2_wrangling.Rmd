@@ -203,19 +203,44 @@ dplyr_rnm <- rename(cscidat,
 head(dplyr_rnm)
 ```
 
-### Practice Exercise
+### Some More Practice?
 
-Let's clean up our CSCI dataset in preparation to join with our ASCI dataset.  We'll select columns we want and rename those with odd names.
+Let's take a look at some practice challenges to work on the various functions we've described above. Let's clean up our CSCI dataset in preparation to join with our ASCI dataset.  We'll select columns we want and rename columns with odd names to create a more tidy dataset.
 
-1. Select the unique sample ID column (`SampleID_old`), latitude (`New_Lat`), longitude (`New_Long`), and `CSCI` columns. Reassign these columns to a dataset named `cscidat`, effectively overwriting the existing dataset.
+:::challenge
 
-    ```{r challenge2}
+**Challenge 1**
+
+ - Select the unique sample ID column (`SampleID_old`), latitude (`New_Lat`), longitude (`New_Long`), and `CSCI` columns. Reassign these columns to a dataset named `cscidat`, effectively overwriting the existing dataset.
+
+:::
+
+<details>
+  <summary class="challenge-ans-title">**Click for Answers!**</summary>
+  <div class="challenge-ans-body">
+
+    ```{r challenge2, echo=T}
     cscidat_trim <- select(cscidat, SampleID_old, New_Lat, New_Long, CSCI)    
     ```
     
-1. Rename the `SampleID_old` column to `id`, `New_Lat` to `lat`, and `New_Long` to `lon`.
+  </div>
+</details>
 
-    ```{r challenge3}
+<br><br>
+
+:::challenge
+
+**Challenge 2**
+
+ - Rename the `SampleID_old` column to `id`, `New_Lat` to `lat`, and `New_Long` to `lon`.
+
+:::
+
+<details>
+  <summary class="challenge-ans-title">**Click for Answers!**</summary>
+  <div class="challenge-ans-body">
+
+    ```{r challenge3, echo=T}
     cscidat_trim <- rename(cscidat, 
                   id = SampleID_old, 
                   lat = New_Lat, 
@@ -223,11 +248,18 @@ Let's clean up our CSCI dataset in preparation to join with our ASCI dataset.  W
                   )
     ```
 
+
+  </div>
+</details>
+
+<br><br>
+
+
 ## Piping using the tidyverse
 
-Each of the functions we learned above - select(), filter(), mutate(), and more - can be used on their own. However, a particularly powerful application of the tidyverse package is the ability to "pipe" or perform multiple functions all in one go.
+Each of the functions we learned above - `select()`, `filter()`, `mutate()`, and more - can be used on their own. However, a particularly powerful application of the `{tidyverse}` package is the ability to "pipe" or perform multiple functions all in one go.
 
-In order to do so, you must use the symbols `%>%`, otherwise known as a pipe. When placed between functions in your code, this allows you to perform multiple operations on a single dataset.
+In order to do so, you must use the symbols **`%>%`**, otherwise known as a pipe. When placed between functions in your code, this allows you to perform multiple operations on a single dataset.
 
 Typically, piping will assume the following format:
 
@@ -239,7 +271,7 @@ Typically, piping will assume the following format:
     etc.
 ```
 
-So, if you wanted to perform many of the operations we practiced above, we could use `%>%` to create a new dataset (`csci_new`) by typing the following:
+So, if you wanted to perform many of the operations we practiced above, we could use **`%>%`** to create a new dataset (`csci_new`) by typing the following:
 
 ```{r, piping2}
 
@@ -250,14 +282,30 @@ csci_new <- cscidat %>% # Use the original dataset and then...
 
 ```
 
-### Practice Exercise cont.
+### More Practice!
 
 Let's practice piping just a bit more before we move onto plotting our data. 
+
+:::challenge
+
+**Challenge 3**
 
 1. Using the piping technique and the `ascidat` dataset, create a new dataset called `asci_new` that includes: 
 - Site type and ASCI
 - Only sites identified as "Reference"
 - A new column with ASCI scores multiplied by 10
+
+1. Check the dimensions of the new dataset (Hint: Use the `View()` function).
+
+1. Save your script!
+
+:::
+
+<br>
+
+<details>
+  <summary class="challenge-ans-title">**Click for Answers!**</summary>
+  <div class="challenge-ans-body">
 
     ```{r ascipractice}
     
@@ -266,11 +314,15 @@ Let's practice piping just a bit more before we move onto plotting our data.
     filter(site_type == "Reference") %>% # filter for reference sites only and then...
     mutate(ASCI_10 = ASCI*10) # new column with ASCI values multiplied by 10.
 
-    ```
+    dim(asci_new)
     
-1. Check the dimensions of the new dataset (Hint: Use the View() function).
+    ```
 
-1. Save your script!
+  </div>
+</details>
+
+<br>    
+
 
 This concludes the "wrangling data" section of our R workshop today. If you are experiencing any problems or have a question, please send Ryan, Heili, or one of the workshop assistants a message in the chat.
 
