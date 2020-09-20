@@ -1,5 +1,5 @@
 ---
-title: "m2_1"
+title: "Spreadsheet to R"
 output: 
   bookdown::html_document2:
     code_fold: show
@@ -284,7 +284,7 @@ The **`csci`** dataframe has the `SampleID_old` and `_old.1` columns, the `Stati
 
 <details><summary class="extra-practice-title">More Info on CSCI!</summary>
   <div class="extra-practice-body">
-*There's an R package built for working with bioassessment data, and for calculating the CSCI. Definitely worth checking out. See here... and here... for more info.*
+*There's an R package built for working with bioassessment data, and for calculating the CSCI. For more information about CSCI see [here for the tech memo](https://www.waterboards.ca.gov/water_issues/programs/swamp/bioassessment/docs/csci_tech_memo.pdf) and the [R package here](http://sccwrp.github.io/CSCI/).*
   </div>
 </details
 
