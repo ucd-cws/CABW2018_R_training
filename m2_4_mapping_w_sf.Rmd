@@ -1,5 +1,5 @@
 ---
-title: "Joining Data"
+title: "Mapping in R"
 output: 
   bookdown::html_document2:
     code_fold: show
@@ -32,202 +32,259 @@ suppressPackageStartupMessages(library(dplyr))
 
  **Objectives for this section:**
  
- - understand how to join datasets by shared columns or IDs
- - have a general sense of the variety of join types
- - join some data and save it
+ - Make dynamic interactive webmaps
+ - Read in several spatial layers (`.shp`, `sf`)
+ - Make a map with `ggplot` and `geom_sf`
  
 :::
 
 <br>
 
-## Joining Data
+## Mapping In R
 
-We often need to take several datasets and merge them into a single dataset that we can use for analysis. This "**join**" can at times be tricky, and can be made more so if we aren't exactly sure what data matches up between the two datasets. Sometimes joining data can resemble more of a gridlock than a clean and seamless merge.
 
-<br>
+### **Load Data**
 
-(ref:gridlockWiki) Merging Data? *(source Wikipedia Commons)*
+First we need to import some data. We'll be using the data we saved [from the previous lesson](m2_2_joins.html). We'll use the `data/csci_sites_match.rda` file, which since we are following the [data management/organization tips](02_project_management.html), we are in an RStudio Project, and we have a `data` folder with our data file inside! 
 
-<center>
-```{r gridlock, fig.cap="(ref:gridlockWiki)", out.width="60%"}
+```{r load, echo=T, eval=T}
 
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/8/82/New_York_City_Gridlock.jpg")
+# Notice the relative path
+load(file = "data/csci_sites_match.rda")
 
 ```
-</center>
 <br>
 
-## Common Variables
 
-<br>
-The trick that makes this all possible, is having one or more shared pieces of data across the two (or more) datasets. This may be an ID column, or a specific observation or data type. Importantly, these data can actually have different column names, but they should be formatted in the same way across each dataset! 
 
-While this may seem daunting at first, it's not! R has some excellent tools built into the **`{dplyr}`** package that make joining datasets fairly straightforward. First let's import some data we can use to join. Here we will build off of the dataset we used in the [previous lesson](m2_1_working_w_xls.html). 
+## Plotting Interactive Maps
 
-Let's read in both the `csci_clean` and `sites_clean` datasets. If you recall, we saved these as `.csv`, `.rds`, `.xlsx`, and `.rda`. For now, let's use the `rda` option as it will be fastest.
+One of the nicest/coolest packages you'll find for mapping, is the `mapview` package. As long as data are in an `sf` format, you can quickly make some very nice and interactive maps of your data/sites. First let's see what `class` of data we have:
 
-:::challenge
+```{r quickMapview, echo=T, eval=T}
 
-**Challenge:**
+# check data is in sf format?
+class(df_sf)
+# should say: "sf"         "tbl_df"     "tbl"        "data.frame"
 
- - Read in the `csci_sites_clean.rda` file
- - How many rows are there in each object?
+# make a map
+mapview::mapview(df_sf)
+
+```
+
+Pretty cool!
+
+```{r frogFarside, results="asis", warnings=FALSE, messages=FALSE, echo=FALSE, out.height = '70%', fig.cap='Hanging on still?'}
+
+knitr::include_graphics("images/frog_stuck_on_plane.jpg")
+
+```
+
+# Spatial Operations
+
+Now that we can get data into R, and transform and plot our data, what about other spatial data or operations? The `sf` package can do nearly all the same things you can do in GIS software, buffer, crop, clip, merge, etc. For a full list and some nice vignettes, check out the `sf` page: https://r-spatial.github.io/sf/, and click on the **Articles** tab.
+
+There's simply too much to show and not enough time, but below are a few bonus activities we can work through. I'll show how to crop or clip one spatial dataset using another spatial dataset, and eventually how to read/write `shapefiles` and `geopackages`.
+
+## Get some Boundary Data for States
+
+Now we have our data, let's use some boundaries to crop/buffer and manipulate the data. While there are loads of options available, I'll show two. A package called `USAboundaries`, which allows us to quickly download county or state outlines, in `sf` formats. Very handy for making some quick professional maps. Let's get an outline of CA and add our points to a map.
+
+```{r getCA, echo=T, eval=T}
+
+library(USAboundaries)
+
+# Pick a State
+state_names <- c("california") # notice we can add more states to this list if we want
+
+# Download STATE data and add projection
+CA<-us_states(resolution = "high", states = state_names) # what does resolution do?
+
+st_crs(CA) # double check the CRS
+
+# make a quick plot!
+plot(CA$geometry)
+
+# add data from above? use "add=TRUE"
+plot(df_sf$geometry, col="blue", add=TRUE)
+
+
+```
+
+#### Quick Challenge:
+
+ > **Download the State outline for Oregon & California** using the `USAboundaries` package and make a quick plot with our point data
  
-:::
+ 
+## Plotting with `ggplot`
 
-<br>
+Alternatively, we can use `ggplot2` instead. This is where `sf` objects are really nice. They fit well within the ggplot framework because they are simply dataframes with a spatial list-column layout. You can plot the X/Y data as part of a `geom_point` layer, or you can use the `geom_sf` function for more complex `sf` objects.
 
-<details>
-  <summary class="challenge-ans-title">**Click for Answers!**</summary>
-  <div class="challenge-ans-body">
+<!-- The only caveat here is we currently (as of `r Sys.Date()`) need the most recent version of `ggplot2`: `r packageVersion("ggplot2")` (use `packageVersion("ggplot2)` to check). If you don't have this, you can try installing the development version from github: -->
 
-```{r readRDA, echo=TRUE}
+<!-- ```{r, eval=F, echo=T} -->
+<!-- #install.packages("devtools") -->
+<!-- devtools::install_github("tidyverse/ggplot2") -->
+<!-- ``` -->
 
-load("data/csci_sites_clean.rda")
+<!-- Once we have the dev version of `ggplot2`, we can make a fancier plot. -->
 
-nrow(csci_clean) # gives just the number of rows
-nrow(sites_clean) # gives just the number of rows
+So let's load some background imagery and add it to our plot.
+
+```{r GGsf, eval=T, echo=T}
+
+nicemap<-
+  ggplot() + # set up the framework
+  geom_sf(data = CA, color="gray", lwd=2) + # add the state outline using geom_sf
+  geom_point(data=df_sf, aes(x=New_Long, y=New_Lat), fill="orange", pch=21, alpha=0.7, size=2)+
+  labs(x="Longitude (WGS84)", y="Latitude", title="Map of Points") + 
+  theme_bw() # change this to sans if it doesn't plot
+nicemap
+
+# To save plot
+# ggsave(filename = "./figs/site_map_ggplot.png", width = 8, height = 6, units = "in", dpi = 300)
+```
+
+## Crop by A County and Join with CSCI Data
+
+Ok, let's include our other dataset and try to tie this all together. Here's what we are going to do:
+
+ - Download county data for CA (use `USAboundaries` package)
+ - Select a county of interest (use some `dplyr`)
+ - Crop our data to just that county (make a map)
+ - Join our county subset with the CSCI data
+ - Make an interactive plot colored by CSCI value (`mapview` and `viridis`)
+ 
+ 
+**So, first let's grab counties for CA and subset:**
+ 
+```{r getCounties}
+
+# Download outlines of all the counties for California
+CA_counties<-us_counties(resolution = "high", states = "CA") # what does resolution do?
+
+# Pick a county of interest
+co_names <- c("Sacramento") # notice we can add more states to this list if we want
+
+# filter to just that county:
+sacto_co <- filter(CA_counties, name==co_names)
+
+```
+ 
+**Now let's make a test map to make sure this data works/plots:**
+
+```{r mapCounties}
+
+ggplot() + 
+  geom_sf(data=CA_counties, col="gray", alpha=0.5, lty=2) + # all counties
+  geom_sf(data=sacto_co, col="purple", fill="purple2", alpha=0.8)+
+  theme_bw()
 
 ```
 
-  </div>
-</details> 
+Great, we have spatial data now for counties, and we can use this to crop our existing point data. 
 
-<br>
+### Crop points to Sacramento County
 
-### **Inspect the Data**
-
-Let's quickly take a look at the columns in our datasets and see what looks similar. To do this we can inspect our data with either `head` or `names` or `str`. All will tell us similar information.
-
-(ref:AHmeetdata) *Artwork by @allison_horst*
+Now we want to clip our point data down to only points in Sacramento County. The quickest way to do this is using `st_intersection`.
 
 
-```{r AHmeetData, echo=FALSE, out.width="80%", fig.cap="(ref:AHmeetdata)"}
+```{r stIntersection}
 
-include_graphics("https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/make-your-own-stats-cartoons/ex_2.png")
+# we list the thing we want to crop down first, then what we crop by second
+sacto_pts <- st_intersection(df_sf, sacto_co)
 
-```
-
-
-```{r structure, eval=TRUE, echo=TRUE}
-
-str(csci_clean)
-str(sites_clean)
+plot(sacto_co$geometry)
+plot(df_sf$geometry, add=T, col="gray") # all the points
+plot(sacto_pts$geometry, add=T, bg ="purple", pch=21) # just the points we cropped
 
 ```
 
-<br> 
+### Join Data to CSCI
 
-What do we see? Looks like we have the same data type in the *`StationID`* column in `sites_clean` and the *`StationCode`* column in `csci_clean`. They are just named differently.
+Now let's join this subset of localities in Sacramento County to the data we read into R earlier. The CSCI data! 
 
-<br>
+```{r joins}
 
-## Join Types
+# need to specify what column we are joining by if the columns don't match exactly
+sacto_csci <- left_join(sacto_pts, cscidat, by= c("StationID"="StationCode"))
 
-There are quite a few different join types that are available via the **{dplyr}** package. Here are some great animations by Garrick Adenbuie that may help illustrate the various join types. 
-
-
-```{r}
-# join animations with tidyexplain: https://www.garrickadenbuie.com/project/tidyexplain/
-# code here: https://github.com/gadenbuie/tidyexplain/tree/master/R
-# animations here:
-# https://github.com/gadenbuie/tidyexplain/tree/master/images
+plot(sacto_co$geometry, col="gray")
+plot(sacto_csci$geometry, add=T, bg="purple", pch=21)
 
 ```
 
-<br>
+### Interactive Map!
 
-### **Join Our Data**
+Finally, let's make a dynamic map that shows the CSCI scores!
 
-For our purposes, let's assume we have some data (our CSCI data: `csci_clean`) that we want to make a map of to visualize things. But the site information (`sites_clean`) is in a separate dataframe or file! This happens all the time. Databases keep different tables, and to avoid redundancy in data, there may be one table that just has site location information and maybe a description of each site, and a table where the actual data collected at the site lives. 
+```{r mapviewCSCI}
+mapview(sacto_csci, zcol="CSCI", layer="CSCI")
 
-Let's join our site table with our CSCI table to make a single dataset that contains both the scores for our bioassessment data, and our site localities. This will help us plot and map the data later. Remember to keep track of how many rows and columns we have in each of our datasets.
+# add another layer by linking with "+"
 
-Let's use an `inner_join()` here, because we only want to keep sites that have matching Site ID codes between the CSCI data and the Sites data. If the *join* column (our Site ID) is named the exact same in each table, this is easy. We could use something like this:
-
-```{r innerJoinSame, eval = FALSE, echo=TRUE}
-
-# load dplyr package
-library(dplyr)
-
-# join data by common column: same name
-csci_sites_match <- inner_join(csci_clean, sites_clean)
-
-```
-    
-```
-Error: `by` must be supplied when `x` and `y` have no common variables.
-ℹ use by = character()` to perform a cross-join.
-Run `rlang::last_error()` to see where the error occurred.
-```
-
-Uh-oh. But look! This error message is pretty descriptive, it tells us the two pieces we are working with (x=`csci_clean` and y=`sites_clean`) don't have a common column name (or `variable`). Then it gives us a suggestion, `use by = character()`. Let's try that and see what it looks like!
-
-```{r innerJoinDiff, eval=TRUE, echo=TRUE, warning=FALSE}
-
-# join data by common column: different name
-csci_sites_match <- inner_join(csci_clean, sites_clean,
-                               # now the by, remember x col first, then y
-                               by=c("StationCode"="StationID"))
-
-# now we have lat and lon in our dataframe with the data!
-str(csci_sites_match)
+mapview(sacto_co, layer="Sacramento County") +
+  mapview(sacto_csci, zcol="CSCI", layer="CSCI")
 
 ```
 
-<br>
+### Static Map
 
-Great! But what about the site that **didn't** join? What if we want to find out which one it was, so we can figure out why, or go collect data there?
-<br>
+ > **Challenge**: Can you make the same map as below using ggplot? Hint, `viridis` may be useful here...
 
- > **The Anti Join**
+```{r staticCSCI, eval=T, echo=FALSE}
 
-Let's use an Anti-join and quickly look at the sites that didn't match. Notice, `sites_clean` has the extra record, so we need to list it first and figure out what was missing. 
-
-```{r antiJoin, echo=T, eval=T}
-
-anti_join(sites_clean, csci_clean,
-          by=c("StationID"="StationCode"))
-
-```
-
-
-Notice we had to list both `sites_clean` first, as well as the `sites_clean` stationID column first. 
-
-<br>
-
-:::challenge
-
-**Challenge**
-
- - If we switched the objects we used in the `anti_join` (as above in the original `inner_join`), R would return zero records. Why? 
-
-:::
-
-<br>
-
-<details>
-  <summary class="challenge-ans-title">**Click for Answers!**</summary>
-  <div class="challenge-ans-body">
-  
-  Because the `csci_clean` has `1612` records, and the `sites_clean` has `1613` records, and *all* the csci records joined when we used the `inner_join`, there are no records in `csci_clean` that didn't join with the `sites_clean`. So R will return zero records!
-  
-  </div>
-</details>
-
-<br>
-
-## Save it Out!
-
-Remember how to do this? Let's save this as a `.RData` file for now.
-
-```{r saveOut, echo=T}
-
-# list our data object, and then the filepath and name
-# remember to use a relative path!
-save(csci_sites_match, file = "data/csci_sites_match.rda")
+ggplot() +
+  geom_sf(data=sacto_co, col="gray", alpha=0.4, lwd=2) +
+  geom_sf(data=sacto_csci, aes(fill=CSCI), pch=21, size=5) +
+  scale_fill_viridis_c("CSCI") + 
+  theme_bw()
 
 ```
 
 
-Great work! Let's [move to the next lesson](m2_3_using_sf.html).
+
+## Saving Data Out & Getting it Back In
+
+So we now can do a number of different things with spatial data, mapping, making a web map, cropping, etc. But a common task is saving spatial data for use in another program, or reading spatial data (i.e., typically **shapefiles**) into R.
+
+We'll walk through how to do that with the data we've used thus far.
+
+### Save into a shapefile
+
+Shapefiles have been the de-facto data currency for spatial (vector-based) data for awhile. Newer more open-source formats are becoming easier to use (e.g., *geopackage*), but if you do anything spatial, you'll have to use shapefiles at some point.
+
+Let's save one of our data layers into a shapefile. With the `sf` package, this is fairly straightforward.
+
+```{r saveShp}
+
+# save out as a shapefile
+st_write(obj = sacto_csci, "data/sacramento_co_csci.shp", 
+         delete_layer = TRUE ) # delete the existing layer if it already exists
+
+# warnings are ok, typically associated with field widths or field names.
+# commonly I get this:
+# Warning messages:
+# 1: In abbreviate_shapefile_names(obj) :
+#   Field names abbreviated for ESRI Shapefile driver
+```
+
+How can we make sure this worked? Well we can go find the folder and check that there are 4 separate files ending with `.dbf`, `.prj`, `.shp`, and `.shx`. We can also read this data back into R and plot it to make sure it looks ok.
+
+```{r readShp}
+
+# select the path to the shp file
+tst_shp <- st_read("data/sacramento_co_csci.shp")
+
+plot(tst_shp$geometry)
+
+mapview(tst_shp)
+
+```
+
+
+## Interested in Learning More?
+
+There are loads of resources...but a geospatial workshop you may want to check out is run by the Carpentries. Lessons/material are freely available here: 
+
+ - https://datacarpentry.org/geospatial-workshop/
