@@ -297,6 +297,8 @@ graphics::title("CSCI ( >0.75=purple, <0.75=yellow)")
 
 Ok, so now we can make our data spatial, we can look at some preliminary plots, but what's next? 
 
+<br><br>
+
 ## Spatial Operations
 
 What about other spatial data or operations? The `sf` package can do nearly all the same things you can do in GIS software, like **buffer**, **crop**, **clip**, **merge**, etc. For a full list and some nice vignettes, check out the `sf` page: https://r-spatial.github.io/sf/, and click on the **Articles** tab.
@@ -307,7 +309,7 @@ There's simply too much to show and not enough time, but below are a few options
  - how to create a buffer
  - how to read/write `shapefiles`.
 
-### Get some State & County Boundary Data
+### **Get State & County Boundary Data**
 
 Let's use some boundaries to crop/buffer and manipulate our data. There are loads of options available, let's look at a package called `USAboundaries`, which allows us to quickly download county or state outlines, in `sf` formats. Very handy for making some quick professional maps. Let's get an outline of CA, California counties, select and buffer some points.
 
@@ -333,7 +335,7 @@ plot(df_sf$geometry, col="blue", add=TRUE)
 
 <br>
 
-Next let's create a California county object. First we download all California counties, then we filter to just Sacramento County.
+Next let's create a California county object. First we download all California counties, then we filter to just El Dorado County.
 
 ```{r getCAcounties, echo=T, eval=T}
 
@@ -341,32 +343,32 @@ Next let's create a California county object. First we download all California c
 CA_counties<-us_counties(resolution = "high", states = "CA") 
 
 # Pick a county of interest
-co_names <- c("Sacramento") # notice we can add more states to this list if we want
+co_names <- c("El Dorado") # notice we can add more states to this list if we want
 
 # filter to just that county:
-sacto_co <- filter(CA_counties, name==co_names)
+eldor_co <- filter(CA_counties, name==co_names)
 
 
 ```
 
 <br>
 
-### Crop points to Sacramento County
+### **Crop points to County**
 
-Next we want to clip our point data down to only points in Sacramento County. The quickest way to do this is using `st_intersection()`.
+Next we want to clip our point data down to only points in El Dorado County. The quickest way to do this is using `st_intersection()`.
 
 ```{r stIntersection}
 
 # we list the thing we want to crop first, then what we crop by second
-sacto_pts <- st_intersection(df_sf, sacto_co)
+eldor_pts <- st_intersection(df_sf, eldor_co)
 
-plot(sacto_co$geometry)
+plot(eldor_co$geometry)
 plot(df_sf$geometry, add=T, col="gray") # all the points
-plot(sacto_pts$geometry, add=T, bg ="purple", pch=21) # just the points we cropped
+plot(eldor_pts$geometry, add=T, bg ="purple", pch=21) # just the points we cropped
 
 ```
 
-### Add Some River & Watershed Data
+### **Add Some River & Watershed Data**
 
 Here we can use the **[{`nhdplusTools`}](https://usgs-r.github.io/nhdplusTools/)** package to grab river lines and watershed basin boundaries to add to our map.
 
@@ -375,7 +377,7 @@ Here we can use the **[{`nhdplusTools`}](https://usgs-r.github.io/nhdplusTools/)
 library(nhdplusTools)
 
 # first identify the gage of interest: This on on the American
-nldi_nwis <- list(featureSource = "nwissite", featureID = "USGS-11446030")
+nldi_nwis <- list(featureSource = "nwissite", featureID = "USGS-11444500")
 
 # next download the basin:
 basin <- get_nldi_basin(nldi_feature = nldi_nwis)
@@ -387,37 +389,43 @@ comid_pt <- discover_nhdplus_id(nldi_feature = nldi_nwis)
 # here downstream with diversions for 10 km
 us_streamlines <- navigate_nldi(nldi_feature = nldi_nwis,
                                 mode="upstreamTributaries",
-                                distance_km =  60)
+                                distance_km =  100)
 
 us_main <- navigate_nldi(nldi_feature = nldi_nwis,
                                 mode="UM",
-                                distance_km =  60)
+                                distance_km =  100)
 
 # find other upstream gages or NWIS sites
 us_gages <- navigate_nldi(nldi_feature = nldi_nwis, 
-                          mode="UT",
-                          data_source = "nwissite", 
-                          distance=60)
+                          mode="UM",
+                          data_source = "nwissite",
+                          distance=100)
 
-#plot
-plot(us_streamlines$geometry, col="steelblue")
+#plot and add to previous plot
+plot(eldor_co$geometry, border="black", lty=2, lwd=1.5)
+plot(us_streamlines$geometry, col="steelblue", add=T)
 plot(us_main$geometry, col="darkblue", add=T, lwd=2)
+plot(df_sf$geometry, add=T, pch=23, col="gray", bg=alpha("orange", 0.4)) # all the points
+plot(eldor_pts$geometry, add=T, bg ="purple2", pch=21) # just in county
 plot(us_gages$geometry, bg="maroon", pch=21, add=T)
-plot(basin$geometry, add=T)
-plot(df_sf$geometry, pch=23, bg="orange", add=T)
+plot(basin$geometry, add=T, border = alpha("darkblue", alpha = 0.5), lwd=2)
 
 ```
 
 
 ### **Buffer Points**
 
-Let's add one additional tool into the mix. `st_buffer` which allows us to buffer our data.
+Let's add one additional tool into the mix. `st_buffer` which allows us to buffer our data. Since our data is in lat/lon, the units of distance are in *degrees*, which can make it hard to judge. First, let's transform our data to a projected UTM (so the units are in meters instead of degrees). Then let's add a 100 meter buffer around our CSCI points.
 
-```{r}
-df_sf_buff_10 <- st_buffer(df_sf, dist = 0.10)
+```{r buffer, echo=T, eval=T}
 
-plot(df_sf$geometry)
-plot(df_sf_buff_10$geometry, col="blue", add=T)
+basin_UTM <- st_transform(basin, crs=3310)
+basin_buff_1km <- st_buffer(basin_UTM, dist = 1000)
+
+
+plot(st_transform(eldor_co$geometry, 3310))
+plot(basin_buff_1km$geometry, bg="blue", col="gray", pch=21, add=T)
+plot(basin_UTM$geometry, col=alpha("seagreen", 0.5), border="forestgreen", pch=21, lwd=1.9, add=T)
 
 ```
 
