@@ -484,9 +484,21 @@ nrow(eldor_pts_5km) - nrow(eldor_pts)
 </details>
 
 <br>
+
+### Save and Export
+
+We've only skimmed the surface, but let's save these pieces and move to the next lesson on making some nice maps!
+
+
+```{r}
+
+save(df_sf_albers, df_sf, eldor_co, eldor_co_albers, eldor_co_buff_5km, eldor_pts_5km, eldor_pts, file = "data/m2_3_out_eldorado_sf.rda")
+
+```
+
+
 <br>
 
-Let's look at the next lesson to find additional ways to make maps that we could actually use or share.
 
 
 Great work! Let's [move to the next lesson](m2_4_mapping_w_sf.html).
