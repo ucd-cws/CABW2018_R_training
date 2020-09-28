@@ -489,6 +489,4 @@ nrow(eldor_pts_5km) - nrow(eldor_pts)
 Let's look at the next lesson to find additional ways to make maps that we could actually use or share.
 
 
-
-
 Great work! Let's [move to the next lesson](m2_4_mapping_w_sf.html).
