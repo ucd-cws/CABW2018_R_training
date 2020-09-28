@@ -71,7 +71,7 @@ If you haven't installed things, make sure you grab the following packages
 ```{r installsf, echo=T, eval=F}
 
 # install packages if you haven't already
-install.packages(c("sf","mapview", "tmap", "USAboundaries"))
+#install.packages(c("sf","mapview", "tmap", "USAboundaries"))
 
 # load packages or "libraries"
 library(tidyverse) # wrangling/plotting tools
@@ -257,9 +257,51 @@ How do we know data is in a **Geographic** or **Projected** Coordinate System? W
 
 <br>
 
+## Importing Spatial Data with `{sf}`
+
+The great thing about `sf` is that it generally makes reading (and writing!) spatial data pretty easy. Let's import a few more pieces of data in different formats, just to practice getting other data into R. Note, if you want to know more about how these data were created, check out the `r icon::fa("rocket", color="maroon")` [lesson](m3_1_usaboundaries.html).
+
+### **Read in a Shapefile** 
+
+First let's read in a shapefile. This is one of the more common geospatial datatypes. Note, there are two functions to read in data with `sf`, `st_read`, and `read_sf`. See the differences below. Here we'll read in a shapefile with a few west coast states we can work with.
+
+```{r getStates, echo=T, eval=T}
+
+states <- st_read("data/states_boundaries.shp",
+        stringsAsFactors = FALSE, 
+        as_tibble = TRUE)
+
+# note, read_sf is the same as above, but it is "quiet" 
+# so it doesn't print out the details, and uses the other arguments above as defaults
+# read_sf("data/states_boundaries.shp)
+
+```
+
+Take a look at the data, notice all the attributes (columns), and a single `geometry` column where the spatial data lives.
+<br>
+
+### **Read in a `geojson`**
+
+We'll follow the same process as above, but this time for California counties, and a `geojson` file.
+
+```{r getCntys, echo=T, eval=T}
+
+counties <- st_read("data/ca_counties_boundaries.geojson",
+        stringsAsFactors = FALSE, 
+        as_tibble = TRUE)
+
+# check the CRS
+st_crs(counties)
+
+```
+
+Success! Onward...
+<br>
+
+
 ## Plotting `{sf}` Data
 
-Now we can make a few quick plots to see how our data looks. There are a few options that we'll cover, including using `ggplot`, but let's look at the simplest option first. We can use the base `plot` function, but there are a few things to be aware of! 
+Now we have some different data layers, and we can make a few quick plots to see how our data looks. There are a few options that we'll cover, including using `ggplot`, but let's look at the simplest option first. We can use the base `plot` function, but there are a few things to be aware of! 
 
 <br>
 
@@ -343,93 +385,110 @@ What about other spatial data or operations? The `sf` package can do nearly all 
 There's simply too much to show and not enough time, but below are a few options including:
 
  - how to crop or clip one spatial dataset using another spatial dataset
- - how to create a buffer
- - how to read/write `shapefiles`.
-
+ - how to create a buffer around data
 
 <br>
 
-### **Crop points to County**
+### **Crop points to a Single County**
 
-Next we want to clip our point data down to only points in El Dorado County. The quickest way to do this is using `st_intersection()`.
+First we want to select a single county to use for our analysis. Next we want to clip our point data (CSCI) down to only points that fall inside El Dorado County. The quickest way to do this is using `st_intersection()`.
 
-```{r stIntersection}
+ 1. `filter` our data down from the counties dataset. Find the column that contains the county names to do this.
+
+```{r filterCnty, echo=T, eval=T}
+
+eldor_co <- filter(counties, name=="El Dorado")
+# compare rows in the counties object with the rows in the eldor_co...
+```
+
+ 2. Now we can use `st_intersection` to the clip or crop our **points** layer (`df_sf`) by our **polygon** layer (`eldor_co`). Take a look at a plot to make sure it worked!
+
+```{r stIntersection, echo=T, eval=T}
 
 # we list the thing we want to crop first, then what we crop by second
 eldor_pts <- st_intersection(df_sf, eldor_co)
 
+```
+ 
+ 3. Make a quick plot to verify the clipped data worked. Gray points are *outside* the county line, purple points fall completely *inside* the county line.
+
+```{r quickPlot, echo=T}
+
+
+# plot
 plot(eldor_co$geometry)
-plot(df_sf$geometry, add=T, col="gray") # all the points
+plot(df_sf$geometry, add=T, bg="gray", pch=21) # all the points
 plot(eldor_pts$geometry, add=T, bg ="purple", pch=21) # just the points we cropped
 
 ```
 
-### **Add Some River & Watershed Data**
-
-Here we can use the **[{`nhdplusTools`}](https://usgs-r.github.io/nhdplusTools/)** package to grab river lines and watershed basin boundaries to add to our map.
-
-```{r}
-
-library(nhdplusTools)
-
-# first identify the gage of interest: This on on the American
-nldi_nwis <- list(featureSource = "nwissite", featureID = "USGS-11444500")
-
-# next download the basin:
-basin <- get_nldi_basin(nldi_feature = nldi_nwis)
-
-# find out comid of the gage or point:
-comid_pt <- discover_nhdplus_id(nldi_feature = nldi_nwis)
-
-# use the comid to download streamlines U/S or D/S of the gage
-# here downstream with diversions for 10 km
-us_streamlines <- navigate_nldi(nldi_feature = nldi_nwis,
-                                mode="upstreamTributaries",
-                                distance_km =  100)
-
-us_main <- navigate_nldi(nldi_feature = nldi_nwis,
-                                mode="UM",
-                                distance_km =  100)
-
-# find other upstream gages or NWIS sites
-us_gages <- navigate_nldi(nldi_feature = nldi_nwis, 
-                          mode="UM",
-                          data_source = "nwissite",
-                          distance=100)
-
-#plot and add to previous plot
-plot(eldor_co$geometry, border="black", lty=2, lwd=1.5)
-plot(us_streamlines$geometry, col="steelblue", add=T)
-plot(us_main$geometry, col="darkblue", add=T, lwd=2)
-plot(df_sf$geometry, add=T, pch=23, col="gray", bg=alpha("orange", 0.4)) # all the points
-plot(eldor_pts$geometry, add=T, bg ="purple2", pch=21) # just in county
-plot(us_gages$geometry, bg="maroon", pch=21, add=T)
-plot(basin$geometry, add=T, border = alpha("darkblue", alpha = 0.5), lwd=2)
-
-```
-
-
 ### **Buffer Points**
 
-Let's add one additional tool into the mix. `st_buffer` which allows us to buffer our data. Since our data is in lat/lon, the units of distance are in *degrees*, which can make it hard to judge. First, let's transform our data to a projected UTM (so the units are in meters instead of degrees). Then let's add a 100 meter buffer around our CSCI points.
+Let's add one additional tool into the mix. `st_buffer` which allows us to buffer our data. Since our data was originally *lat/lon*, the units of distance are in *degrees*, which can make it hard to translate into a precise buffer distance. However, we transformed our CSCI data into a **Projected** CRS, which uses *meters* as the unit of distance. So let's use that layer as a start, and add a 500 meter buffer around the county boundary to see if we pick up any additional CSCI points when we crop the data.
+
+We can use the CRS from another layer to transform or "re-project" our data. Let's transform El Dorado County into the same CRS as our projected CSCI points (`df_sf_albers`).
 
 ```{r buffer, echo=T, eval=T}
 
-basin_UTM <- st_transform(basin, crs=3310)
-basin_buff_1km <- st_buffer(basin_UTM, dist = 1000)
+# double check CRS
+st_crs(df_sf_albers)
 
+# transform the county to same CRS
+eldor_co_albers <- st_transform(eldor_co, crs = st_crs(df_sf_albers))
 
-plot(st_transform(eldor_co$geometry, 3310))
-plot(basin_buff_1km$geometry, bg="blue", col="gray", pch=21, add=T)
-plot(basin_UTM$geometry, col=alpha("seagreen", 0.5), border="forestgreen", pch=21, lwd=1.9, add=T)
+# now buffer by 5 kilometers! (remember, units are in meters)
+eldor_co_buff_5km <- st_buffer(eldor_co_albers, dist = 5000)
+
+```
+
+Let's plot this to see how it looks.
+
+```{r}
+
+plot(eldor_co_buff_5km$geometry, col="skyblue", border="steelblue")
+plot(eldor_co_albers$geometry, lty=2, add=T) #original
+
 
 ```
 
  
+:::challenge
+
+ **Challenge:**
+ 
+ - **Crop the CSCI point data (`df_sf_albers`) by the new buffered county layer (`eldor_co_buff_5km`)** and call it `eldor_pts_5km`.
+ - **How many additional CSCI points are in `eldor_pts_5km` vs. the original `eldor_pts`?**
+ 
+:::
 
 <br>
 
+<details>
+  <summary class="challenge-ans-title">**Click for Answers!**</summary>
+  <div class="challenge-ans-body">
+
+To do this we use the `st_intersection` function, and then inspect how many **rows** each of the point datasets contain.
+
+```{r chalstintersect, eval=T}
+
+eldor_pts_5km <- st_intersection(df_sf_albers, eldor_co_buff_5km)
+
+# look at number of rows in new - old
+nrow(eldor_pts_5km) - nrow(eldor_pts)
+
+# so 8 additional CSCI stations were included in this layer.
+
+```
+
+ </div>
+</details>
+
+<br>
+<br>
+
 Let's look at the next lesson to find additional ways to make maps that we could actually use or share.
+
+
 
 
 Great work! Let's [move to the next lesson](m2_4_mapping_w_sf.html).
