@@ -66,19 +66,19 @@ navbar:
     - text: "Lesson 4:"
     - text: "Make a Map!"
       icon: fa-map fa-1x
-      href: in_progress.html
+      href: m2_4_mapping_w_sf.html
   - text: "And Beyond"
     icon: fa-space-shuttle fa-1x
     menu:
+    - text: "Getting US Boundaries"
+      icon: fa-code-branch
+      href: m3_1_usaboundaries.html
+    - text: "Downloading NHD River Data"
+      icon: fa-tint
+      href: m3_2_nhdtoolsPlus.html
     - text: "Helpful Packages"
       icon: fa-archive
-      href: in_progress.html
-    - text: "Running Functions"
-      icon: fa-code-branch
-      href: in_progress.html
-    - text: "Downloading River Data"
-      icon: fa-tint
-      href: in_progress.html
+      href: m3_3_useful_water_pkgs.html
   right:
   - text: "Resources"
     icon: fa-list
