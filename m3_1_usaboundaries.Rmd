@@ -177,7 +177,7 @@ ca_counties2 <- st_set_crs(ca_counties2, 4326)
 
 Make sure this all worked by previewing with `tmap`.
 
-```{r tmap, eval=T}
+```{r tmap, eval=T, message=FALSE, warning=FALSE}
 
 library(tmap)
 tmap_mode(mode = "view")

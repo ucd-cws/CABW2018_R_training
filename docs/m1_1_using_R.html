@@ -465,7 +465,7 @@ div.tocify {
     </li>
     <li class="dropdown-header">Lesson 4:</li>
     <li>
-      <a href="in_progress.html">
+      <a href="m2_4_mapping_w_sf.html">
         <span class="fa fa-map fa-1x"></span>
          
         Make a Map!
@@ -483,24 +483,24 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="in_progress.html">
+      <a href="m3_1_usaboundaries.html">
+        <span class="fa fa-code-branch"></span>
+         
+        Getting US Boundaries
+      </a>
+    </li>
+    <li>
+      <a href="m3_2_nhdtoolsPlus.html">
+        <span class="fa fa-tint"></span>
+         
+        Downloading NHD River Data
+      </a>
+    </li>
+    <li>
+      <a href="m3_3_useful_water_pkgs.html">
         <span class="fa fa-archive"></span>
          
         Helpful Packages
-      </a>
-    </li>
-    <li>
-      <a href="in_progress.html">
-        <span class="fa fa-code-branch"></span>
-         
-        Running Functions
-      </a>
-    </li>
-    <li>
-      <a href="in_progress.html">
-        <span class="fa fa-tint"></span>
-         
-        Downloading River Data
       </a>
     </li>
   </ul>
@@ -568,7 +568,7 @@ div.tocify {
 <p>I strongly encourage you to use RStudio projects when you are working with R. The RStudio project provides a central location for working on a particular task. It helps with file management and is portable because all the files live in the same project. RStudio projects also remember history - what commands you used and what data objects are in your <em>Environment</em>.</p>
 <p>To create a new project, click on the <strong>File</strong> menu at the top of the RStudio window and select <strong><code>New project...</code></strong></p>
 <div class="figure"><span id="fig:unnamed-chunk-1"></span>
-<img src="figure/rstudio_proj.jpg" alt="*Beginning a new project in RStudio.*" width="100%" />
+<img src="images/rstudio_proj.jpg" alt="*Beginning a new project in RStudio.*" width="100%" />
 <p class="caption">
 Figure 1: <em>Beginning a new project in RStudio.</em>
 </p>
@@ -583,7 +583,7 @@ Figure 1: <em>Beginning a new project in RStudio.</em>
 <p>Up until this point, we have been working in the <em>Console</em>. In most cases, you will not enter and execute code directly in the <em>Console</em> but rather type and edit code in a script and then send it to the <em>Console</em> when you’re ready to run it. The key difference here is that a script can be saved and shared.</p>
 <p>To open a new script, navigate to the File menu, and select <strong><code>New File</code></strong> &gt; <strong><code>R Script</code></strong>:</p>
 <div class="figure"><span id="fig:unnamed-chunk-2"></span>
-<img src="figure/rstudio_script.jpg" alt="*Opening a new script in RStudio.*" width="100%" />
+<img src="images/rstudio_script.jpg" alt="*Opening a new script in RStudio.*" width="100%" />
 <p class="caption">
 Figure 2: <em>Opening a new script in RStudio.</em>
 </p>
@@ -600,7 +600,7 @@ Figure 2: <em>Opening a new script in RStudio.</em>
 fish &lt;- 10 + 45</code></pre>
 <p>After you write your script it can be sent to the Console to run the code in R. Any variables you create in your script will not be available in your working environment until this is done. There are two ways to send code to the console. First, you can hit the <code>Run</code> button at the top right of the scripting window. Second, and preferred, you can use <kbd>Ctrl</kbd>+<kbd>enter</kbd> or <kbd>⌘</kbd>+<kbd>Enter</kbd> on a Mac. Both approaches will send the selected line to the console, then move to the next line in your script. You can also highlight and send an entire block of code. If you’d like to run all the code in your script at once, you can use <kbd>Ctrl</kbd> or <kbd>⌘</kbd>+<kbd>shift</kbd> +<kbd>enter</kbd>.</p>
 <div class="figure"><span id="fig:unnamed-chunk-3"></span>
-<img src="figure/rstudio_run.jpg" alt="*Running code in RStudio.*" width="100%" />
+<img src="images/rstudio_run.jpg" alt="*Running code in RStudio.*" width="100%" />
 <p class="caption">
 Figure 3: <em>Running code in RStudio.</em>
 </p>
@@ -799,7 +799,7 @@ mean(cscidat$csci)</code></pre>
 Sites &lt;- cscidat$site</code></pre>
 <p>This concludes the “importing data” section of our R tutorial today. If you are experiencing any issues, errors, or have a question, please take this moment to send Ryan, Heili, or one of the workshop assistants a message in the chat.</p>
 <div class="figure"><span id="fig:unnamed-chunk-5"></span>
-<img src="figure/debugging.jpg" alt="*Illustration by @allison_horst.*" width="100%" />
+<img src="images/debugging.jpg" alt="*Illustration by @allison_horst.*" width="100%" />
 <p class="caption">
 Figure 4: <em>Illustration by <span class="citation">@allison_horst</span>.</em>
 </p>

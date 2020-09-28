@@ -465,7 +465,7 @@ div.tocify {
     </li>
     <li class="dropdown-header">Lesson 4:</li>
     <li>
-      <a href="in_progress.html">
+      <a href="m2_4_mapping_w_sf.html">
         <span class="fa fa-map fa-1x"></span>
          
         Make a Map!
@@ -483,24 +483,24 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="in_progress.html">
+      <a href="m3_1_usaboundaries.html">
+        <span class="fa fa-code-branch"></span>
+         
+        Getting US Boundaries
+      </a>
+    </li>
+    <li>
+      <a href="m3_2_nhdtoolsPlus.html">
+        <span class="fa fa-tint"></span>
+         
+        Downloading NHD River Data
+      </a>
+    </li>
+    <li>
+      <a href="m3_3_useful_water_pkgs.html">
         <span class="fa fa-archive"></span>
          
         Helpful Packages
-      </a>
-    </li>
-    <li>
-      <a href="in_progress.html">
-        <span class="fa fa-code-branch"></span>
-         
-        Running Functions
-      </a>
-    </li>
-    <li>
-      <a href="in_progress.html">
-        <span class="fa fa-tint"></span>
-         
-        Downloading River Data
       </a>
     </li>
   </ul>
@@ -570,9 +570,8 @@ div.tocify {
 <div id="open-r-and-rstudio" class="section level3">
 <h3>Open R and RStudio</h3>
 <p>If you haven’t done so already, download and install RStudio from the link above (version 1.3.1073). After it’s installed, find the RStudio shortcut and fire it up. You should see something like this:</p>
-<pre class="r"><code>knitr::include_graphics(here::here(&quot;figure&quot;, &quot;rstudio.png&quot;))</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-1"></span>
-<img src="figure/rstudio.png" alt="*The RStudio window.*" width="100%" />
+<img src="images/rstudio.png" alt="*The RStudio window.*" width="100%" />
 <p class="caption">
 Figure 1: <em>The RStudio window.</em>
 </p>
@@ -621,7 +620,7 @@ Figure 1: <em>The RStudio window.</em>
 </div>
 <div id="cran" class="section level3">
 <h3>CRAN</h3>
-<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where you can gain access to additional packages. All of the packages we’ll be using during this tutorial will be downloaded from CRAN. As of 2020-09-20, there are 16314 on CRAN!</p>
+<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where you can gain access to additional packages. All of the packages we’ll be using during this tutorial will be downloaded from CRAN. As of 2020-09-28, there are 16382 on CRAN!</p>
 </div>
 <div id="installing-tidyverse" class="section level3">
 <h3>Installing tidyverse</h3>
@@ -668,10 +667,9 @@ apropos(&quot;print&quot;) # Returns all available functions with &quot;print&qu
 <li><a href="http://cran.r-project.org/web/views/Environmetrics.html">Environmetrics Task View</a>: Task views are great in that they provide an annotated list of packages relevant to a particular field. This one is maintained by Gavin Simpson and has great info on packages relevant to much of the work at EPA.</li>
 <li><a href="http://cran.r-project.org/web/views/Spatial.html">Spatial Analysis Task View</a>: One that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R.</li>
 </ul>
-<p>There are also a number of platforms created to support communities using R such as <a href="https://rladies.org/">RLadies</a> and <a href="https://twitter.com/RStudioEDU">RStudioEDU</a>. Our workshop assistants today are all a member of RLadies! Following #rstats on Twitter is also an excellent way to stay informed of RStudio updates and new package developments.</p>
-<pre class="r"><code>knitr::include_graphics(here::here(&quot;figure&quot;, &quot;friends.png&quot;))</code></pre>
+<p>There are also a number of platforms created to support communities using R and RStudio including <a href="https://community.rstudio.com/latest">RStudio Community</a>, <a href="https://rladies.org/">RLadies</a> and <a href="https://twitter.com/RStudioEDU">RStudioEDU</a>. Many of our workshop helpers today are members of RLadies! Following #rstats on Twitter is also an excellent way to stay informed of RStudio updates and new package developments.</p>
 <div class="figure"><span id="fig:unnamed-chunk-10"></span>
-<img src="figure/friends.png" alt="*Illustration by @allison_horst.*" width="100%" />
+<img src="images/friends.png" alt="*Illustration by @allison_horst.*" width="100%" />
 <p class="caption">
 Figure 2: <em>Illustration by <span class="citation">@allison_horst</span>.</em>
 </p>
@@ -694,9 +692,11 @@ Figure 2: <em>Illustration by <span class="citation">@allison_horst</span>.</em>
 <p>Below are just a few more resources I like:</p>
 <ul>
 <li><a href="http://rforcats.net/">R For Cats</a>: Basic introduction site, meant to be a gentle and light-hearted introduction</li>
+<li><a href="https://stat545.com/">Stat 545</a>: Course materials for Jenny Bryan’s introduction to data science course developed at the University of British Columbia.</li>
+<li><a href="http://www.datacarpentry.org/R-ecology-lesson/">Data Carpentry: R for Data Analysis and Visualization of Ecological Data</a>: Carpentry lesson for folks using ecological data in R.</li>
+<li><a href="https://rstats.wtf/">What They Forgot to Teach you About R</a>: Great lessons from Jenny Bryan and Jim Hester about data organization, basic R workflows, and more.</li>
 <li><a href="https://r4ds.had.co.nz/">R For Data Science</a>: Web home of Hadley Wickham and Garret Grolemund’s introduction to R textbook.</li>
 <li><a href="http://adv-r.had.co.nz/">Advanced R</a>: Web home of Hadley Wickham’s new book. Gets into more advanced topics, but also covers the basics in a great way.</li>
-<li><a href="https://stat545.com/">Stat 545</a>: Course materials for Jenny Bryan’s introduction to data science course developed at the University of British Columbia.</li>
 <li><a href="https://statsthewayilikeit.com/">Stats the Way I Like It</a>: Course materials for Allison Horst’s introduction to environmental data science course developed at the University of California Santa Barbara.</li>
 <li><a href="http://cran.r-project.org/doc/contrib/Short-refcard.pdf">CRAN Cheatsheets</a>: A good cheat sheet from the official source</li>
 <li><a href="http://www.rstudio.com/resources/cheatsheets/">RStudio Cheatsheets</a>: Additional cheat sheets from RStudio.</li>

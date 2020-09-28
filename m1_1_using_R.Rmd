@@ -47,7 +47,7 @@ To create a new project, click on the **File** menu at the top of the RStudio wi
 
 
 ```{r out.width = "100%", fig.cap = '*Beginning a new project in RStudio.*', echo=FALSE}
-knitr::include_graphics(here::here("figure", "rstudio_proj.jpg"))
+knitr::include_graphics(here::here("images", "rstudio_proj.jpg"))
 ```
 
 <br>
@@ -65,7 +65,7 @@ Up until this point, we have been working in the *Console*. In most cases, you w
 To open a new script, navigate to the File menu, and select **`New File`** > **`R Script`**:
 
 ```{r out.width = "100%", echo=FALSE, fig.cap = '*Opening a new script in RStudio.*'}
-knitr::include_graphics(here::here("figure", "rstudio_script.jpg"))
+knitr::include_graphics(here::here("images", "rstudio_script.jpg"))
 ```
 
 Save that file into your newly created project and name it **`cabw_script_day1.R`**. It'll just be a blank text file at this point.
@@ -96,7 +96,7 @@ fish <- 10 + 45
 After you write your script it can be sent to the Console to run the code in R. Any variables you create in your script will not be available in your working environment until this is done. There are two ways to send code to the console. First, you can hit the `Run` button at the top right of the scripting window. Second, and preferred, you can use <kbd>Ctrl</kbd>+<kbd>enter</kbd> or <kbd>&#8984;</kbd>+<kbd>Enter</kbd> on a Mac. Both approaches will send the selected line to the console, then move to the next line in your script. You can also highlight and send an entire block of code. If you'd like to run all the code in your script at once, you can use <kbd>Ctrl</kbd> or <kbd>&#8984;</kbd>+<kbd>shift</kbd> +<kbd>enter</kbd>.
 
 ```{r out.width = "100%", echo=FALSE, fig.cap = '*Running code in RStudio.*'}
-knitr::include_graphics(here::here("figure", "rstudio_run.jpg"))
+knitr::include_graphics(here::here("images", "rstudio_run.jpg"))
 ```
 
 Place your cursor on the line where you've created the `fish` variable, and run the line of code. Check to be certain that this variable has now appeared in your *Environment*.
@@ -316,7 +316,7 @@ Sites <- cscidat$site
 This concludes the "importing data" section of our R tutorial today. If you are experiencing any issues, errors, or have a question, please take this moment to send Ryan, Heili, or one of the workshop assistants a message in the chat.
 
 ```{r out.width = "100%", echo=FALSE, fig.cap = '*Illustration by @allison_horst.*'}
-knitr::include_graphics(here::here("figure", "debugging.jpg"))
+knitr::include_graphics(here::here("images", "debugging.jpg"))
 ```
 
 Great work! Let's [move to the next lesson](m1_2_wrangling.html).

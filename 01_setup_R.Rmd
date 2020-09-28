@@ -44,8 +44,8 @@ Let's get familiar with RStudio before we go on.
 
 If you haven't done so already, download and install RStudio from the link above (version 1.3.1073).  After it's installed, find the RStudio shortcut and fire it up.  You should see something like this:
 
-```{r out.width = "100%", fig.cap = '*The RStudio window.*'}
-knitr::include_graphics(here::here("figure", "rstudio.png"))
+```{r out.width = "100%", echo=F, fig.cap = '*The RStudio window.*'}
+knitr::include_graphics(here::here("images", "rstudio.png"))
 ```
 
 There are four panes in RStudio (starting from the bottom left and moving clockwise): 
@@ -208,10 +208,10 @@ In addition to help from within R itself, CRAN and the R-Project have many resou
 - [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that they provide an annotated list of packages relevant to a particular field. This one is maintained by Gavin Simpson and has great info on packages relevant to much of the work at EPA.
 - [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html): One that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
 
-There are also a number of platforms created to support communities using R such as [RLadies](https://rladies.org/) and [RStudioEDU](https://twitter.com/RStudioEDU). Our workshop assistants today are all a member of RLadies! Following #rstats on Twitter is also an excellent way to stay informed of RStudio updates and new package developments.
+There are also a number of platforms created to support communities using R and RStudio including [RStudio Community](https://community.rstudio.com/latest), [RLadies](https://rladies.org/) and [RStudioEDU](https://twitter.com/RStudioEDU). Many of our workshop helpers today are members of RLadies! Following #rstats on Twitter is also an excellent way to stay informed of RStudio updates and new package developments.
 
-```{r out.width = "100%", fig.cap = '*Illustration by @allison_horst.*'}
-knitr::include_graphics(here::here("figure", "friends.png"))
+```{r out.width = "100%", echo=F, fig.cap = '*Illustration by @allison_horst.*'}
+knitr::include_graphics(here::here("images", "friends.png"))
 ```
 
 ### Google and StackOverflow
@@ -232,9 +232,11 @@ One specific resource that I use quite a bit is [StackOverflow with the 'r' tag]
 Below are just a few more resources I like:
 
 - [R For Cats](http://rforcats.net/): Basic introduction site, meant to be a gentle and light-hearted introduction
+- [Stat 545](https://stat545.com/): Course materials for Jenny Bryan's introduction to data science course developed at the University of British Columbia.
+- [Data Carpentry: R for Data Analysis and Visualization of Ecological Data](http://www.datacarpentry.org/R-ecology-lesson/): Carpentry lesson for folks using ecological data in R.
+- [What They Forgot to Teach you About R](https://rstats.wtf/): Great lessons from Jenny Bryan and Jim Hester about data organization, basic R workflows, and more.
 - [R For Data Science](https://r4ds.had.co.nz/): Web home of Hadley Wickham and Garret Grolemund's introduction to R textbook.
 - [Advanced R](http://adv-r.had.co.nz/): Web home of Hadley Wickham's new book.  Gets into more advanced topics, but also covers the basics in a great way.
-- [Stat 545](https://stat545.com/): Course materials for Jenny Bryan's introduction to data science course developed at the University of British Columbia.
 - [Stats the Way I Like It](https://statsthewayilikeit.com/): Course materials for Allison Horst's introduction to environmental data science course developed at the University of California Santa Barbara.
 - [CRAN Cheatsheets](http://cran.r-project.org/doc/contrib/Short-refcard.pdf): A good cheat sheet from the official source
 - [RStudio Cheatsheets](http://www.rstudio.com/resources/cheatsheets/): Additional cheat sheets from RStudio.

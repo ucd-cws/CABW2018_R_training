@@ -80,7 +80,7 @@ Our schedule is still being sorted out. Please check back for updates on our wor
 
 ## Software requirements
 
-Please setup a computer/laptop with the latest version of RStudio and R installed.  Download the compressed [data](https://github.com/ucd-cws/CABW2020_R_training/raw/main/data/datazip.zip) folder and make sure it is accessible on your computer.  The [setup instructions](setup.html) will guide you through the rest of the process.  Take note of the required R packages that you must also download and install.  Please contact the instructors with any questions or issues related to setup.  
+Please setup a computer/laptop with the latest version of RStudio and R installed.  Download the compressed [data](https://github.com/ucd-cws/CABW2020_R_training/raw/main/data/datazip.zip) folder and make sure it is accessible on your computer.  The [setup instructions](01_setup_R.html) will guide you through the rest of the process.  Take note of the required R packages that you must also download and install.  Please contact the instructors with any questions or issues related to setup.  
 
 If for whatever reason you can't get RStudio installed with the right packages, we can help you set up a free [RStudio Cloud](https://rstudio.cloud/) account which you can use for the workshop. 
 
@@ -94,7 +94,7 @@ All source materials for this website can be accessed at https://github.com/ucd-
 
 ## Attribution
 
-Content in these lessons was been modified and/or adapted from Marc Weber (USEPA), Ryan Hill (USEPA), Jeffrey Hollister (USEPA), [Data Carpentry: R for data analysis and visualization of Ecological Data](https://datacarpentry.org/R-ecology-lesson/index.html), the USGS-R training curriculum [here](https://github.com/USGS-R/training-curriculum), the NCEAS Open Science for Synthesis workshop [here](https://nceas.github.io/oss-2017/index.html), and the wonderful text [R for data science](https://github.com/hadley/r4ds).
+Content in these lessons was been modified and/or adapted from Marc Weber (USEPA), Ryan Hill (USEPA), Jeffrey Hollister (USEPA), [Data Carpentry: R for data analysis and visualization of Ecological Data](https://datacarpentry.org/R-ecology-lesson/index.html), the USGS-R training curriculum [here](https://github.com/USGS-R/training-curriculum), the NCEAS Open Science for Synthesis workshop [here](https://nceas.github.io/oss-2017/index.html), [Mapping in R](https://ryanpeek.org/mapping-in-R-workshop/), and the wonderful text [R for data science](https://github.com/hadley/r4ds).
 
 
 ---

@@ -18,7 +18,12 @@ This page contains links to the data we're using in our workshop, and a sample o
 
 <br>
 
-`r icon::fa("code", color="darkpurple", size=1.5, pull="left")` For live-coding, please refer to this [**link**](https://dl.dropboxusercontent.com/s/k5w37n772eu5knx/cabw_script.R?dl=0) with your favorite browser. This will update every time we save, which means you can refresh the page to see whatever code we are typing, and download this file at anytime.
+`r icon::fa("code", color="darkpurple", size=1.5, pull="left")`: For live-coding, we will save whatever code we run to a live webpage via Dropbox. This will update every time we save our code, which means you can refresh the page to see whatever code we are typing, copy it, and download this file at anytime. Please bookmark and open the appropriate link in your favorite web-browser. 
+
+ - [**Day 1**](https://dl.dropboxusercontent.com/s/dxvv3az1t11vnqc/2020-10-13_cabw_r_livecode.R?dl=0)
+ 
+ - [**Day 2**](https://dl.dropboxusercontent.com/s/1qb54zz7bexqoj8/2020-10-14_cabw_r_livecode.R?dl=0)
+ 
 
 ### Lesson Datasets
 
@@ -28,10 +33,10 @@ This is a list of the data sources used in this workshop.
 
 #### *`r icon::fa("database", color="slateblue", size=1.5, pull="left")` Lesson Datasets*
 
- - [Full Dataset as a zipped folder](https://github.com/SCCWRP/CABW2018_R_training/raw/master/data/datazip.zip). Inside you'll find these files:
-    - **Longitude-Latitude Data:** [`latlon.csv`](https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/latlon.csv)
-    - **CSCI Data:** [`cscidat.csv`](https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/cscidat.csv)
-    - **ASCI Data:** [`ascidat.csv`](https://raw.githubusercontent.com/SCCWRP/CABW2018_R_training/master/data/ascidat.csv)
+ - [Full Dataset as a zipped folder](https://github.com/ucd-cws/CABW2020_R_training/raw/main/data/datazip.zip). Inside you'll find these files:
+    - **Longitude-Latitude Data:** [`latlon.csv`](https://raw.githubusercontent.com/ucd-cws/CABW2020_R_training/main/data/latlon.csv)
+    - **CSCI Data:** [`cscidat.csv`](https://raw.githubusercontent.com/ucd-cws/CABW2020_R_training/main/data/cscidat.csv)
+    - **ASCI Data:** [`ascidat.csv`](https://raw.githubusercontent.com/ucd-cws/CABW2020_R_training/main/data/ascidat.csv)
 
 
 ### Resources

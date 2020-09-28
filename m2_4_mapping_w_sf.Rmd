@@ -11,10 +11,9 @@ output:
 ```{r setup, include=FALSE, purl=FALSE, message=FALSE}
 
 knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(cache = FALSE)
 library(knitr)
 library(icon)
-library(here)
-library(flair)
 suppressPackageStartupMessages(library(dplyr))
 
 ```
@@ -48,27 +47,20 @@ First let's load the packages we'll be using.
 
 ```{r installsf, echo=T, eval=F}
 
-# install packages if you haven't already
-#install.packages(c("viridis", "sf","mapview", "tmap", "USAboundaries"))
-
 # load packages or "libraries"
 library(tidyverse) # wrangling/plotting tools
-library(viridis) # nice color palette
 library(sf) # newer "simple features" spatial package
 library(mapview) # interactive web mapping
 library(tmap) # static mapping
-library(USAboundaries) # data for USA boundaries
 
 ```
 
 ```{r loadLibs, echo=F, warning=FALSE}
 suppressPackageStartupMessages({
   library(tidyverse); # reading/writing files
-  library(viridis); # nice color palette
   library(sf); # newer "simple features" spatial package
   library(mapview); # interactive web map
   library(tmap);
-  library(USAboundaries)
   }) 
 
 ```
@@ -111,12 +103,24 @@ class(df_sf)
 
 Next we can use the simple `mapview()` function to see a default interactive webmap! 
 
-```{r mapview, echo=T, eval=T}
+```{r mapview, echo=T, eval=F}
 
 # make a map with mapview
 mapview::mapview(df_sf, layer="CSCI Sites")
 
 ```
+
+```{r tmapHidden2, echo=F, eval=T, message=FALSE, warning=FALSE}
+
+# having to do this behind the scenes because of a weird rendering issue that's not resolved
+library(tmap)
+tmap_mode(mode = "view")
+
+tmap::tm_shape(df_sf, name = "CSCI Sites") +
+  tm_dots(col="slateblue", border.col="black", alpha=0.9, title = "CSCI Sites", legend.show = T, shape = 21)
+
+```
+
 
 <br>
 
@@ -134,7 +138,7 @@ knitr::include_graphics("images/mapview_example.png")
 
 There are lots of customization options within `{mapview}`, I recommend checking the [mapview page](https://r-spatial.github.io/mapview/) to find out more. Here are a few handy tips to change the color, the size, and layer name.
 
-```{r mapviewCustom, eval=T, echo=T}
+```{r mapviewCustom, eval=F, echo=T}
 
 mapview(df_sf, 
         col.regions="salmon", 
@@ -142,6 +146,17 @@ mapview(df_sf,
         layer.name="CSCI Sites")
 
 ```
+
+```{r tmapHidden3, echo=F, eval=T,message=FALSE, warning=FALSE}
+
+# having to do this behind the scenes because of a weird rendering issue that's not resolved
+tmap_mode(mode = "view")
+
+tmap::tm_shape(df_sf, name = "CSCI Sites") +
+  tm_dots(col="salmon",size = 0.3, border.col="black", alpha=0.8, title = "CSCI Sites", legend.show = T, shape = 21)
+
+```
+
 
 <br>
 
@@ -159,13 +174,15 @@ knitr::include_graphics("images/mapview_save_out.png")
  
 ## Plotting with `{ggplot}`
 
-Alternatively, we can use `ggplot2` instead. This is where `sf` objects are really nice. They fit well within the ggplot framework because they are simply dataframes with a `geometry` list-column at the end. You can plot the X/Y data as part of a `geom_point` layer, or you can use the `geom_sf` function..=
+Alternatively, we can use `ggplot2` instead. This is where `sf` objects are really nice. They fit well within the ggplot framework because they are simply dataframes with a `geometry` list-column at the end. You can plot the X/Y data as part of a `geom_point` layer, or you can use the `geom_sf` function.
 
-### **CSCI Sites in California with `geom_sf` 
+### **CSCI Sites in California with `geom_sf`** 
 
-First let's make a map of all the CSCI stations in California.
+Let's make a map of all the CSCI stations in California. Let's also add a scale bar and north arrow with the handy [`ggspatial`](https://paleolimbot.github.io/ggspatial/) package
 
-```{r GGsf, eval=T, echo=T}
+```{r GGsf, eval=T, echo=T, message=FALSE, warning=FALSE}
+
+library(ggspatial)
 
 nicemap<-
   ggplot() + # set up the framework
@@ -176,30 +193,55 @@ nicemap<-
   # use GEOM_POINT: note, we could use geom_sf instead here too!
   geom_point(data=df_sf, aes(x=lon, y=lat), fill="orange", pch=21, alpha=0.7, size=2)+
   
+  # scale bar & north arrow
+  ggspatial::annotation_north_arrow(location="tr") +
+  ggspatial::annotation_scale() +
   # formatting
   labs(x="Longitude (WGS84)", y="Latitude", title="Map of CSCI Sites") + 
   theme_bw() # change this to sans if it doesn't plot
+
 nicemap
 
 # To save plot
-# ggsave(filename = "./figs/site_map_ggplot.png", width = 8, height = 6, units = "in", dpi = 300)
+# ggsave(filename = "figures/site_map_ggplot.png", width = 8, height = 6, units = "in", dpi = 300)
 ```
 
 
-### Interactive Map!
+### **Interactive Map!**
 
 Finally, let's make a dynamic map that shows the CSCI scores!
 
-```{r mapviewCSCI}
+```{r mapviewCSCI, echo=T, eval=F}
 mapview(eldor_pts, zcol="CSCI", layer="CSCI")
 
 # add another layer by linking with "+"
-mapview(eldor_co, layer="Sacramento County") +
+mapview(eldor_co, layer="El Dorado County") +
   mapview(eldor_pts, zcol="CSCI", layer="CSCI")
 
 ```
 
-### Static Map
+```{r tmapHidden, echo=F, eval=T, message=FALSE, warning=FALSE}
+
+# having to do this behind the scenes because of a weird rendering issue that's not resolved (https://github.com/r-spatial/mapview/issues/312)
+# (https://github.com/r-spatial/mapview/issues/330)
+
+#tmaptools::palette_explorer()
+
+library(tmap)
+tmap_mode(mode = "view")
+
+tm_shape(eldor_co, name="El Dorado County") +
+  tm_polygons(alpha=0.2, lwd=2, col = "slateblue") +
+  tm_shape(eldor_pts, name = "CSCI Sites") +
+  tm_symbols(col="CSCI", palette = "viridis", border.col="black", 
+          alpha=0.9, size=3, shape = 21)
+    
+
+```
+
+
+
+### **Static Map**
 
  > **Challenge**: Can you make the same map as below using ggplot? Hint, `viridis` may be useful here...
 

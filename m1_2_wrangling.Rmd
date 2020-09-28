@@ -6,8 +6,6 @@ output:
     includes:
       in_header: assets/header.html
       after_body: assets/footer.html
-editor_options: 
-  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE, purl=FALSE, message=FALSE}
@@ -37,7 +35,7 @@ library(here)
 Data wrangling is the part of any data analysis that will take the most time. While it may not necessarily be fun, it is foundational to all the work that follows. Often, it also takes significantly longer than actually performing the data analysis or creating a data visualization, so do not panic if, in the future, you find yourself spending a lot of time on this single step. For the purpose of condensing today's lessons, we will be working with a fairly tidy dataset. But there are many online resources available to help you in your own work, should you be handed a project with a particularly gnarly dataset.
 
 ```{r out.width = "100%", echo=F, fig.cap = '*Image from "R for Data Science" by Garrett Grolemund and Hadley Wickham.*'}
-knitr::include_graphics(here::here("figure", "data-science-wrangle.png"))
+knitr::include_graphics(here::here("images", "data-science-wrangle.png"))
 ```
 
 <br>
@@ -156,7 +154,7 @@ head(dplyr_filt3)
 ```
 
 ```{r out.width = "100%", echo=FALSE, fig.cap = '*Illustration by @allison_horst.*'}
-knitr::include_graphics(here::here("figure", "filter.jpg"))
+knitr::include_graphics(here::here("images", "filter.jpg"))
 ```
 
 Filtering can take a bit of time to master because there are several ways to tell R what you want. To use filtering effectively, you have to know how to select the observations that you want using the comparison operators. R provides the standard suite: `>`, `>=`, `<`, `<=`, `!=` (not equal), and `==` (equal). Remember to use `=` instead of `==` when testing for equality!
@@ -183,7 +181,7 @@ head(dplyr_mut2)
 
 
 ```{r out.width = "100%", echo=FALSE, fig.cap = '*Illustration by @allison_horst.*'}
-knitr::include_graphics(here::here("figure", "mutate.png"))
+knitr::include_graphics(here::here("images", "mutate.png"))
 ```
 
 ### More functions
@@ -333,7 +331,7 @@ If you would like to learn more about the possibilities withing the dplyr packag
 * [Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
 ```{r out.width = "100%", echo=F, fig.cap = '*Illustration by @allison_horst.*'}
-knitr::include_graphics(here::here("figure", "relocate.png"))
+knitr::include_graphics(here::here("images", "relocate.png"))
 ```
 
 Great work! Let's [move to the next lesson](m1_3_plotting.html).

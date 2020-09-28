@@ -461,7 +461,7 @@ div.tocify {
     </li>
     <li class="dropdown-header">Lesson 4:</li>
     <li>
-      <a href="in_progress.html">
+      <a href="m2_4_mapping_w_sf.html">
         <span class="fa fa-map fa-1x"></span>
          
         Make a Map!
@@ -479,24 +479,24 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="in_progress.html">
+      <a href="m3_1_usaboundaries.html">
+        <span class="fa fa-code-branch"></span>
+         
+        Getting US Boundaries
+      </a>
+    </li>
+    <li>
+      <a href="m3_2_nhdtoolsPlus.html">
+        <span class="fa fa-tint"></span>
+         
+        Downloading NHD River Data
+      </a>
+    </li>
+    <li>
+      <a href="m3_3_useful_water_pkgs.html">
         <span class="fa fa-archive"></span>
          
         Helpful Packages
-      </a>
-    </li>
-    <li>
-      <a href="in_progress.html">
-        <span class="fa fa-code-branch"></span>
-         
-        Running Functions
-      </a>
-    </li>
-    <li>
-      <a href="in_progress.html">
-        <span class="fa fa-tint"></span>
-         
-        Downloading River Data
       </a>
     </li>
   </ul>
@@ -546,21 +546,21 @@ div.tocify {
 <p>Go to <a href="https://cran.rstudio.com/bin/windows/base/">CRAN and download</a> the R installer for Windows. Make sure to choose the latest stable version (v4.0.2 as of Sept 2020).</p>
 <p>Once the installer downloads, Right-click on it and select “Run as administrator”.</p>
 <p>Type in your credentials and click yes (or if you don’t have administrator access have your IT rep install with Admin privileges).</p>
-<p><img src="figure/install_open_as_admin.png#inline-img" title="run as admin" /></p>
+<p><img src="images/install_open_as_admin.png#inline-img" title="run as admin" /></p>
 <p>You can click next through the standard dialogs and accept most defaults. But at the destination
 screen, please verify that it is installing it to C:Files(version number may vary)</p>
-<p><img src="figure/install_destination.png#inline-img" title="install destination screen" /></p>
+<p><img src="images/install_destination.png#inline-img" title="install destination screen" /></p>
 <p>At the “Select Components” screen, you can accept the default and install both 32-bit and 64-bit versions.</p>
-<p><img src="figure/install_arch_window.png#inline-img" title="select architecture" /></p>
+<p><img src="images/install_arch_window.png#inline-img" title="select architecture" /></p>
 <p>At this screen, uncheck ‘Create a desktop icon’ because non-admin users in Windows will be unable to delete it.</p>
-<p><img src="figure/install_tasks.png#inline-img" title="uncheck desktop icon" /></p>
+<p><img src="images/install_tasks.png#inline-img" title="uncheck desktop icon" /></p>
 </div>
 <div id="windows-download-and-install-rstudio" class="section level2">
 <h2><em>Windows</em>: Download and install RStudio</h2>
 <p><a href="https://www.rstudio.com/products/rstudio/download/"></a></p>
 <p>Double-click the installer. It will ask for your administrator credentials to install (you might need to have your IT rep install again).</p>
 <p>Accept all the default options for the RStudio install.</p>
-<p><img src="figure/install_rstudio.png#inline-img" title="RStudio install screen" /></p>
+<p><img src="images/install_rstudio.png#inline-img" title="RStudio install screen" /></p>
 </div>
 <div id="macos-download-and-install-r" class="section level2">
 <h2><em>macOS</em>: Download and install R</h2>
@@ -586,12 +586,12 @@ screen, please verify that it is installing it to C:Files(version number may var
 <div id="open-rstudio" class="section level2">
 <h2>Open RStudio</h2>
 <p>Once installed, RStudio should be accessible from the start menu. Start up RStudio. Once running it should look something like:</p>
-<p><img src="figure/rstudio.png#inline-img" title="RStudio window" /></p>
+<p><img src="images/rstudio.png#inline-img" title="RStudio window" /></p>
 </div>
 <div id="find-console-window" class="section level2">
 <h2>Find “Console” window</h2>
 <p>By default the console window will be on the left side of RStudio. Find that window. It will looking something like:</p>
-<p><img src="figure/rstudio_console.png#inline-img" title="RStudio console" /></p>
+<p><img src="images/rstudio_console.png#inline-img" title="RStudio console" /></p>
 </div>
 <div id="copy-and-paste-the-code" class="section level2">
 <h2>Copy and paste the code</h2>
@@ -618,9 +618,9 @@ install.pacakges(&quot;readxl&quot;)
 install.packages(&quot;lubridate&quot;)
 </code></pre>
 <p>If you see</p>
-<p><img src="figure/personal_library_dialog.png#inline-img" title="dialog box behind" /></p>
+<p><img src="images/personal_library_dialog.png#inline-img" title="dialog box behind" /></p>
 <p>That’s OK! There’s a dialog box hiding behind RStudio asking if you want to create a personal folder in your Documents folder. Click <em>Yes</em>. It will look something like this when done:</p>
-<p><img src="figure/general_pkg_output.png#inline-img" title="console output" /></p>
+<p><img src="images/general_pkg_output.png#inline-img" title="console output" /></p>
 </div>
 <div id="grab-the-sample-datasets" class="section level1">
 <h1>Grab the Sample Datasets</h1>
@@ -642,7 +642,7 @@ install.packages(&quot;lubridate&quot;)
 </ol>
 <pre class="r"><code>c(&quot;tidyverse&quot;, &quot;sf&quot;, &quot;viridis&quot;, &quot;mapview&quot;, &quot;USAboundaries&quot;) %in% installed.packages()</code></pre>
 <p>The end result should look something like:</p>
-<p><img src="figure/install_success.jpg" /></p>
+<p><img src="images/install_success.jpg" /></p>
 </div>
 </div>
 

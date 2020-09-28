@@ -422,7 +422,7 @@ plot(eldor_pts$geometry, add=T, bg ="purple", pch=21) # just the points we cropp
 
 ```
 
-### **Buffer Points**
+### **Buffer a Polygon**
 
 Let's add one additional tool into the mix. `st_buffer` which allows us to buffer our data. Since our data was originally *lat/lon*, the units of distance are in *degrees*, which can make it hard to translate into a precise buffer distance. However, we transformed our CSCI data into a **Projected** CRS, which uses *meters* as the unit of distance. So let's use that layer as a start, and add a 500 meter buffer around the county boundary to see if we pick up any additional CSCI points when we crop the data.
 

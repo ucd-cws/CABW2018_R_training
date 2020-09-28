@@ -2,6 +2,7 @@
 title: "Helpful WateR Packages"
 output: 
   bookdown::html_document2:
+    toc: false
     code_fold: show
     includes:
       in_header: assets/header.html

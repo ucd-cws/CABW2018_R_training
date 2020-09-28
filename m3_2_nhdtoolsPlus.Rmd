@@ -112,9 +112,26 @@ ds_div <- navigate_nldi(list("comid", "14983602"),
                                 mode="DD",
                                 distance_km =  50)
 
+```
+
+```{r quickMap, echo=T, eval=F}
+
 mapview(ds_div, legend=FALSE) + mapview(ds_main, legend=FALSE)
 
 ```
+
+```{r tmap1Hide, eval=T, echo=F, message=FALSE, warning=FALSE}
+
+tmap_mode(mode = "view")
+
+tmap::tm_shape(ds_div, name = "DS Diversions") +
+  tm_lines(col="darkblue", lwd = 2, legend.show = T) +
+  tm_shape(ds_main, name="DS Mainstem") +
+  tm_lines(col="skyblue", lwd=1, legend.show = T)
+
+```
+
+
 
  > Here we pull upstream mainstem streamlines from a USGS Gage and a X/Y COMID.
 
@@ -166,7 +183,7 @@ plot(us_gages$geometry, bg="maroon", pch=21, add=T)
 
 <br>
 
-```{r tmap, eval=F, echo=F}
+```{r tmap, eval=F, echo=F, message=FALSE, warning=FALSE}
 
 library(tmap)
 tmap_mode(mode = "view")
