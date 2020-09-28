@@ -38,11 +38,11 @@ library(here)
 
 <br>
 
-## Spatial R: using `{sf}`
+## Geospatial R: using `{sf}`
 
 R is open source software, and more and more, it has become useful for analysis, visualization, and even writing. More recently, it has become a powerful tool for working with spatial data, making maps, etc. This is because it's free (open source), it can do nearly everything that a GUI type program can do (e.g., ArcGIS or QGIS), and you can write a script to do the same analysis many times over, saving time on repetitive tasks and making it clear how you did what you did. 
 
-There are a variety of spatial mapping/plotting packages in R. However, the best option being used widely for vector-based spatial data in R is the [**`{sf}`**](http://r-spatial.github.io/sf/) package. **`{sf}`** is a powerful, clean, and fairly straightforward approach because it is fast, it can do most if not all of the tasks commonly done in other geospatial software programs. Even better, **`{sf}`** spatial objects are simply `data.frames` with a *sticky* geometry column, which makes it much easier to manipulate, tidy, join, and wrangle data. Basically all the geometry information gets compacted into a single column, and that column follows the data, no matter how you work with the data.
+There are a variety of spatial mapping/plotting packages in R. However, the best option being used widely for vector-based spatial data in R is the [**`{sf}`**](http://r-spatial.github.io/sf/) package. **`{sf}`** is a powerful, clean, and fairly straightforward approach because it is fast and it can do most if not all of the tasks commonly done in other geospatial software programs. Even better, **`{sf}`** spatial objects are simply `data.frames` with a *sticky* geometry column, which makes it much easier to manipulate, tidy, join, and wrangle data. Basically all the geometry information gets compacted into a single column, and that column follows the data, no matter how you work with the data.
 
 <br>
 
@@ -66,7 +66,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/allisonhorst/stats-il
 
 The one caveat to using spatial packages in R is getting things installed and setup. Do this once, and you are good to go! But sometimes it can be a bit tricky. Ideally, we've all worked through this already, and so you have **`{sf}`** installed on your device currently. If you have already done this step, great! take a minute to look at the [**`{sf}`** webpage](http://r-spatial.github.io/sf/) and the various vignettes that are available (see [__Articles__](https://r-spatial.github.io/sf/articles/sf1.html) tab).
 
-For our purposes, let's install and load these packages in R:
+If you haven't installed things, make sure you grab the following packages
 
 ```{r installsf, echo=T, eval=F}
 
@@ -99,7 +99,7 @@ suppressPackageStartupMessages({
 
 ### **Load Data**
 
-First we need to import some data. We'll be using the data we saved [from the previous lesson](m2_2_joins.html). We'll use the `data/csci_sites_match.rda` file, which since we are following the [data management/organization tips](02_project_management.html), we are in an RStudio Project, and we have a `data` folder with our data file inside! 
+Once we've got our libraries loaded, we need to import some data. We'll be using the data we saved [from the previous lesson](m2_2_joins.html). We'll use the `data/csci_sites_match.rda` file, which since we are following the [data management/organization tips](02_project_management.html), we are in an RStudio Project, and we have a `data` folder with our data file inside! 
 
 ```{r load, echo=T, eval=T}
 
@@ -152,11 +152,11 @@ range(csci_sites_match$lon)
 
 <br>
 
-## Making Data Spatial
+## Making Data Spatial (Adding the `geometry` column)
 
-Once we have vetted our data, let's make it *spatial* and create a few quick test plots. To make an **`{sf}`** object, we are creating a `geometry` column. This is "sticky", and contains all the spatial information we need, and it lives within the dataframe. What's awesome is it can contain anything from information for a point to a line to a complex polygon. All in one column. *To make this, we need to know two important pieces...*
+Once we have vetted our data, let's make it *spatial* and create a few quick test plots. To make an **`{sf}`** object, we are creating a `geometry` column. This contains all the geospatial information we need, and it lives within the dataframe. Perhaps most importantly is that its "sticky", meaning whatever we do to our data (tidy, filter, mutate etc) the associated `geometry` column will stick with the data. What's awesome is this column can contain anything from information for a point to a line to a complex polygon. All in one column. *To make this, we need to know two important pieces...*
 
- - Which columns contain the spatial coordinates in (either name or column number)?
+ - Which columns contain the geospatial coordinates in (either name or column number)?
  - What [projection](http://spatialreference.org/ref/epsg/) or [EPSG (CRS, SRID, etc)](http://epsg.io/) is the data in/or that we want to use?
 
 <br>
@@ -181,7 +181,7 @@ A few common CRS Projections used in California for state/federal work:
 
 <br>
 
-<details><summary class="extra-practice-title">Extra Info!</summary>
+<details><summary class="extra-practice-title"><b>Extra Info!</b></summary>
   <div class="extra-practice-body">
   This is a complicated subject and don't expect to learn it all at once. For more details, we definitely recommend reading through Robin Lovelace's Geocomputation in R book, especially the sections on CRS and Reprojecting your data.
 
@@ -193,7 +193,7 @@ A few common CRS Projections used in California for state/federal work:
 
 <br>
 
-### **Dataframe to `{sf}` dataframe**
+### **Making a `{sf}` dataframe**
 
 To make a dataframe with X and Y coordinates into an **`{sf}`** dataframe (so it's spatial and we can do all kinds of cool spatial/mapping operations), we can use the `st_as_sf()` function. We will also add a CRS projection so the data will show up in the right part of the world.
 
@@ -229,27 +229,61 @@ st_crs(df_sf_albers)
 
 <br>
 
+:::challenge
 
-## Plot `{sf}` Data
+**Challenge**
 
-Now we can make a few quick plots to see how our data looks. The simplest option is to use the `plot` function. However, if we try to plot by running: 
+How do we know data is in a **Geographic** or **Projected** Coordinate System? Where can we see this information using the `st_crs()` function?
 
- - `plot(df_sf)`
+:::
+
+<br>
+
+<details>
+  <summary class="challenge-ans-title">**Click for Answers!**</summary>
+  <div class="challenge-ans-body">
+  
+  When we use `st_crs()` the output has a lot of information! A couple quick things we should look at for information. The 4th line down should start with either **`GEOGCRS`** or **`PROJCRS`**. This is the place we want to look to figure out if we are using a *Geographic* or *Projected* CRS. The information that comes after the `[`, i.e.,
+
+  ```
+  ## PROJCRS["NAD83 / California Albers"]
+  ```
+ tells us the CRS name...sometimes these are descriptive, sometimes not. 
+ 
+ The one other important bit to be aware of is what units the CRS is in...look for something that says `LENGTHUNIT` (there may be multiple spots, but we want the line after `ELLIPSOID`), and see what it says. For example, for the EPSG:3310, our unit of measure is `LENGTHUNIT["metre",1]`, which is meters. Useful to know when doing geospatial operations on your data!
+ 
+ </div>
+</details>
+
+<br>
+
+## Plotting `{sf}` Data
+
+Now we can make a few quick plots to see how our data looks. There are a few options that we'll cover, including using `ggplot`, but let's look at the simplest option first. We can use the base `plot` function, but there are a few things to be aware of! 
+
+<br>
+
+### **Plotting with `plot`**
+
+If we try to view our `{sf}` dataframe in a plot by running: 
+
+`plot(df_sf)`
  
  We see something like this:
  
  ![](images/plot_df_sf.png)
 
-Base-plotting functions work with **`{sf}`**, but be aware, using `plot` will default to plotting a facet or map for every **column** of data in your dataframe. Avoid that by specifying `st_coordinates()` or `$geometry` to ensure only the spatial data gets plotted.
+Base-plotting functions work with **`{sf}`**, but `plot(your_sf_object)` will default to plotting a facet or map for **every column** of data in your dataframe. Avoid that by specifying `st_coordinates()` or `$geometry` to ensure only the spatial data gets plotted.
 
-### **Plotting with `plot`**
+<br>
 
 ```{r singleSF1, echo=TRUE}
 
 # single layer
 plot(df_sf$geometry)
+# same as plot(st_coordinates(df_sf))
 
-# add some flair but still a single layer
+# add some flair
 plot(df_sf$geometry, col = "orange")
 
 ```
@@ -280,9 +314,9 @@ plot(df_sf$geometry, col = "orange")
 
 <br>
 
-### **Fancy Plot**
+### **Fancying up your (`base`)Plot**
 
-Let's add a few additional features to our map, using the baseplotting `plot()` function, and adding an `ifelse` statement to plot different colors for CSCI scores above or below 0.75.
+Let's add a few additional features to our map, using the baseplotting `plot()` function, and adding an `ifelse` statement to plot different colors for CSCI scores above or below 0.75. If you haven't used an `ifelse` statement before, it works as follows: `ifelse(` *`if something is true`*, *`do something`*, ELSE IF NOT TRUE: *`do something else`*`)`.
 
 ```{r singleSF2, eval=T, echo=T}
 
@@ -290,7 +324,10 @@ Let's add a few additional features to our map, using the baseplotting `plot()` 
 plot(df_sf$geometry, 
      pch=16, 
      # purple dots are CSCI > 0.75, yellow are <0.75
-     col=ifelse(df_sf$CSCI>0.75, adjustcolor("purple4", alpha=0.7), "gold"), cex=1.5, xlab = "Longitude", ylab="Latitude")
+     col=ifelse(df_sf$CSCI>0.75, adjustcolor("purple4", alpha=0.7), "gold"), 
+     cex=1.5, 
+     xlab = "Longitude", ylab="Latitude")
+# add a title
 graphics::title("CSCI ( >0.75=purple, <0.75=yellow)")
 
 ```
@@ -309,47 +346,6 @@ There's simply too much to show and not enough time, but below are a few options
  - how to create a buffer
  - how to read/write `shapefiles`.
 
-### **Get State & County Boundary Data**
-
-Let's use some boundaries to crop/buffer and manipulate our data. There are loads of options available, let's look at a package called `USAboundaries`, which allows us to quickly download county or state outlines, in `sf` formats. Very handy for making some quick professional maps. Let's get an outline of CA, California counties, select and buffer some points.
-
-```{r getCA, echo=T, eval=T}
-
-library(USAboundaries)
-
-# Pick a State
-state_names <- c("california") # notice we can add more states to this list if we want
-
-# Download STATE data and add projection
-CA <- us_states(resolution = "high", states = state_names) # what does resolution do?
-
-st_crs(CA) # double check the CRS
-
-# make a quick plot!
-plot(CA$geometry)
-
-# add data from above? use "add=TRUE"
-plot(df_sf$geometry, col="blue", add=TRUE)
-
-```
-
-<br>
-
-Next let's create a California county object. First we download all California counties, then we filter to just El Dorado County.
-
-```{r getCAcounties, echo=T, eval=T}
-
-# Download outlines of all the counties for California
-CA_counties<-us_counties(resolution = "high", states = "CA") 
-
-# Pick a county of interest
-co_names <- c("El Dorado") # notice we can add more states to this list if we want
-
-# filter to just that county:
-eldor_co <- filter(CA_counties, name==co_names)
-
-
-```
 
 <br>
 
