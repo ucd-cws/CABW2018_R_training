@@ -29,7 +29,7 @@ library(knitr)
  **Objectives:**
  
  - Use {`USAboundaries`} package to download and save boundary data for State and Counties
- - save out data in different spatial formats: (`.shp`, `.gpx`, `.kml`, `.gpkg`)
+ - save out data in different spatial formats: (`.shp`, `.geojson`, `.kml`, `.csv`)
  
 :::
 
