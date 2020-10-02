@@ -81,7 +81,7 @@ A script works similarly to the *Console*, but it does have a few key difference
 ```
 
 
-Let's practice making variables once more, but this time in our script file. Type the following into your script:
+Let's practice making variables in our script or *`.R`* file. Type the following into your script:
 
 ```{r variable}
 

@@ -87,7 +87,7 @@ include_graphics("https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444
 
 ### **Look at a Messy Dataset**
 
-Let's take a look at this **messy** dataset from our previous lesson (LINK HERE TO LESSONS). 
+Let's take a look at this **messy** dataset which is based on data from the [Using R lesson](m1_1_using_R.html). 
 
  - You can either download this file directly ([DOWNLOAD `r icon::fa("download")`](https://github.com/ucd-cws/CABW2020_R_training/raw/main/data/csci_spreadsheet.xlsx)) and view on your computer
  - Or just follow along with the screenshots below!

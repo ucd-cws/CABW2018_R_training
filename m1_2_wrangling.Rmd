@@ -209,7 +209,7 @@ Let's take a look at some practice challenges to work on the various functions w
 
 **Challenge 2**
 
- - Select the unique sample ID column (`SampleID_old`), latitude (`New_Lat`), longitude (`New_Long`), and `CSCI` columns. Reassign these columns to a dataset named `cscidat`, effectively overwriting the existing dataset.
+ - Select the unique sample ID column (`SampleID_old`), latitude (`New_Lat`), longitude (`New_Long`), and `CSCI` columns. Reassign these columns to a new dataset named `cscidat_trim`, so we don't overwrite the existing dataset.
 
 :::
 

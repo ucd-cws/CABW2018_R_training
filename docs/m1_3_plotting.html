@@ -13,7 +13,7 @@
 
 <title>Plot Data</title>
 
-<script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.4/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -31,6 +31,15 @@
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="site_libs_extra/academicons-1.8.0/css/academicons.css"/>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -380,14 +389,21 @@ div.tocify {
       </a>
     </li>
     <li>
-      <a href="01_setup_R.html">
+      <a href="01_RStudio_cloud.html">
+        <span class="fa fa-cloud"></span>
+         
+        Setting up RStudio Cloud
+      </a>
+    </li>
+    <li>
+      <a href="02_setup_R.html">
         <span class="fa fa-map-signs"></span>
          
         Getting Started
       </a>
     </li>
     <li>
-      <a href="02_project_management.html">
+      <a href="03_project_management.html">
         <span class="fa fa-sitemap"></span>
          
         Project Management
@@ -636,7 +652,7 @@ ascidat &lt;- read_csv(&#39;data/ascidat.csv&#39;)
 <p>Now, let’s go ahead and save the plot using <code>ggsave()</code>.</p>
 <pre class="r"><code># saves most recently run plot
 
-ggsave((&quot;csci_boxplot.png&quot;),
+ggsave((&quot;asci_boxplot.png&quot;),
      path = &quot;/Insert/File/Path/Here/Ending/In/A/Folder&quot;,
      width = 25,
      height = 15,

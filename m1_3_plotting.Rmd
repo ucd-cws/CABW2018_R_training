@@ -151,7 +151,7 @@ Now, let's go ahead and save the plot using `ggsave()`.
 
 # saves most recently run plot
 
-ggsave(("csci_boxplot.png"),
+ggsave(("asci_boxplot.png"),
      path = "/Insert/File/Path/Here/Ending/In/A/Folder",
      width = 25,
      height = 15,

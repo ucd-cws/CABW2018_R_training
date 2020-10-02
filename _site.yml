@@ -27,12 +27,15 @@ navbar:
     - text: "Installing R/RStudio"
       icon: fa-laptop
       href: 00_install_R.html
+    - text: "Setting up RStudio Cloud"
+      icon: fa-cloud
+      href: 01_RStudio_cloud.html
     - text: "Getting Started"
       icon: fa-map-signs
-      href: 01_setup_R.html
+      href: 02_setup_R.html
     - text: "Project Management"
       icon: fa-sitemap
-      href: 02_project_management.html
+      href: 03_project_management.html
   - text: "1: Data In, Plot Out!"
     icon: fa-bicycle fa-1x
     menu:
