@@ -123,7 +123,7 @@ summary(csci_sites_match)
 
 :::challenge
 
-**Challenge**
+**Challenge 1**
 
 For X/Y data (latitude, longitude, UTM Northing or Easting, etc), why might it be important to inspect these data before plotting?
 
@@ -231,7 +231,7 @@ st_crs(df_sf_albers)
 
 :::challenge
 
-**Challenge**
+**Challenge 2**
 
 How do we know data is in a **Geographic** or **Projected** Coordinate System? Where can we see this information using the `st_crs()` function?
 
@@ -334,7 +334,7 @@ plot(df_sf$geometry, col = "orange")
 
 :::challenge
 
- **Challenge:**
+ **Challenge 3**
  
  - **How can we find out how to change the shape of the points using the `plot` function?**
  
@@ -454,7 +454,7 @@ plot(eldor_co_albers$geometry, lty=2, add=T) #original
  
 :::challenge
 
- **Challenge:**
+ **Challenge 4**
  
  - **Crop the CSCI point data (`df_sf_albers`) by the new buffered county layer (`eldor_co_buff_5km`)** and call it `eldor_pts_5km`.
  - **How many additional CSCI points are in `eldor_pts_5km` vs. the original `eldor_pts`?**

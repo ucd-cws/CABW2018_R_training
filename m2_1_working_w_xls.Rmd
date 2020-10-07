@@ -105,7 +105,7 @@ include_graphics(paste0(here::here(), "/images/messy_spreadsheet.png"))
 
 :::challenge
 
-**CHALLENGE**  
+**CHALLENGE 1**  
 
  - **What issues do you notice about the first tab?**
  - **What could we do to make this tidy?**
@@ -204,7 +204,7 @@ Ok, since we know that the data in tab 1 is a mess, let's imagine that someone h
 
 :::challenge
 
-**CHALLENGE**  
+**CHALLENGE 2**  
 
  - **Read in sheet 2 (`csci_clean`) and assign it to an object named "`csci`"**
  - **Read in sheet 3 (`sites_latlon`) and assign it to an object named "`sites`**

@@ -68,7 +68,7 @@ Let's read in both the `csci_clean` and `sites_clean` datasets. If you recall, w
 
 :::challenge
 
-**Challenge:**
+**Challenge 1**
 
  - Read in the `csci_sites_clean.rda` file
  - How many rows are there in each object?
@@ -254,7 +254,7 @@ Notice we had to list both `sites_clean` first, as well as the `sites_clean` sta
 
 :::challenge
 
-**Challenge**
+**Challenge 2**
 
  - If we switched the objects we used in the `anti_join` (as above in the original `inner_join`), R would return zero records. Why? 
 

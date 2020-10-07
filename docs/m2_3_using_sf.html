@@ -512,6 +512,13 @@ div.tocify {
       </a>
     </li>
     <li>
+      <a href="http://usgs-r.github.io/dataRetrieval/articles/nldi.html">
+        <span class="fa fa-road"></span>
+         
+        Query the NLDI Network
+      </a>
+    </li>
+    <li>
       <a href="m3_3_useful_water_pkgs.html">
         <span class="fa fa-archive"></span>
          
@@ -637,7 +644,7 @@ load(file = &quot;data/csci_sites_match.rda&quot;)</code></pre>
 ##  Max.   :42.00   Max.   :-116.2</code></pre>
 <p><br></p>
 <div class="challenge">
-<p><strong>Challenge</strong></p>
+<p><strong>Challenge 1</strong></p>
 <p>For X/Y data (latitude, longitude, UTM Northing or Easting, etc), why might it be important to inspect these data before plotting?</p>
 </div>
 <details>
@@ -782,7 +789,7 @@ st_crs(df_sf_albers)</code></pre>
 ##     ID[&quot;EPSG&quot;,3310]]</code></pre>
 <p><br></p>
 <div class="challenge">
-<p><strong>Challenge</strong></p>
+<p><strong>Challenge 2</strong></p>
 <p>How do we know data is in a <strong>Geographic</strong> or <strong>Projected</strong> Coordinate System? Where can we see this information using the <code>st_crs()</code> function?</p>
 </div>
 <p><br></p>
@@ -878,7 +885,7 @@ plot(df_sf$geometry, col = &quot;orange&quot;)</code></pre>
 <p><img src="m2_3_using_sf_files/figure-html/singleSF1-2.png" width="672" /></p>
 <p><br></p>
 <div class="challenge">
-<p><strong>Challenge:</strong></p>
+<p><strong>Challenge 3</strong></p>
 <ul>
 <li><strong>How can we find out how to change the shape of the points using the <code>plot</code> function?</strong></li>
 </ul>
@@ -1010,7 +1017,7 @@ eldor_co_buff_5km &lt;- st_buffer(eldor_co_albers, dist = 5000)</code></pre>
 plot(eldor_co_albers$geometry, lty=2, add=T) #original</code></pre>
 <p><img src="m2_3_using_sf_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <div class="challenge">
-<p><strong>Challenge:</strong></p>
+<p><strong>Challenge 4</strong></p>
 <ul>
 <li><strong>Crop the CSCI point data (<code>df_sf_albers</code>) by the new buffered county layer (<code>eldor_co_buff_5km</code>)</strong> and call it <code>eldor_pts_5km</code>.</li>
 <li><strong>How many additional CSCI points are in <code>eldor_pts_5km</code> vs. the original <code>eldor_pts</code>?</strong></li>

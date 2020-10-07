@@ -513,6 +513,13 @@ div.tocify {
       </a>
     </li>
     <li>
+      <a href="http://usgs-r.github.io/dataRetrieval/articles/nldi.html">
+        <span class="fa fa-road"></span>
+         
+        Query the NLDI Network
+      </a>
+    </li>
+    <li>
       <a href="m3_3_useful_water_pkgs.html">
         <span class="fa fa-archive"></span>
          
@@ -602,7 +609,7 @@ The trick that makes this all possible, is having one or more shared pieces of d
 <p>While this may seem daunting at first, it’s not! R has some excellent tools built into the <strong><code>{dplyr}</code></strong> package that make joining datasets fairly straightforward. First let’s import some data we can use to join. Here we will build off of the dataset we used in the <a href="m2_1_working_w_xls.html">previous lesson</a>.</p>
 <p>Let’s read in both the <code>csci_clean</code> and <code>sites_clean</code> datasets. If you recall, we saved these as <code>.csv</code>, <code>.rds</code>, <code>.xlsx</code>, and <code>.rda</code>. For now, let’s use the <code>rda</code> option as it will be fastest.</p>
 <div class="challenge">
-<p><strong>Challenge:</strong></p>
+<p><strong>Challenge 1</strong></p>
 <ul>
 <li>Read in the <code>csci_sites_clean.rda</code> file</li>
 <li>How many rows are there in each object?</li>
@@ -732,7 +739,7 @@ str(csci_sites_match)</code></pre>
 <p>Notice we had to list both <code>sites_clean</code> first, as well as the <code>sites_clean</code> stationID column first.</p>
 <p><br></p>
 <div class="challenge">
-<p><strong>Challenge</strong></p>
+<p><strong>Challenge 2</strong></p>
 <ul>
 <li>If we switched the objects we used in the <code>anti_join</code> (as above in the original <code>inner_join</code>), R would return zero records. Why?</li>
 </ul>

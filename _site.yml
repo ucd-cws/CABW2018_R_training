@@ -79,6 +79,9 @@ navbar:
     - text: "Downloading NHD River Data"
       icon: fa-tint
       href: m3_2_nhdtoolsPlus.html
+    - text: "Query the NLDI Network"
+      icon: fa-road
+      href: http://usgs-r.github.io/dataRetrieval/articles/nldi.html
     - text: "Helpful Packages"
       icon: fa-archive
       href: m3_3_useful_water_pkgs.html
