@@ -630,17 +630,17 @@ screen, please verify that it is installing it to C:Files(version number may var
 </div>
 <div id="add-packages" class="section level1">
 <h1>Add Packages</h1>
-<p>Install packages available for all R users from <a href="https://cran.r-project.org/">CRAN</a> by pasting the following code and hitting <code>ENTER</code>.</p>
+<p>Install packages available for all R users from <a href="https://cran.r-project.org/">CRAN</a> by pasting the following code and hitting <code>ENTER</code>. You may see a message <code>There are binary versions available but the source versions are later:</code> followed by a list of the packages you are trying to install. This is usually followed by this message <code>Do you want to install from sources the package which needs compilation? (Yes/no/cancel)</code>. After that message you will typically want/need to type “<strong>Yes</strong>”.</p>
 <pre class="r"><code>install.packages(&quot;tidyverse&quot;)
 install.packages(&quot;sf&quot;)
 install.packages(&quot;mapview&quot;)
 install.packages(&quot;viridis&quot;)
 install.packages(&quot;USAboundaries&quot;)
 install.packages(&quot;openxlsx&quot;)
-install.pacakges(&quot;readxl&quot;)
+install.packages(&quot;readxl&quot;)
 install.packages(&quot;lubridate&quot;)
 </code></pre>
-<p>If you see</p>
+<p>You may see this:</p>
 <p><img src="images/personal_library_dialog.png#inline-img" title="dialog box behind" /></p>
 <p>That’s OK! There’s a dialog box hiding behind RStudio asking if you want to create a personal folder in your Documents folder. Click <em>Yes</em>. It will look something like this when done:</p>
 <p><img src="images/general_pkg_output.png#inline-img" title="console output" /></p>
@@ -656,15 +656,17 @@ install.packages(&quot;lubridate&quot;)
 <p>Download the zipped file of all the data from this <a href="https://github.com/ucd-cws/CABW2020_R_training/raw/main/data/datazip.zip">link</a>. Unzip the content into a folder on your computer that you can access for the workshop.</p>
 <div id="exercise-1" class="section level2">
 <h2>Exercise 1</h2>
-<p>Just to make sure everything is working do the following:</p>
+<p>Just to make sure each package installed successfully, do the following:</p>
 <ol style="list-style-type: decimal">
 <li>Open up RStudio.</li>
 <li>Find the “Console.” This is usually the left part RStudio.</li>
-<li>In the “Console”, find the R Prompt.</li>
-<li>Type in (copy and paste from here will also work) the following commands at the R Prompt and hit return.</li>
+<li>In the “Console”, find the R Prompt (the part that starts with <code>&gt;</code>)</li>
+<li>Type in (or copy and paste from here will also work) the following command at the R Prompt and hit return.</li>
 </ol>
-<pre class="r"><code>c(&quot;tidyverse&quot;, &quot;sf&quot;, &quot;viridis&quot;, &quot;mapview&quot;, &quot;USAboundaries&quot;) %in% installed.packages()</code></pre>
-<p>The end result should look something like:</p>
+<pre class="r"><code># check that these packages are installed successfully:
+c(&quot;tidyverse&quot;, &quot;sf&quot;, &quot;viridis&quot;, &quot;mapview&quot;, &quot;USAboundaries&quot;) %in% installed.packages()</code></pre>
+<pre><code>## [1] TRUE TRUE TRUE TRUE TRUE</code></pre>
+<p>If you have successfully installed packages, you should see a list of “<code>TRUE</code>” repeated once for each package listed inside the <code>c( )</code>. Below is an example of a single package and <code>TRUE</code></p>
 <p><img src="images/install_success.jpg" /></p>
 </div>
 </div>

@@ -99,7 +99,7 @@ Here is what my R version looks like.
 
 # Add Packages
 
-Install packages available for all R users from [CRAN](https://cran.r-project.org/) by pasting the following code and hitting `ENTER`.
+Install packages available for all R users from [CRAN](https://cran.r-project.org/) by pasting the following code and hitting `ENTER`. You may see a message `There are binary versions available but the source versions are later:` followed by a list of the packages you are trying to install. This is usually followed by this message `Do you want to install from sources the package which needs compilation? (Yes/no/cancel)`. After that message you will typically want/need to type "**Yes**". 
 
 
 ```r
@@ -109,18 +109,19 @@ install.packages("mapview")
 install.packages("viridis")
 install.packages("USAboundaries")
 install.packages("openxlsx")
-install.pacakges("readxl")
+install.packages("readxl")
 install.packages("lubridate")
 
 ```
 
-If you see 
+You may see this: 
 
 ![](images/personal_library_dialog.png#inline-img "dialog box behind")
 
 That's OK! There’s a dialog box hiding behind RStudio asking if you want to create a personal folder in your Documents folder.  Click *Yes*. It will look something like this when done:
 
 ![](images/general_pkg_output.png#inline-img "console output")
+
 
 # Grab the Sample Datasets
 
@@ -133,19 +134,22 @@ We'll be working with some California bioassessment data for this workshop.  The
 Download the zipped file of all the data from this [link](https://github.com/ucd-cws/CABW2020_R_training/raw/main/data/datazip.zip).  Unzip the content into a folder on your computer that you can access for the workshop.
 
 ## Exercise 1
-Just to make sure everything is working do the following:
+
+Just to make sure each package installed successfully, do the following:
 
 1. Open up RStudio.
 2. Find the "Console."  This is usually the left part RStudio.
-3. In the "Console", find the R Prompt.
-4. Type in (copy and paste from here will also work) the following commands at the R Prompt and hit return.  
+3. In the "Console", find the R Prompt (the part that starts with `>`)
+4. Type in (or copy and paste from here will also work) the following command at the R Prompt and hit return.  
 
+```{r}
 
-```r
+# check that these packages are installed successfully:
 c("tidyverse", "sf", "viridis", "mapview", "USAboundaries") %in% installed.packages()
+
 ```
 
-The end result should look something like:
+If you have successfully installed packages, you should see a list of "`TRUE`" repeated once for each package listed inside the `c( )`. Below is an example of a single package and `TRUE`
 
 ![](images/install_success.jpg)
 
