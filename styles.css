@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Lora:400,400i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i&display=swap');
+
 body {font-size: 15px; line-height: 1.6;}
 h1 {font-size: 40px;}
 h2 {font-size: 30px;}
@@ -68,7 +71,7 @@ details[open] summary:before {
 .challenge-ans-body {
   padding: 1em;
   background-color:#e6f0ff;
-  font-family: 'Roboto';
+  font-family: 'Lora';
       font-size: 16px;
       font-weight: normal;
 }
@@ -84,7 +87,7 @@ details[open] summary:before {
 .extra-practice-body {
   padding: 1em;
   background-color: #D9E8E1;
-  font-family: 'Roboto';
+  font-family: 'Lora';
       font-size: 16px;
       font-weight: normal;
 }
@@ -110,7 +113,7 @@ css below is adapted from that page */
 .obj>p:first-child {
   padding-top: 0;
   margin-top: 0 !important;
-  font-family: "Roboto";
+  font-family: "Lora";
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -129,7 +132,7 @@ css below is adapted from that page */
 .challenge>p:first-child {
   padding-top: 0;
   margin-top: 0 !important;
-  font-family: "Roboto";
+  font-family: "Lora";
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
