@@ -53,18 +53,26 @@ What we want you to be able to do:
 
 We will be following the [SFS Code of Conduct](https://freshwater-science.org/about/society-governance/code-of-conduct) throughout our workshop.
 
-Our schedule is still being sorted out. Please check back for updates on our workshop schedule and info. A draft schedule is below.
+Here is our tentative schedule for each day. This is subject to change as we'll adjust things as we go.
 
 ### Schedule
 
-**Tuesday, Oct 13**
+**Tuesday, Oct 13: Using R with bioassessment data: what, why, and how**
 
-  - __2:15 - 4:15pm__: Using R with bioassessment data: what, why, and how
+  - __2:15 - 2:30__: Intro & Getting Started
+  - __2:30 - 3:00__: [Importing Data](https://ucd-cws.github.io/CABW2020_R_training/m1_1_using_R.html)
+  - __3:05 - 3:35__: [Wrangling Data](https://ucd-cws.github.io/CABW2020_R_training/m1_2_wrangling.html)
+  - __3:40 - 4:00__: [Plotting with ggplot](https://ucd-cws.github.io/CABW2020_R_training/m1_3_plotting.html)
+  - __4:00 - 4:15__: Discussion & Questions
+  
+  
+**Wednesday, Oct 14: From Excel to a Map with R**
 
-**Wednesday, Oct 14**
-
-  - __2:15 - 4:15pm__: From Excel to a Map with R
-
+  - __2:15 - 2:25__: Intro & Getting Started
+  - __2:25 - 2:50__: [Working from Excel](https://ucd-cws.github.io/CABW2020_R_training/m2_1_working_w_xls.html)
+  - __2:55 - 3:15__: [Joining Data](https://ucd-cws.github.io/CABW2020_R_training/m2_2_joins.html)
+  - __3:20 - 3:50__: [Using {sf}](https://ucd-cws.github.io/CABW2020_R_training/m2_3_using_sf.html)
+  - __3:55 - 4:10__ [Making Maps](https://ucd-cws.github.io/CABW2020_R_training/m2_4_mapping_w_sf.html)
 <br>
 
 
