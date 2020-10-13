@@ -72,7 +72,7 @@ Here is our tentative schedule for each day. This is subject to change as we'll 
   - __2:25 - 2:50__: [Working from Excel](https://ucd-cws.github.io/CABW2020_R_training/m2_1_working_w_xls.html)
   - __2:55 - 3:15__: [Joining Data](https://ucd-cws.github.io/CABW2020_R_training/m2_2_joins.html)
   - __3:20 - 3:50__: [Using {sf}](https://ucd-cws.github.io/CABW2020_R_training/m2_3_using_sf.html)
-  - __3:55 - 4:10__ [Making Maps](https://ucd-cws.github.io/CABW2020_R_training/m2_4_mapping_w_sf.html)
+  - __3:55 - 4:10__: [Making Maps](https://ucd-cws.github.io/CABW2020_R_training/m2_4_mapping_w_sf.html)
 <br>
 
 

@@ -24,6 +24,7 @@ This page contains links to the data we're using in our workshop, and a sample o
  
  - [**Day 2**](https://dl.dropboxusercontent.com/s/1qb54zz7bexqoj8/2020-10-14_cabw_r_livecode.R?dl=0)
  
+ 
 
 ### Lesson Datasets
 
@@ -68,6 +69,15 @@ This is a list of the data sources used in this workshop.
 
 * [Jenny Bryan's **Happy Git and Github for the useR**](http://happygitwithr.com/)
 * [Coding Club **Intro to Github**](https://ourcodingclub.github.io/2017/02/27/git.html)
+
+
+### Feedback
+
+<br>
+
+`r icon::fa("comment", color="darkpurple", size=1.5, pull="left")`: We would like your input to make this a better learning experience for participants and instructors. We'll use this form at set points throughout the workshop to get your feedback on what has worked or not worked.
+
+ - [Short Survey Here!](https://forms.gle/g55hdNVyEHfKxbFA6)
 
 ## {-}
 
