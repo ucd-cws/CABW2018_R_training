@@ -38,6 +38,10 @@ This is a list of the data sources used in this workshop.
     - **Longitude-Latitude Data:** [`latlon.csv`](https://raw.githubusercontent.com/ucd-cws/CABW2020_R_training/main/data/latlon.csv)
     - **CSCI Data:** [`cscidat.csv`](https://raw.githubusercontent.com/ucd-cws/CABW2020_R_training/main/data/cscidat.csv)
     - **ASCI Data:** [`ascidat.csv`](https://raw.githubusercontent.com/ucd-cws/CABW2020_R_training/main/data/ascidat.csv)
+ - Spatial Data (generated using [this lesson](https://ucd-cws.github.io/CABW2020_R_training/m3_1_usaboundaries.html) ) is available as a [zipped folder here](https://github.com/ucd-cws/CABW2020_R_training/raw/main/data/ca_spatial_data.zip). This folder contains:
+    - **states_boundaries.shp** (along with associated .prj, .dbf, .shx)
+    - **states_boundaries.kml** A google earth kml file
+    - **ca_counties_boundaries.geojson** A geojson of counties in CA
 
 
 ### Resources

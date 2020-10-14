@@ -64,8 +64,13 @@ Here is our tentative schedule for each day. This is subject to change as we'll 
   - __3:05 - 3:35__: [Wrangling Data](https://ucd-cws.github.io/CABW2020_R_training/m1_2_wrangling.html)
   - __3:40 - 4:00__: [Plotting with ggplot](https://ucd-cws.github.io/CABW2020_R_training/m1_3_plotting.html)
   - __4:00 - 4:15__: Discussion & Questions
-  
-  
+
+<br>
+
+ > [Video of Day 1](https://youtu.be/ankX2mGNXNs)
+
+<br>
+
 **Wednesday, Oct 14: From Excel to a Map with R**
 
   - __2:15 - 2:25__: Intro & Getting Started
@@ -73,6 +78,7 @@ Here is our tentative schedule for each day. This is subject to change as we'll 
   - __2:55 - 3:15__: [Joining Data](https://ucd-cws.github.io/CABW2020_R_training/m2_2_joins.html)
   - __3:20 - 3:50__: [Using {sf}](https://ucd-cws.github.io/CABW2020_R_training/m2_3_using_sf.html)
   - __3:55 - 4:10__: [Making Maps](https://ucd-cws.github.io/CABW2020_R_training/m2_4_mapping_w_sf.html)
+
 <br>
 
 
